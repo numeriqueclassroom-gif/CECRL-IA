@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CECRL 2021 – Volume complémentaire interactif</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --A1:#1a7a4a;--A1l:#d4f0e3;--A1t:#0d4a2a;
+  --A2:#2a9d5c;--A2l:#c0ebd5;--A2t:#12562e;
+  --B1:#d97706;--B1l:#fef3c7;--B1t:#78350f;
+  --B2:#b45309;--B2l:#fde68a;--B2t:#451a03;
+  --C1:#6d28d9;--C1l:#ede9fe;--C1t:#2e1065;
+  --C2:#4c1d95;--C2l:#ddd6fe;--C2t:#1e1150;
+  --PA:#64748b;--PAl:#f1f5f9;--PAt:#1e293b;
+  --bg:#fafaf8;--sf:#fff;--bd:#e8e4dc;--tx:#1c1917;--mt:#78716c;--ac:#292524;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Instrument Sans",sans-serif;background:var(--bg);color:var(--tx);font-size:15px;line-height:1.6}
+.syne{font-family:"Syne",sans-serif}
+/* HEADER */
+.app-hd{background:var(--ac);color:#fff;padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.app-title{font-family:"Syne",sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:-.02em}
+.app-title span{opacity:.45;font-weight:400}
+.hd-sub{font-size:.68rem;opacity:.4;margin-top:1px}
+.hd-act{display:flex;gap:.35rem;flex-wrap:wrap}
+.btn{padding:.38rem .8rem;border-radius:6px;font-size:.78rem;font-weight:500;cursor:pointer;border:none;font-family:"Instrument Sans",sans-serif;transition:all .15s;display:inline-flex;align-items:center;gap:.3rem;white-space:nowrap}
+.btn-g{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn-g:hover,.btn-g.active{background:rgba(255,255,255,.22)}
+.btn-p{background:#fff;color:var(--ac)}.btn-p:hover{background:#f0ede8}
+.btn-d{background:#dc2626;color:#fff}.btn-d:hover{background:#b91c1c}
+.btn-plain{background:var(--bg);color:var(--tx);border:1px solid var(--bd)}.btn-plain:hover{background:#eee}
+.btn-ac{background:var(--ac);color:#fff}.btn-ac:hover{background:#3d3330}
+.btn-ok{background:#16a34a;color:#fff}.btn-ok:hover{background:#15803d}
+/* TOOLBAR */
+.toolbar{background:var(--sf);border-bottom:1px solid var(--bd);padding:.6rem 1.5rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;position:sticky;top:52px;z-index:90}
+.srch{position:relative;flex:1;min-width:160px;max-width:300px}
+.srch svg{position:absolute;left:.5rem;top:50%;transform:translateY(-50%);width:14px;height:14px;opacity:.4;pointer-events:none}
+.srch input{width:100%;padding:.33rem .6rem .33rem 1.8rem;border:1px solid var(--bd);border-radius:6px;font-size:.8rem;background:var(--bg);color:var(--tx);font-family:"Instrument Sans",sans-serif}
+.srch input:focus{outline:none;border-color:#a0a0a0}
+.sep{width:1px;height:20px;background:var(--bd);flex-shrink:0}
+.fg{display:flex;gap:.3rem;flex-wrap:wrap}
+.fb{padding:.28rem .6rem;border-radius:20px;border:1.5px solid transparent;font-size:.73rem;font-weight:500;cursor:pointer;font-family:"Instrument Sans",sans-serif;transition:all .15s;white-space:nowrap;background:none}
+.pa-c{background:var(--PAl);color:var(--PAt);border-color:var(--PA)}.pa-c.active{background:var(--PA);color:#fff}
+.a1-c{background:var(--A1l);color:var(--A1t);border-color:var(--A1)}.a1-c.active{background:var(--A1);color:#fff}
+.a2-c{background:var(--A2l);color:var(--A2t);border-color:var(--A2)}.a2-c.active{background:var(--A2);color:#fff}
+.b1-c{background:var(--B1l);color:var(--B1t);border-color:var(--B1)}.b1-c.active{background:var(--B1);color:#fff}
+.b2-c{background:var(--B2l);color:var(--B2t);border-color:var(--B2)}.b2-c.active{background:var(--B2);color:#fff}
+.c1-c{background:var(--C1l);color:var(--C1t);border-color:var(--C1)}.c1-c.active{background:var(--C1);color:#fff}
+.c2-c{background:var(--C2l);color:var(--C2t);border-color:var(--C2)}.c2-c.active{background:var(--C2);color:#fff}
+.lgd{display:flex;flex-wrap:wrap;gap:.6rem;padding:.6rem 1.5rem;border-bottom:1px solid var(--bd);background:var(--sf);align-items:center;font-size:.75rem;color:var(--mt)}
+.ld{width:9px;height:9px;border-radius:2px;flex-shrink:0}.li{display:flex;align-items:center;gap:.25rem}
+.cb{padding:.35rem 1.5rem;background:var(--bg);border-bottom:1px solid var(--bd);font-size:.76rem;color:var(--mt);display:flex;align-items:center;gap:.7rem}
+.cb strong{color:var(--tx)}.cbtn{color:var(--mt);background:none;border:none;cursor:pointer;font-size:.76rem;text-decoration:underline;font-family:"Instrument Sans",sans-serif}
+.main{display:flex;min-height:calc(100vh - 156px)}
+.sb{width:196px;flex-shrink:0;padding:.85rem .7rem;border-right:1px solid var(--bd);background:var(--sf);position:sticky;top:104px;align-self:flex-start;max-height:calc(100vh - 104px);overflow-y:auto}
+.sbt{font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mt);margin-bottom:.4rem;padding:0 .3rem}
+.sbi{display:flex;align-items:center;gap:.4rem;padding:.32rem .4rem;border-radius:5px;cursor:pointer;font-size:.76rem;color:var(--mt);border:none;background:none;text-align:left;width:100%;font-family:"Instrument Sans",sans-serif;transition:all .1s}
+.sbi:hover{background:var(--bg);color:var(--tx)}
+.sbd{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sdiv{height:1px;background:var(--bd);margin:.45rem 0}
+.cont{flex:1;padding:1.2rem 1.5rem;min-width:0}
+/* DESCRIPTORS */
+.section{margin-bottom:1.5rem}.sh{font-size:.93rem;font-weight:600;margin-bottom:.75rem;padding-bottom:.38rem;border-bottom:2px solid var(--bd);display:flex;align-items:center;gap:.4rem;font-family:"Syne",sans-serif}
+.si{width:23px;height:23px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.ssect{margin-bottom:1.1rem}
+.stitle{font-size:.82rem;font-weight:600;color:var(--mt);margin-bottom:.55rem;padding:.23rem .5rem;background:var(--bg);border-left:3px solid var(--bd);border-radius:0 4px 4px 0}
+.dgrid{display:flex;flex-direction:column;gap:.38rem}
+.dc{border-radius:7px;border:1px solid transparent;padding:.52rem .78rem;display:flex;gap:.58rem;align-items:flex-start;transition:all .12s}
+.dc:hover{filter:brightness(.96)}.dc.sel{outline:2px solid rgba(0,0,0,.2);outline-offset:1px}.dc.hid{display:none}
+.dlv{font-family:"Syne",sans-serif;font-size:.7rem;font-weight:700;min-width:34px;text-align:center;padding:.16rem .22rem;border-radius:4px;flex-shrink:0}
+.dt{font-size:.8rem;line-height:1.5;flex:1}
+.dck{width:18px;height:18px;border-radius:4px;border:1.5px solid currentColor;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:2px;opacity:.3;transition:all .15s}
+.dck:hover{opacity:.65}.dck.chk{opacity:1}.dck svg{display:none}.dck.chk svg{display:block}
+.pa-bg{background:var(--PAl);border-color:#cbd5e1;color:var(--PAt)}.a1-bg{background:var(--A1l);border-color:#86efac;color:var(--A1t)}.a2-bg{background:var(--A2l);border-color:#6ee7b7;color:var(--A2t)}
+.b1-bg{background:var(--B1l);border-color:#fcd34d;color:var(--B1t)}.b2-bg{background:var(--B2l);border-color:#fbbf24;color:var(--B2t)}.c1-bg{background:var(--C1l);border-color:#c4b5fd;color:var(--C1t)}.c2-bg{background:var(--C2l);border-color:#a78bfa;color:var(--C2t)}
+.pa-b{background:var(--PA);color:#fff}.a1-b{background:var(--A1);color:#fff}.a2-b{background:var(--A2);color:#fff}
+.b1-b{background:var(--B1);color:#fff}.b2-b{background:var(--B2);color:#fff}.c1-b{background:var(--C1);color:#fff}.c2-b{background:var(--C2);color:#fff}
+/* GRILLE PERSO */
+.grille-section{margin-bottom:1rem;border:1px solid var(--bd);border-radius:8px;overflow:hidden}
+.gs-head{display:flex;align-items:center;justify-content:space-between;padding:.38rem .75rem;color:#fff;gap:.5rem;flex-wrap:wrap}
+.gs-title{font-family:"Syne",sans-serif;font-size:.78rem;font-weight:600;flex:1}
+.gs-controls{display:flex;align-items:center;gap:.4rem}
+.lv-lbl{font-size:.66rem;opacity:.8}
+.lv-sel{padding:.13rem .28rem;border:1px solid rgba(255,255,255,.3);border-radius:4px;font-size:.68rem;background:rgba(255,255,255,.15);color:#fff;font-family:"Instrument Sans",sans-serif;cursor:pointer}
+.lv-sel option{background:#333;color:#fff}
+.trash-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:4px;padding:.16rem .38rem;font-size:.78rem;cursor:pointer;line-height:1;display:flex;align-items:center}
+.trash-btn:hover{background:rgba(255,255,255,.28)}
+.gt-wrap{overflow-x:auto}.gt{width:100%;border-collapse:collapse;font-size:.76rem}
+.gt th{padding:.38rem .48rem;font-size:.66rem;font-weight:700;font-family:"Syne",sans-serif;border:1px solid var(--bd);text-align:center;white-space:nowrap}
+.gt td{padding:.36rem .48rem;border:1px solid var(--bd);vertical-align:top;line-height:1.4}
+.gt .th-crit{text-align:left;background:#f4f2ee;min-width:96px}.gt .td-lv{vertical-align:middle;text-align:center}.gt .td-desc{font-size:.74rem}
+.gt .td-pts{text-align:center;vertical-align:middle;min-width:50px}
+.gt .td-pts input{width:42px;padding:.16rem .22rem;border:1px solid var(--bd);border-radius:4px;font-size:.74rem;text-align:center;font-family:"Instrument Sans",sans-serif;background:var(--bg)}
+.gt .td-pts input:focus{outline:none;border-color:#999}
+.gt .td-note{background:#fffef5;min-width:46px;text-align:center}
+.gt tr.is-target .dlv{outline:2px solid currentColor;outline-offset:1px}
+.total-bar{background:var(--ac);color:#fff;padding:.42rem 1.5rem;display:flex;align-items:center;justify-content:space-between;font-size:.8rem}
+.total-val{font-family:"Syne",sans-serif;font-size:1rem;font-weight:700}
+.ge{text-align:center;padding:3rem 2rem;color:var(--mt)}.ge h3{font-size:.95rem;margin-bottom:.4rem;color:var(--tx)}
+.ca-zone{background:var(--sf);border-bottom:1px solid var(--bd);padding:.75rem 1.5rem}
+.ca-title{font-size:.78rem;font-weight:600;margin-bottom:.45rem;color:var(--ac)}
+.ca-form{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.ca-sel,.ca-inp{padding:.33rem .48rem;border:1px solid var(--bd);border-radius:6px;font-size:.76rem;background:var(--bg);font-family:"Instrument Sans",sans-serif;color:var(--tx)}
+.ca-sel:focus,.ca-inp:focus{outline:none;border-color:#999}
+/* GRILLES TYPES */
+.gtabs{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:.9rem}
+.gtab{padding:.33rem .7rem;border-radius:6px;border:1px solid var(--bd);font-size:.76rem;cursor:pointer;background:var(--bg);color:var(--mt);font-family:"Instrument Sans",sans-serif;font-weight:500;transition:all .13s}
+.gtab.active{background:var(--ac);color:#fff;border-color:var(--ac)}
+.gtable-wrap{overflow-x:auto;margin-bottom:1.1rem}.gtable{width:100%;border-collapse:collapse;font-size:.72rem}
+.gtable th,.gtable td{border:1px solid var(--bd);padding:.32rem .38rem;vertical-align:top;line-height:1.32}
+.gtable th{font-size:.66rem;font-weight:700;font-family:"Syne",sans-serif;text-align:center;white-space:nowrap}
+.gtable .col-crit{background:#f4f2ee;font-weight:600;text-align:left;min-width:96px}
+.gtable th.col-pa{background:var(--PA);color:#fff}.gtable td.col-pa{background:var(--PAl);color:var(--PAt)}
+.gtable th.col-a1{background:var(--A1);color:#fff}.gtable td.col-a1{background:var(--A1l);color:var(--A1t)}
+.gtable th.col-a2{background:var(--A2);color:#fff}.gtable td.col-a2{background:var(--A2l);color:var(--A2t)}
+.gtable th.col-b1{background:var(--B1);color:#fff}.gtable td.col-b1{background:var(--B1l);color:var(--B1t)}
+.gtable th.col-b2{background:var(--B2);color:#fff}.gtable td.col-b2{background:var(--B2l);color:var(--B2t)}
+.gtable th.col-c1{background:var(--C1);color:#fff}.gtable td.col-c1{background:var(--C1l);color:var(--C1t)}
+.gtable th.col-c2{background:var(--C2);color:#fff}.gtable td.col-c2{background:var(--C2l);color:var(--C2t)}
+.gtable .nd{opacity:.28;font-style:italic;font-size:.66rem}
+.g-sec-title{background:var(--ac);color:#fff;padding:.28rem .55rem;font-family:"Syne",sans-serif;font-size:.8rem;font-weight:600;border-radius:5px;margin:.55rem 0 .28rem}
+/* WIZARD */
+.wiz{max-width:860px;margin:0 auto;padding:1.4rem 1.5rem}
+.wiz-steps{display:flex;gap:0;margin-bottom:1.8rem;border-radius:8px;overflow:hidden;border:1px solid var(--bd)}
+.wiz-step{flex:1;padding:.45rem .5rem;text-align:center;font-size:.72rem;font-weight:500;color:var(--mt);background:var(--bg);border-right:1px solid var(--bd);cursor:pointer;transition:all .15s;font-family:"Syne",sans-serif}
+.wiz-step:last-child{border-right:none}
+.wiz-step.done{background:#f0fdf4;color:#16a34a}
+.wiz-step.active{background:var(--ac);color:#fff}
+.wiz-step.locked{opacity:.4;cursor:default}
+.wiz-panel{display:none}.wiz-panel.active{display:block}
+.wiz-title{font-family:"Syne",sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.3rem}
+.wiz-desc{font-size:.82rem;color:var(--mt);margin-bottom:1.2rem}
+.field-row{margin-bottom:.9rem}
+.field-label{font-size:.8rem;font-weight:600;margin-bottom:.3rem;display:block}
+.field-hint{font-size:.72rem;color:var(--mt);margin-top:.2rem}
+.inp{width:100%;padding:.42rem .65rem;border:1px solid var(--bd);border-radius:7px;font-size:.85rem;font-family:"Instrument Sans",sans-serif;background:var(--sf);color:var(--tx)}
+.inp:focus{outline:none;border-color:#a0a0a0;box-shadow:0 0 0 3px rgba(0,0,0,.05)}
+textarea.inp{resize:vertical;min-height:72px}
+.sel-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.9rem}
+.lv-pill{padding:.3rem .65rem;border-radius:20px;border:2px solid transparent;font-size:.76rem;font-weight:600;cursor:pointer;font-family:"Syne",sans-serif;transition:all .15s}
+/* crit tabs */
+.crit-tabs{display:flex;gap:3px;margin-bottom:.9rem;flex-wrap:wrap}
+.crit-tab{padding:.32rem .75rem;border-radius:6px;border:1px solid var(--bd);font-size:.78rem;cursor:pointer;background:var(--bg);color:var(--mt);font-family:"Instrument Sans",sans-serif;transition:all .12s}
+.crit-tab.active{background:var(--ac);color:#fff;border-color:var(--ac)}
+.crit-tab.done{border-color:#16a34a;color:#16a34a;background:#f0fdf4}
+.crit-tab.done.active{background:#16a34a;color:#fff}
+/* cecrl picker */
+.cpicker{border:1px solid var(--bd);border-radius:8px;overflow:hidden;margin-bottom:1rem}
+.cpicker-head{background:var(--bg);padding:.45rem .75rem;font-size:.76rem;font-weight:600;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}
+.cpicker-body{max-height:320px;overflow-y:auto;padding:.5rem .75rem}
+.cp-ssect{margin-bottom:.7rem}
+.cp-sub{font-size:.72rem;font-weight:600;color:var(--mt);margin-bottom:.35rem;padding:.18rem .4rem;background:var(--bg);border-left:2px solid var(--bd);border-radius:0 3px 3px 0}
+.cp-desc{display:flex;gap:.5rem;align-items:flex-start;padding:.28rem .35rem;border-radius:5px;cursor:pointer;transition:all .1s;margin-bottom:.2rem}
+.cp-desc:hover{background:var(--bg)}
+.cp-desc.sel{background:var(--bg);outline:1.5px solid var(--bd);outline-offset:1px}
+.cp-lv{font-family:"Syne",sans-serif;font-size:.66rem;font-weight:700;min-width:30px;text-align:center;padding:.12rem .18rem;border-radius:3px;flex-shrink:0}
+.cp-tx{font-size:.74rem;line-height:1.42;flex:1}
+.cp-ck{width:16px;height:16px;border-radius:3px;border:1.5px solid currentColor;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;opacity:.3;transition:all .13s;flex-shrink:0}
+.cp-ck:hover{opacity:.6}.cp-ck.chk{opacity:1}.cp-ck svg{display:none}.cp-ck.chk svg{display:block}
+/* keywords */
+.kw-area{border:1px solid var(--bd);border-radius:7px;padding:.5rem .75rem;background:var(--sf);margin-bottom:.8rem}
+.kw-title{font-size:.75rem;font-weight:600;margin-bottom:.35rem;color:var(--ac)}
+.kw-chips{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.35rem;min-height:28px}
+.kw-chip{padding:.18rem .55rem;border-radius:12px;font-size:.73rem;background:var(--ac);color:#fff;display:flex;align-items:center;gap:.3rem}
+.kw-chip button{background:none;border:none;color:#fff;cursor:pointer;font-size:.9rem;line-height:1;opacity:.7;padding:0}
+.kw-chip button:hover{opacity:1}
+.kw-inp{width:100%;padding:.3rem .5rem;border:1px solid var(--bd);border-radius:5px;font-size:.78rem;font-family:"Instrument Sans",sans-serif;background:var(--bg)}
+.kw-inp:focus{outline:none;border-color:#a0a0a0}
+/* score config */
+.score-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin-bottom:.8rem}
+.score-cell{text-align:center}
+.score-cell label{font-size:.7rem;font-weight:700;display:block;margin-bottom:.25rem;font-family:"Syne",sans-serif}
+.score-cell input{width:100%;padding:.3rem .2rem;border:1px solid var(--bd);border-radius:5px;font-size:.82rem;text-align:center;font-family:"Instrument Sans",sans-serif;background:var(--bg)}
+.score-cell input:focus{outline:none;border-color:#a0a0a0}
+/* AI generation */
+.gen-status{padding:.7rem 1rem;border-radius:7px;font-size:.8rem;margin-bottom:.8rem;display:none}
+.gen-status.loading{display:flex;align-items:center;gap:.6rem;background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe}
+.gen-status.error{display:block;background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+.spinner{width:16px;height:16px;border:2px solid #93c5fd;border-top-color:#1d4ed8;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* result table */
+.res-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-bottom:1rem}
+.res-table th{padding:.4rem .55rem;font-size:.68rem;font-weight:700;font-family:"Syne",sans-serif;border:1px solid var(--bd);text-align:left;white-space:nowrap}
+.res-table td{padding:.4rem .55rem;border:1px solid var(--bd);vertical-align:top}
+.res-table td.lv-col{text-align:center;white-space:nowrap;width:60px}
+.res-table td.pts-col{text-align:center;width:55px}
+.res-table td.pts-col input{width:44px;padding:.16rem .2rem;border:1px solid var(--bd);border-radius:4px;font-size:.76rem;text-align:center;font-family:"Instrument Sans",sans-serif;background:var(--bg)}
+.res-table td.pts-col input:focus{outline:none;border-color:#999}
+.res-table td.desc-col{font-size:.76rem;line-height:1.45}
+.res-table td.desc-col textarea{width:100%;border:none;background:transparent;font-size:.76rem;font-family:"Instrument Sans",sans-serif;resize:vertical;min-height:52px;line-height:1.45;color:var(--tx)}
+.res-table td.desc-col textarea:focus{outline:1px solid var(--bd);border-radius:3px;background:var(--sf)}
+.res-table tr.is-target-row th,.res-table tr.is-target-row td{background:#fffbeb}
+/* final grille print */
+.final-grid{width:100%;border-collapse:collapse;font-size:.78rem;margin-bottom:1rem}
+.final-grid th{padding:.4rem .55rem;border:1px solid var(--bd);font-family:"Syne",sans-serif;font-size:.72rem;font-weight:700;text-align:center;white-space:nowrap}
+.final-grid td{padding:.4rem .55rem;border:1px solid var(--bd);vertical-align:top;line-height:1.4;font-size:.76rem}
+.final-grid .th-lv{text-align:center;width:60px}.final-grid .td-pts{text-align:center;width:55px}
+.final-grid .td-note{text-align:center;width:55px;background:#fffef5}
+.final-grid .td-crit-head{background:#f4f2ee;font-weight:600;text-align:left}
+.final-grid tr.target-row td,.final-grid tr.target-row th{background:#fef9c3}
+.conv-table{border-collapse:collapse;font-size:.76rem;margin-top:.6rem}
+.conv-table th,.conv-table td{border:1px solid var(--bd);padding:.3rem .55rem;text-align:center}
+.conv-table th{background:#f4f2ee;font-size:.7rem;font-family:"Syne",sans-serif}
+/* notif */
+.notif{position:fixed;bottom:1rem;right:1rem;background:var(--ac);color:#fff;padding:.48rem .88rem;border-radius:7px;font-size:.76rem;opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none;z-index:300}
+.notif.show{opacity:1;transform:none}
+.no-print{display:block}
+/* PRINT */
+@media print{
+  .no-print,.app-hd,.toolbar,.lgd,.cb,.sb,.ca-zone,.total-bar,.trash-btn,.gs-controls,
+  .gtabs,.btn,.cbtn,.wiz-steps,.wiz-desc,.field-hint{display:none!important}
+  #browse-view,#grilles-view{display:none!important}
+  #grille-view,#wizard-view{display:block!important}
+  body{font-size:9.5pt;background:#fff}
+  .cont,.wiz{padding:.3cm}
+  .grille-section,.final-grid-wrap{break-inside:avoid;margin-bottom:.4cm}
+  .gs-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .gt,.final-grid,.res-table{font-size:8pt}
+  .gt th,.gt td,.final-grid th,.final-grid td{padding:.18rem .28rem}
+  .gt th,.gt td,.dlv,.final-grid th,.final-grid td{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .gt tr.is-target .dlv{outline:1.5pt solid currentColor}
+  .td-pts input,.score-cell input{border:none;background:transparent;font-weight:600}
+  @page{size:A4 landscape;margin:1cm}
+}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#d1cdc7;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="app-hd">
+  <div>
+    <div class="app-title">CECRL <span>/ Volume complémentaire interactif</span></div>
+    <div class="hd-sub">Académie de Nice · Site pédagogique d'anglais · 2026 · <em>Mis en forme avec une IA générative</em></div>
+  </div>
+  <div class="hd-act">
+    <button class="btn btn-g" data-view="browse">📚 Explorer</button>
+    <button class="btn btn-g" data-view="grilles">📊 Grilles types</button>
+    <button class="btn btn-g" data-view="grille">📋 Ma grille <span id="gc" style="background:rgba(255,255,255,.18);border-radius:10px;padding:0 6px;margin-left:2px">0</span></button>
+    <button class="btn btn-g" data-view="wizard">✨ Créer une grille guidée</button>
+    <button class="btn btn-p" data-action="print">🖨 Imprimer</button>
+  </div>
+</div>
+
+<!-- EXPLORER -->
+<div id="browse-view">
+  <div class="toolbar">
+    <div class="srch">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="si" placeholder="Rechercher un descripteur...">
+    </div>
+    <div class="sep"></div>
+    <div class="fg">
+      <button class="fb pa-c active" data-lv="PréA1">Pré-A1</button>
+      <button class="fb a1-c active" data-lv="A1">A1</button>
+      <button class="fb a2-c active" data-lv="A2">A2</button>
+      <button class="fb b1-c active" data-lv="B1">B1</button>
+      <button class="fb b2-c active" data-lv="B2">B2</button>
+      <button class="fb c1-c active" data-lv="C1">C1</button>
+      <button class="fb c2-c active" data-lv="C2">C2</button>
+    </div>
+  </div>
+  <div class="lgd" style="flex-wrap:wrap;gap:.6rem;padding:.6rem 1.5rem;align-items:center">
+    <div style="font-size:.78rem;color:var(--tx);font-weight:500;flex-basis:100%;padding-bottom:.3rem;border-bottom:1px solid var(--bd)">
+      Créer une grille en quelques minutes
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;flex:1">
+      <div class="li"><div class="ld" style="background:var(--PA)"></div>Pré-A1</div>
+      <div class="li"><div class="ld" style="background:var(--A1)"></div>A1</div>
+      <div class="li"><div class="ld" style="background:var(--A2)"></div>A2</div>
+      <div class="li"><div class="ld" style="background:var(--B1)"></div>B1</div>
+      <div class="li"><div class="ld" style="background:var(--B2)"></div>B2</div>
+      <div class="li"><div class="ld" style="background:var(--C1)"></div>C1</div>
+      <div class="li"><div class="ld" style="background:var(--C2)"></div>C2</div>
+    </div>
+    <div style="font-size:.74rem;color:var(--mt);text-align:right;max-width:340px">
+      Cochez &#9745; pour ajouter à votre grille · ou utilisez <strong>✨ Créer une grille guidée</strong>
+    </div>
+  </div>
+  <div class="cb">
+    <span><strong id="vc">0</strong> affichés</span> &middot;
+    <span><strong id="sc">0</strong> sélectionnés</span>
+    <button class="cbtn" data-action="clrsel">Tout décocher</button>
+  </div>
+  <div class="main">
+    <nav class="sb" id="sbnav"></nav>
+    <div class="cont" id="cont"></div>
+  </div>
+</div>
+
+<!-- GRILLES TYPES -->
+<div id="grilles-view" style="display:none">
+  <div class="toolbar no-print" style="justify-content:space-between">
+    <span class="syne" style="font-weight:600;font-size:.88rem">Grilles types CECRL</span>
+    <button class="btn btn-plain" data-view="browse">Retour</button>
+  </div>
+  <div class="cont" style="max-width:980px;margin:0 auto">
+    <div class="gtabs" id="gtabs"></div>
+    <div id="grilles-content"></div>
+  </div>
+</div>
+
+<!-- MA GRILLE -->
+<div id="grille-view" style="display:none">
+  <div class="toolbar no-print" style="justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+    <div style="display:flex;align-items:center;gap:.6rem;flex:1;min-width:180px">
+      <span class="syne" style="font-weight:600;font-size:.88rem;white-space:nowrap">Ma grille</span>
+      <input type="text" id="grille-title" placeholder="Titre de la grille" style="flex:1;padding:.3rem .6rem;border:1px solid var(--bd);border-radius:6px;font-size:.78rem;font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--tx);min-width:180px">
+    </div>
+    <div style="display:flex;gap:.4rem">
+      <button class="btn btn-plain" data-view="browse">Retour</button>
+      <button class="btn btn-d" data-action="clrgrille">Vider</button>
+    </div>
+  </div>
+  <div class="total-bar no-print">
+    <span>Total des points attribués</span>
+    <span class="total-val" id="total-val">0</span>
+  </div>
+  <div class="ca-zone no-print">
+    <div class="ca-title">+ Ajouter un critère personnalisé</div>
+    <div class="ca-form">
+      <select id="ca-lv" class="ca-sel">
+        <option>C2</option><option>C1</option><option>B2</option>
+        <option selected>B1</option><option>A2</option><option>A1</option>
+        <option value="PréA1">Pré-A1</option>
+      </select>
+      <select id="ca-cat" class="ca-sel">
+        <option>Réception</option><option>Production</option>
+        <option>Interaction</option><option>Médiation</option>
+        <option>Compétences linguistiques</option><option>Personnalisé</option>
+      </select>
+      <input type="text" id="ca-sub" class="ca-inp" placeholder="Nom de la compétence" style="flex:2;min-width:140px">
+      <input type="text" id="ca-tx" class="ca-inp" placeholder="Peut... (descripteur)" style="flex:3;min-width:190px">
+      <button class="btn btn-ac" data-action="addcustom">Ajouter</button>
+    </div>
+  </div>
+  <div class="cont" style="max-width:880px;margin:0 auto" id="gc-el">
+    <div class="ge"><h3>Grille vide</h3><p>Cochez des descripteurs dans l'explorateur ou utilisez le mode guidé.</p></div>
+  </div>
+</div>
+
+<!-- WIZARD -->
+<div id="wizard-view" style="display:none">
+  <div class="wiz">
+    <div id="albert-config-notice" style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;padding:.7rem 1rem;margin-bottom:1rem;font-size:.8rem;display:flex;align-items:center;gap:.6rem">
+      <span style="font-size:1.1rem">✅</span>
+      <div>
+        <strong>Connecté à Albert via n8n</strong> — 
+        <span style="color:var(--mt)">La génération est disponible sans clé API. Cliquez sur <strong>✨ Générer avec Albert</strong> à l'étape 4.</span>
+      </div>
+    </div>
+    <div class="wiz-steps" id="wiz-steps">
+      <div class="wiz-step active" data-step="0">1 · Cadrage</div>
+      <div class="wiz-step locked" data-step="1">2 · Critères</div>
+      <div class="wiz-step locked" data-step="2">3 · Descripteurs CECRL</div>
+      <div class="wiz-step locked" data-step="3">4 · Mots-clés &amp; génération</div>
+      <div class="wiz-step locked" data-step="4">5 · Barème &amp; finalisation</div>
+    </div>
+    <!-- STEP 0 : cadrage -->
+    <div class="wiz-panel active" id="wp-0">
+      <div class="wiz-title">Cadrage de la séquence</div>
+      <div class="wiz-desc">Décrivez votre tâche finale et choisissez les cinq niveaux de compétence de votre grille.</div>
+      <div class="field-row">
+        <label class="field-label">Tâche finale <span style="color:#dc2626">*</span></label>
+        <textarea class="inp" id="w-task" placeholder="Ex. : Créer une vidéo conspirationniste avec voix off et images détournées..."></textarea>
+        <div class="field-hint">Décrivez précisément ce que les élèves doivent produire.</div>
+      </div>
+      <div class="field-row">
+        <label class="field-label">Niveau attendu (pivot) <span style="color:#dc2626">*</span></label>
+        <div class="sel-row" id="w-pivot-sel">
+          <button class="lv-pill a1-c" data-lv="A1">A1</button>
+          <button class="lv-pill a2-c" data-lv="A2">A2</button>
+          <button class="lv-pill b1-c" data-lv="B1">B1</button>
+          <button class="lv-pill b2-c active" data-lv="B2">B2</button>
+          <button class="lv-pill c1-c" data-lv="C1">C1</button>
+          <button class="lv-pill c2-c" data-lv="C2">C2</button>
+        </div>
+        <div class="field-hint" id="w-range-hint">Grille : <strong id="w-range-display">A2 · B1 · <u>B2</u> · C1 · C2</strong> — le niveau souligné est l'attendu.</div>
+      </div>
+      <div class="field-row" style="margin-top:1rem">
+        <label class="field-label">Points-score par défaut <span style="font-weight:400;color:var(--mt)">(modifiables à l'étape 5)</span></label>
+        <div class="score-grid" id="w-scores"></div>
+        <div class="field-hint">Échelle linéaire suggérée — ajustez librement.</div>
+      </div>
+      <button class="btn btn-ac" data-wiz-next="0" style="margin-top:.5rem">Continuer →</button>
+    </div>
+    <!-- STEP 1 : critères -->
+    <div class="wiz-panel" id="wp-1">
+      <div class="wiz-title">Définir les critères d'évaluation</div>
+      <div class="wiz-desc">3 ou 4 critères maximum, formulés du point de vue de l'élève (commencez par "Je…"). Ils combinent contenu et langue.</div>
+      <div id="w-crits-list"></div>
+      <button class="btn btn-plain" id="w-add-crit" style="margin-bottom:1rem">+ Ajouter un critère</button>
+      <div style="display:flex;gap:.5rem">
+        <button class="btn btn-plain" data-wiz-prev="1">← Retour</button>
+        <button class="btn btn-ac" data-wiz-next="1">Continuer →</button>
+      </div>
+    </div>
+    <!-- STEP 2 : descripteurs CECRL -->
+    <div class="wiz-panel" id="wp-2">
+      <div class="wiz-title">Sélectionner les descripteurs CECRL</div>
+      <div class="wiz-desc">Pour chaque critère, choisissez 3 à 5 descripteurs CECRL pertinents. Filtrez par domaine ou recherchez un mot-clé.</div>
+      <div class="crit-tabs" id="w-crit-tabs"></div>
+      <div id="w-cpicker-search" style="margin-bottom:.6rem">
+        <div class="srch" style="max-width:100%">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="w-cp-search" placeholder="Filtrer les descripteurs CECRL...">
+        </div>
+      </div>
+      <div id="w-cpicker"></div>
+      <div style="display:flex;gap:.5rem;margin-top:.8rem">
+        <button class="btn btn-plain" data-wiz-prev="2">← Retour</button>
+        <button class="btn btn-ac" data-wiz-next="2">Continuer →</button>
+      </div>
+    </div>
+    <!-- STEP 3 : mots-clés + génération -->
+    <div class="wiz-panel" id="wp-3">
+      <div class="wiz-title">Mots-clés et génération</div>
+      <div class="wiz-desc">Pour chaque critère, ajoutez des mots-clés spécifiques à votre tâche et à votre cours. Albert rédigera les descripteurs combinés adaptés à chaque niveau.</div>
+      <div class="crit-tabs" id="w-kw-tabs"></div>
+      <div id="w-kw-zone"></div>
+      <div class="gen-status" id="gen-status"></div>
+      <div id="w-gen-results"></div>
+      <div style="display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap">
+        <button class="btn btn-plain" data-wiz-prev="3">← Retour</button>
+        <button class="btn" style="background:#1d4ed8;color:#fff" data-action="generate">✨ Générer avec Albert</button>
+        <button class="btn btn-ac" data-wiz-next="3" id="w-to-step4" style="display:none">Continuer →</button>
+      </div>
+    </div>
+    <!-- STEP 4 : barème + finalisation -->
+    <div class="wiz-panel" id="wp-4">
+      <div class="wiz-title">Barème et finalisation</div>
+      <div class="wiz-desc">Ajustez les points-score, vérifiez la grille finale et imprimez.</div>
+      <div class="field-row">
+        <label class="field-label">Points-score par niveau</label>
+        <div class="score-grid" id="w-scores-final"></div>
+      </div>
+      <div id="w-final-grid-wrap"></div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem">
+        <button class="btn btn-plain" data-wiz-prev="4">← Retour</button>
+        <button class="btn btn-ok" data-action="export-to-grille">Envoyer vers Ma grille</button>
+        <button class="btn btn-p" data-action="print">🖨 Imprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="notif" id="notif"></div>
+<script>
+const D={
+"Niveaux communs":{ic:"🎯",col:"#6b7280",s:{
+"Échelle globale":[
+{l:"C2",t:"Peut comprendre sans effort pratiquement tout ce qu'il/elle lit ou entend. Peut restituer faits et arguments de diverses sources en les résumant de façon cohérente. Peut s'exprimer spontanément, très couramment et de façon précise et rendre distinctes de fines nuances de sens."},
+{l:"C1",t:"Peut comprendre une grande gamme de textes longs et exigeants, et saisir des significations implicites. Peut s'exprimer spontanément et couramment sans chercher ses mots. Peut utiliser la langue de façon efficace et souple dans sa vie sociale, professionnelle ou académique."},
+{l:"B2",t:"Peut comprendre le contenu essentiel de sujets concrets ou abstraits dans un texte complexe, y compris une discussion technique dans sa spécialité. Peut communiquer avec une aisance telle qu'une conversation avec un locuteur natif ne comporte de tension ni pour l'un ni pour l'autre."},
+{l:"B1",t:"Peut comprendre les points essentiels quand un langage clair et standard est utilisé sur des sujets familiers. Peut se débrouiller dans la plupart des situations en voyage. Peut produire un discours simple et cohérent sur des sujets familiers."},
+{l:"A2",t:"Peut comprendre des phrases isolées et des expressions fréquemment utilisées en relation avec des domaines de priorité immédiate. Peut communiquer lors de tâches simples et habituelles ne demandant qu'un échange d'informations simple."},
+{l:"A1",t:"Peut comprendre et utiliser des expressions familières et quotidiennes ainsi que des énoncés très simples. Peut se présenter ou présenter quelqu'un. Peut communiquer de façon simple si l'interlocuteur parle lentement et distinctement."}
+]}},
+"Réception":{ic:"👂",col:"#0369a1",s:{
+"Compréhension générale de l'oral":[
+{l:"C2",t:"Peut comprendre sans effort pratiquement toute langue, en direct ou enregistrée, si le débit est naturel."},
+{l:"C1",t:"Peut suivre une intervention longue sur des sujets abstraits ou complexes. Peut reconnaître une gamme étendue d'expressions idiomatiques et des changements de registre."},
+{l:"B2",t:"Peut comprendre une langue standard, en direct ou dans les médias, sur des sujets familiers ou non. Peut comprendre les idées principales d'interventions complexes sur un sujet concret ou abstrait."},
+{l:"B1",t:"Peut comprendre une information factuelle directe sur des sujets de la vie quotidienne en distinguant les messages généraux et les points de détail."},
+{l:"A2",t:"Peut comprendre assez pour pouvoir répondre à des besoins concrets à condition que l'élocution soit claire et le débit lent."},
+{l:"A1",t:"Peut comprendre une intervention si elle est lente, soigneusement articulée et comprend de longues pauses."},
+{l:"PréA1",t:"Peut comprendre des questions et des affirmations courtes et très simples, à condition qu'elles soient prononcées clairement, lentement, illustrées par des gestes."}
+],
+"Comprendre une conversation entre tierces personnes":[
+{l:"C2",t:"Peut reconnaître les implications socioculturelles dans la plupart des interventions dans le cadre de discussions familières à débit normal."},
+{l:"C1",t:"Peut suivre facilement des échanges complexes entre tiers dans une discussion de groupe et un débat, même sur des sujets abstraits et non familiers."},
+{l:"B2",t:"Peut suivre une conversation animée entre des locuteurs expérimentés de la langue cible."},
+{l:"B1",t:"Peut suivre relativement bien les conversations et les discussions de tous les jours, à condition qu'elles soient en langue standard."},
+{l:"A2",t:"Peut suivre, dans les grandes lignes, de courts et simples échanges sociaux, s'ils sont prononcés très lentement et clairement."},
+{l:"A1",t:"Peut comprendre quelques expressions lorsque les gens discutent de la famille, de l'école, des loisirs, s'ils s'expriment lentement."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Comprendre en tant qu'auditeur":[
+{l:"C2",t:"Peut suivre une conférence ou un exposé spécialisé employant des formes relâchées. Peut faire des déductions appropriées lorsque les liens ne sont pas explicites."},
+{l:"C1",t:"Peut suivre la plupart des conférences, discussions et débats avec assez d'aisance."},
+{l:"B2",t:"Peut suivre l'essentiel d'une conférence, d'un discours et d'autres formes d'exposés académiques ou professionnels complexes."},
+{l:"B1",t:"Peut suivre dans les grandes lignes des exposés courts et non complexes sur des sujets familiers, à condition qu'ils soient clairement exprimés en langue standard."},
+{l:"A2",t:"Peut suivre l'idée générale d'une démonstration ou d'un exposé sur un sujet familier si le message est délivré lentement et clairement."},
+{l:"A1",t:"Peut comprendre les grandes lignes d'une information très simple dans une situation prévisible, à condition qu'elle soit exprimée très lentement avec de longues pauses."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Comprendre des annonces et instructions orales":[
+{l:"C1",t:"Peut extraire des détails précis dans des annonces publiques de mauvaise qualité sonore. Peut comprendre des informations techniques complexes, telles que des modes d'emploi."},
+{l:"B2",t:"Peut comprendre des annonces et des messages sur des sujets concrets et abstraits, en langue standard à un débit normal."},
+{l:"B1",t:"Peut comprendre des informations techniques simples telles que des modes d'emploi. Peut suivre des directives détaillées."},
+{l:"A2",t:"Peut comprendre et suivre une série d'instructions sur des activités familières et quotidiennes, à condition qu'elles soient prononcées clairement et lentement."},
+{l:"A1",t:"Peut comprendre des instructions qui lui sont adressées lentement et avec soin et suivre des directives courtes et simples."},
+{l:"PréA1",t:"Peut comprendre des instructions courtes et simples comme « Stop », « Fermez la porte », à condition qu'elles soient prononcées lentement."}
+],
+"Comprendre des médias audio et enregistrements":[
+{l:"C1",t:"Peut comprendre une gamme étendue de matériel enregistré ou radiodiffusé, y compris pour des utilisations non standards."},
+{l:"B2",t:"Peut comprendre les enregistrements en langue standard de la vie sociale, professionnelle ou académique."},
+{l:"B1",t:"Peut comprendre l'information contenue dans la plupart des documents enregistrés dont le sujet est d'intérêt personnel et la langue claire."},
+{l:"A2",t:"Peut comprendre l'information principale dans une courte publicité. Peut extraire l'information essentielle de courts passages enregistrés sur des sujets courants."},
+{l:"A1",t:"Peut repérer de l'information concrète dans de courts enregistrements sur des sujets quotidiens, si le débit est lent et la langue claire."},
+{l:"PréA1",t:"Peut reconnaître des mots, des noms et des chiffres connus dans des enregistrements courts et simples."}
+],
+"Comprendre des émissions de télévision, films et vidéos":[
+{l:"C1",t:"Peut suivre un film faisant largement usage de l'argot et d'expressions idiomatiques. Peut comprendre dans le détail les arguments présentés dans des émissions exigeantes."},
+{l:"B2",t:"Peut repérer les points principaux d'un argumentaire dans des programmes d'actualités. Peut comprendre un documentaire, une interview en direct, une pièce à la télévision."},
+{l:"B1",t:"Peut comprendre une grande partie des programmes télévisés sur des sujets d'intérêt personnel si le débit est relativement lent."},
+{l:"A2",t:"Peut identifier l'élément principal de nouvelles télévisées sur un événement, si le commentaire est accompagné d'un support visuel."},
+{l:"A1",t:"Peut reconnaître des mots et des expressions familiers dans les gros titres, en utilisant les informations visuelles."},
+{l:"PréA1",t:"Peut identifier le sujet d'un document vidéo à partir d'informations visuelles et d'un savoir préalable."}
+],
+"Compréhension générale de l'écrit":[
+{l:"C2",t:"Peut comprendre presque toute forme d'écrit, y compris des textes littéraires abstraits et complexes, en appréciant de subtiles distinctions de style."},
+{l:"C1",t:"Peut comprendre dans le détail des textes longs et complexes, qu'ils se rapportent ou non à son domaine."},
+{l:"B2",t:"Peut lire avec un grand degré d'autonomie en adaptant le mode et la rapidité de lecture à différents textes et objectifs."},
+{l:"B1",t:"Peut lire des textes factuels clairs sur des sujets relatifs à son domaine et à ses intérêts avec un niveau satisfaisant de compréhension."},
+{l:"A2",t:"Peut comprendre de courts textes simples sur des sujets concrets courants comportant une fréquence élevée de langue quotidienne."},
+{l:"A1",t:"Peut comprendre des textes très courts et très simples, phrase par phrase, en relevant des noms, des mots familiers et des expressions élémentaires."},
+{l:"PréA1",t:"Peut reconnaître des mots familiers accompagnés d'images, comme un menu de restauration rapide illustré."}
+],
+"Comprendre la correspondance":[
+{l:"C2",t:"Peut comprendre une correspondance spécialisée et formelle sur un sujet complexe."},
+{l:"C1",t:"Peut comprendre tout type de correspondance. Peut comprendre de l'argot, des expressions idiomatiques et de l'humour dans une correspondance privée."},
+{l:"B2",t:"Peut lire une correspondance dans son domaine et saisir facilement l'essentiel du sens."},
+{l:"B1",t:"Peut comprendre une correspondance formelle sur un sujet peu familier. Peut comprendre la description d'événements et de sentiments dans des lettres personnelles."},
+{l:"A2",t:"Peut comprendre une lettre personnelle simple dans laquelle la personne parle de sujets familiers ou pose des questions."},
+{l:"A1",t:"Peut comprendre de petits messages simples et brefs sur une carte postale ou sur les réseaux sociaux."},
+{l:"PréA1",t:"Peut comprendre dans une lettre l'événement auquel il/elle est invité(e), ainsi que le jour, l'heure et le lieu."}
+],
+"Lire pour s'orienter":[
+{l:"B2",t:"Peut parcourir rapidement plusieurs textes en parallèle dans son domaine et identifier ce qui est pertinent pour la tâche en cours."},
+{l:"B1",t:"Peut parcourir un texte assez long pour y localiser une information recherchée et réunir des informations provenant de différentes parties."},
+{l:"A2",t:"Peut trouver une information précise dans des textes concrets prévisibles, à condition qu'ils soient écrits dans un langage simple."},
+{l:"A1",t:"Peut reconnaître les noms, les mots et des phrases très élémentaires sur des notes simples concernant des situations ordinaires."},
+{l:"PréA1",t:"Peut comprendre des panneaux très simples : « Parking », « Gare », « Interdiction de fumer »."}
+],
+"Lire pour s'informer et discuter":[
+{l:"C2",t:"Peut comprendre les détails précis et les implications dans un rapport ou un article complexe, même hors de son domaine."},
+{l:"C1",t:"Peut comprendre dans le détail une gamme étendue de textes complexes et identifier des points de détail fins, y compris les points de vue implicites."},
+{l:"B2",t:"Peut comprendre des articles et des rapports sur des problèmes contemporains dans lesquels les auteurs adoptent une position particulière."},
+{l:"B1",t:"Peut comprendre des textes factuels clairs sur des sujets liés à ses domaines d'intérêt. Peut identifier les principales conclusions dans des textes argumentatifs."},
+{l:"A2",t:"Peut identifier l'information pertinente dans des écrits simples tels que des lettres, brochures et courts articles de journaux."},
+{l:"A1",t:"Peut se faire une idée du contenu d'un texte informatif assez simple, surtout s'il est accompagné d'un visuel."},
+{l:"PréA1",t:"Peut comprendre des documents informatifs extrêmement simples, comme un menu illustré."}
+],
+"Lire des instructions":[
+{l:"C1",t:"Peut comprendre dans le détail des instructions longues et complexes pour l'utilisation d'une nouvelle machine ou procédure."},
+{l:"B2",t:"Peut comprendre des instructions longues et complexes dans son domaine, y compris le détail des conditions et des mises en garde."},
+{l:"B1",t:"Peut comprendre des instructions et des procédures dans un texte suivi, par exemple dans un manuel."},
+{l:"A2",t:"Peut comprendre des instructions écrites courtes et illustrées pas à pas (par exemple pour installer un nouvel appareil)."},
+{l:"A1",t:"Peut suivre des indications simples et courtes (par exemple pour aller d'un point à un autre)."},
+{l:"PréA1",t:"Peut comprendre des instructions très courtes et très simples dans un contexte quotidien familier."}
+],
+"Identifier des indices et faire des déductions":[
+{l:"C1",t:"Est habile à utiliser les indices contextuels, grammaticaux et lexicaux pour déduire une attitude, une humeur, des intentions et anticiper la suite."},
+{l:"B2",t:"Peut utiliser différentes stratégies de compréhension, en recherchant les points principaux et vérifiant la compréhension à l'aide des indices contextuels."},
+{l:"B1",t:"Peut exploiter différents types de connecteurs ainsi que le rôle des paragraphes clés pour mieux comprendre l'argumentation."},
+{l:"A2",t:"Peut utiliser sa perception du sens général d'un texte court pour déduire le sens probable de mots inconnus."},
+{l:"A1",t:"Peut déduire la signification d'un mot inconnu concernant une action concrète, à condition que le texte soit très simple."},
+{l:"PréA1",t:"Peut déduire le sens d'un mot à partir de l'illustration ou du pictogramme qui l'accompagne."}
+]}},
+"Production":{ic:"🗣️",col:"#047857",s:{
+"Production orale générale":[
+{l:"C2",t:"Peut produire un discours clair, limpide et fluide, avec une structure logique efficace qui aide le destinataire à remarquer les points importants."},
+{l:"C1",t:"Peut faire une présentation ou une description claire d'un sujet complexe en intégrant des thèmes secondaires et en développant des points particuliers."},
+{l:"B2",t:"Peut développer méthodiquement une présentation en soulignant les points importants et les détails pertinents."},
+{l:"B1",t:"Peut assez aisément mener à bien une description directe et non compliquée sur des sujets variés dans son domaine."},
+{l:"A2",t:"Peut décrire ou présenter simplement des gens, des conditions de vie ou de travail, des activités quotidiennes, par de courtes séries d'expressions."},
+{l:"A1",t:"Peut produire des expressions simples isolées sur les gens et les choses."},
+{l:"PréA1",t:"Peut produire des phrases courtes pour parler de soi et donner des renseignements simples personnels."}
+],
+"Monologue suivi : décrire l'expérience":[
+{l:"C2",t:"Peut faire des descriptions claires, élaborées et souvent remarquables."},
+{l:"C1",t:"Peut faire des descriptions claires et détaillées de sujets complexes, intégrant des thèmes secondaires et terminant par une conclusion appropriée."},
+{l:"B2",t:"Peut faire une description claire et détaillée sur une gamme étendue de sujets. Peut dire en quoi des événements le/la touchent personnellement."},
+{l:"B1",t:"Peut exprimer clairement ses sentiments par rapport à quelque chose vécu. Peut raconter l'intrigue d'un livre ou d'un film. Peut décrire un rêve, un espoir ou une ambition."},
+{l:"A2",t:"Peut raconter une histoire ou décrire quelque chose par une simple liste de points. Peut décrire des projets, habitudes et activités passées."},
+{l:"A1",t:"Peut se décrire, décrire ce qu'il/elle fait, ainsi que son lieu d'habitation."},
+{l:"PréA1",t:"Peut parler de soi (nom, âge, famille) en utilisant des expressions toutes faites, à condition de pouvoir préparer à l'avance."}
+],
+"Monologue suivi : donner des informations":[
+{l:"C1",t:"Peut faire remarquer des distinctions très précises entre des idées similaires. Peut donner des consignes pour effectuer des procédures professionnelles ou académiques complexes."},
+{l:"B2",t:"Peut communiquer des informations et des recommandations complexes sur la vaste gamme de sujets liés à son activité. Peut transmettre de manière fiable une information détaillée."},
+{l:"B1",t:"Peut expliquer les points principaux d'une idée ou d'un problème de façon précise. Peut transmettre des informations factuelles explicites sur un sujet familier."},
+{l:"A2",t:"Peut donner des consignes simples pour aller d'un endroit à un autre."},
+{l:"A1",t:"Peut nommer un objet en indiquant sa forme et sa couleur, en utilisant des mots simples."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Monologue suivi : argumenter":[
+{l:"C1",t:"Peut débattre d'un problème complexe, formuler de façon précise les points soulevés. Peut développer un argument systématiquement dans un langage bien structuré."},
+{l:"B2",t:"Peut développer méthodiquement une argumentation en mettant en évidence les points significatifs. Peut bâtir une séquence d'arguments logiques."},
+{l:"B1",t:"Peut développer une argumentation suffisamment bien pour être compris la plupart du temps. Peut donner des raisons simples pour justifier un point de vue."},
+{l:"A2",t:"Peut donner les raisons pour lesquelles il/elle aime ou n'aime pas quelque chose. Peut présenter son point de vue en termes simples."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"S'adresser à un auditoire":[
+{l:"C2",t:"Peut présenter avec assurance un sujet complexe à un auditoire pour qui ce sujet n'est pas familier. Peut gérer un questionnement difficile, voire hostile."},
+{l:"C1",t:"Peut faire un exposé clair et bien structuré sur un sujet complexe. Peut gérer les objections convenablement, y répondant avec spontanéité."},
+{l:"B2",t:"Peut développer un exposé de manière claire et méthodique. Peut s'écarter spontanément d'un texte préparé pour suivre les points soulevés par des auditeurs."},
+{l:"B1",t:"Peut faire une présentation préparée à l'avance sur un sujet familier. Peut gérer les questions qui suivent mais peut devoir faire répéter."},
+{l:"A2",t:"Peut faire un bref exposé répété sur un sujet relatif à sa vie quotidienne et donner brièvement des justifications."},
+{l:"A1",t:"Peut utiliser un texte préparé très bref pour faire une déclaration répétée (présenter une personne formellement, proposer un toast)."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Production écrite générale":[
+{l:"C2",t:"Peut composer des textes clairs, limpides et fluides, dans un style approprié et efficace, avec une structure logique."},
+{l:"C1",t:"Peut composer des textes clairs, bien structurés sur des sujets complexes, en soulignant les points pertinents les plus saillants."},
+{l:"B2",t:"Peut composer des textes clairs et détaillés sur une gamme étendue de sujets relatifs à son domaine d'intérêt."},
+{l:"B1",t:"Peut produire des textes suivis non complexes sur une gamme de sujets variés."},
+{l:"A2",t:"Peut produire une série d'expressions et de phrases simples reliées par des connecteurs simples."},
+{l:"A1",t:"Peut donner des renseignements sur des sujets relevant de sa vie privée en utilisant des mots et des expressions simples."},
+{l:"PréA1",t:"Peut donner des renseignements simples et personnels (nom, adresse, nationalité) en utilisant éventuellement un dictionnaire."}
+],
+"Écriture créative":[
+{l:"C2",t:"Peut raconter des histoires ou des récits d'expérience captivants, de manière limpide et fluide et dans un style approprié au genre adopté."},
+{l:"C1",t:"Peut composer des textes descriptifs et de fiction clairs, détaillés, bien construits dans un style sûr, personnel et naturel."},
+{l:"B2",t:"Peut faire des descriptions élaborées d'événements et d'expériences réels ou imaginaires. Peut faire une critique de film, de livre ou de pièce de théâtre."},
+{l:"B1",t:"Peut indiquer clairement l'ordre chronologique d'un texte narratif. Peut faire le compte rendu d'expériences en décrivant ses sentiments et ses réactions."},
+{l:"A2",t:"Peut décrire les aspects quotidiens de son environnement. Peut raconter une histoire simple."},
+{l:"A1",t:"Peut produire des phrases et des expressions simples sur lui/elle-même et des personnages imaginaires."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Essais et rapports":[
+{l:"C2",t:"Peut produire des rapports, articles ou essais complexes clairs et fluides qui posent une problématique, ou donner une appréciation critique sur des propositions ou des œuvres littéraires."},
+{l:"C1",t:"Peut exposer clairement et de façon bien structurée des sujets complexes. Peut développer et soutenir des points de vue à l'aide d'arguments secondaires et d'exemples."},
+{l:"B2",t:"Peut produire un essai ou un rapport qui développe une argumentation de façon méthodique. Peut synthétiser des informations et des arguments issus de sources diverses."},
+{l:"B1",t:"Peut produire de courts essais simples sur des sujets d'intérêt général. Peut résumer avec une certaine assurance un ensemble d'informations factuelles."},
+{l:"A2",t:"Peut produire des textes simples sur des sujets d'intérêt familiers, en liant les phrases avec des connecteurs."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+]}},
+"Interaction":{ic:"💬",col:"#b45309",s:{
+"Interaction orale générale":[
+{l:"C2",t:"Possède une bonne maîtrise d'expressions idiomatiques et de tournures courantes, est sensible aux niveaux de sens connotatif. Peut exprimer avec précision des nuances fines de sens."},
+{l:"C1",t:"Peut s'exprimer couramment et spontanément, presque sans effort. Possède un vaste répertoire lexical permettant de surmonter facilement des lacunes par des périphrases."},
+{l:"B2",t:"Peut utiliser la langue couramment, correctement et efficacement dans une gamme étendue de sujets. Peut communiquer avec une aisance telle qu'une interaction soutenue avec des locuteurs de la langue cible soit tout à fait possible."},
+{l:"B1",t:"Peut communiquer avec une certaine assurance sur des sujets familiers. Peut aborder sans préparation une conversation sur un sujet familier."},
+{l:"A2",t:"Peut interagir avec une aisance raisonnable dans des situations bien structurées. Peut faire face à des échanges courants simples."},
+{l:"A1",t:"Peut interagir de façon simple, mais la communication dépend totalement de la répétition, de la reformulation et des corrections."},
+{l:"PréA1",t:"Peut poser des questions et répondre à des questions sur lui/elle-même en utilisant des formules toutes faites courtes."}
+],
+"Conversation":[
+{l:"C2",t:"Peut converser sans effort et de façon appropriée sans qu'aucune limite linguistique ne vienne empêcher la conduite d'une vie personnelle et sociale accomplie."},
+{l:"C1",t:"Peut s'exprimer en société avec souplesse et efficacité, y compris dans un registre affectif, allusif ou humoristique."},
+{l:"B2",t:"Peut établir une relation avec ses interlocuteurs par des questions engageantes. Peut s'impliquer dans une conversation longue sur la plupart des sujets d'intérêt général."},
+{l:"B1",t:"Peut amorcer une conversation sur des sujets familiers. Peut aborder sans préparation une conversation sur un sujet familier."},
+{l:"A2",t:"Peut établir un contact social (saluer et prendre congé, se présenter, remercier). Peut participer à de courtes conversations dans des contextes habituels."},
+{l:"A1",t:"Peut présenter quelqu'un et utiliser des expressions élémentaires de salutation et de congé. Peut demander à quelqu'un de ses nouvelles."},
+{l:"PréA1",t:"Peut comprendre et utiliser des formules toutes faites telles que « Oui », « Non », « Merci ». Peut saluer, donner son nom et prendre congé."}
+],
+"Discussion informelle (entre amis)":[
+{l:"C2",t:"Peut conseiller quelqu'un ou discuter de problèmes délicats sans maladresse, comprendre les allusions familières et traiter avec diplomatie les désaccords."},
+{l:"C1",t:"Peut suivre facilement des échanges entre tiers dans une discussion de groupe et y participer, même sur des sujets abstraits et non familiers."},
+{l:"B2",t:"Peut suivre facilement une conversation animée. Peut exprimer ses idées et ses opinions avec précision et argumenter avec conviction sur des sujets complexes."},
+{l:"B1",t:"Peut suivre l'essentiel de ce qui se dit autour de lui sur des sujets généraux. Peut exprimer sa pensée sur un sujet abstrait ou culturel."},
+{l:"A2",t:"Peut discuter simplement de questions quotidiennes si on s'adresse directement à lui/elle, clairement et simplement."},
+{l:"A1",t:"Peut échanger sur ses goûts pour le sport, la nourriture, etc., en utilisant un répertoire limité."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Discussion formelle (réunions)":[
+{l:"C2",t:"Peut défendre sa position dans une discussion formelle sur des questions complexes et monter une argumentation nette et convaincante. Peut gérer avec assurance un questionnement hostile."},
+{l:"C1",t:"Peut facilement soutenir un débat même sur des sujets abstraits, complexes et non familiers. Peut argumenter une prise de position formelle de manière convaincante."},
+{l:"B2",t:"Peut exposer ses idées et ses opinions et argumenter avec précision sur des sujets complexes. Peut participer activement à des discussions formelles."},
+{l:"B1",t:"Peut suivre l'essentiel de ce qui se dit relatif à son domaine. Peut prendre part à une discussion formelle courante sur un sujet familier."},
+{l:"A2",t:"Peut en général suivre les changements de sujets dans une discussion formelle relative à son domaine si elle est conduite clairement et lentement."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Coopération à visée fonctionnelle":[
+{l:"C1",t:"Peut organiser une discussion pour décider d'une série d'actions avec un partenaire ou un groupe, résumant et développant les différents points de vue."},
+{l:"B2",t:"Peut comprendre avec sûreté des instructions détaillées. Peut esquisser à grands traits une question ou un problème, faire des hypothèses sur les causes et les conséquences."},
+{l:"B1",t:"Peut expliquer pourquoi quelque chose pose problème, discuter de la suite à donner, comparer et opposer des solutions."},
+{l:"A2",t:"Peut discuter de ce que l'on fera ensuite, répondre à des suggestions et en faire. Peut indiquer qu'il/elle suit."},
+{l:"A1",t:"Peut comprendre des questions et instructions formulées lentement, ainsi que des indications brèves et simples."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Interaction écrite générale":[
+{l:"C2",t:"Peut s'exprimer dans le style et le ton appropriés dans pratiquement tous les types d'interaction écrite, formels et informels."},
+{l:"C1",t:"Peut s'exprimer avec clarté et précision, en s'adaptant au destinataire avec souplesse et efficacité."},
+{l:"B2",t:"Peut relater des informations et exprimer des points de vue par écrit et s'adapter à ceux des autres."},
+{l:"B1",t:"Peut apporter des informations et des idées sur des sujets abstraits et concrets. Peut rédiger des notes et des lettres personnelles."},
+{l:"A2",t:"Peut rédiger de brèves notes simples toutes faites en rapport avec des besoins immédiats."},
+{l:"A1",t:"Peut demander ou transmettre des renseignements personnels détaillés."},
+{l:"PréA1",t:"Peut transmettre des informations très simples (nom, adresse, famille) sur un formulaire."}
+],
+"Correspondance":[
+{l:"C2",t:"Peut rédiger pratiquement tout type de correspondance nécessaire à sa vie professionnelle, en adoptant un ton et un style adaptés."},
+{l:"C1",t:"Peut s'exprimer avec clarté et précision dans sa correspondance personnelle. Peut rédiger avec exactitude des correspondances formelles."},
+{l:"B2",t:"Peut rédiger des lettres exprimant différents degrés d'émotion. Peut utiliser les formalités et les conventions d'usage dans des lettres personnelles et professionnelles."},
+{l:"B1",t:"Peut rédiger une lettre personnelle pour donner des nouvelles. Peut rédiger des lettres pour exprimer diverses opinions et relater des expériences."},
+{l:"A2",t:"Peut rédiger une lettre personnelle très simple pour exprimer des remerciements ou des excuses. Peut rédiger des notes, courriels et textos courts et simples."},
+{l:"A1",t:"Peut rédiger des messages personnels en ligne comprenant de courtes phrases décrivant des passe-temps."},
+{l:"PréA1",t:"Peut écrire des phrases courtes pour donner des renseignements personnels simples."}
+],
+"Interaction en ligne":[
+{l:"C2",t:"Peut s'exprimer avec précision et clarté dans une discussion en ligne en direct. Peut anticiper et gérer efficacement les malentendus culturels."},
+{l:"C1",t:"Peut engager des échanges en ligne en direct avec plusieurs participants, comprendre les intentions de communication et les implications culturelles."},
+{l:"B2",t:"Peut engager des échanges en ligne, relier ses contributions à d'autres déjà publiées, saisir les implications culturelles."},
+{l:"B1",t:"Peut s'engager dans des échanges en ligne en temps réel. Peut publier en ligne des récits d'événements sociaux, d'expériences et d'activités."},
+{l:"A2",t:"Peut se présenter et gérer des échanges simples en ligne. Peut publier de courtes descriptions sur des questions quotidiennes."},
+{l:"A1",t:"Peut écrire des messages personnels en ligne très simples, sur ses loisirs, à l'aide d'un outil de traduction."},
+{l:"PréA1",t:"Peut publier des messages simples de salutation en ligne."}
+]}},
+"Médiation":{ic:"🔄",col:"#7c3aed",s:{
+"Médiation générale":[
+{l:"C2",t:"Peut agir en tant que médiateur de façon efficace et naturelle, endosser des rôles différents. Peut expliquer dans un langage clair et fluide la façon dont les faits et les arguments sont présentés."},
+{l:"C1",t:"Peut agir efficacement en tant que médiateur, faire en sorte que l'interaction reste positive. Peut transmettre clairement les idées importantes de textes longs et complexes."},
+{l:"B2",t:"Peut établir un climat favorable à l'échange d'idées. Peut transmettre l'essentiel du contenu de textes bien structurés mais longs et complexes."},
+{l:"B1",t:"Peut établir une collaboration avec des personnes d'autres milieux, montrer de l'intérêt et de l'empathie. Peut transmettre les points principaux de textes longs simples."},
+{l:"A2",t:"Peut jouer un rôle de soutien dans des échanges. Peut transmettre des informations pertinentes présentes dans des textes courts et simples."},
+{l:"A1",t:"Peut utiliser des mots simples et des expressions non verbales pour montrer son intérêt pour une idée."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Transmettre des informations spécifiques":[
+{l:"C1",t:"Peut expliquer la pertinence d'informations spécifiques trouvées dans un passage particulier d'un texte long et complexe."},
+{l:"B2",t:"Peut indiquer quelles présentations sont particulièrement pertinentes pour un objectif précis. Peut transmettre les points importants de textes écrits complexes bien structurés."},
+{l:"B1",t:"Peut transmettre le contenu d'annonces publiques et de messages délivrés clairement, à vitesse normale en langue standard."},
+{l:"A2",t:"Peut transmettre ce qui est dit dans une annonce claire portant sur des sujets familiers, même si cela demande parfois de simplifier."},
+{l:"A1",t:"Peut transmettre des instructions simples et prévisibles concernant des horaires et des lieux."},
+{l:"PréA1",t:"Peut transmettre des informations très élémentaires données dans des textes courts et illustrés."}
+],
+"Expliquer des données (graphiques, tableaux)":[
+{l:"C2",t:"Peut interpréter et décrire clairement différents types de données empiriques issues d'études conceptuellement complexes."},
+{l:"C1",t:"Peut interpréter et décrire de façon claire et fiable les points essentiels de diagrammes complexes sur des sujets académiques ou professionnels."},
+{l:"B2",t:"Peut interpréter et décrire de façon fiable des informations détaillées dans des diagrammes complexes et des graphiques."},
+{l:"B1",t:"Peut interpréter et décrire des informations dans des diagrammes liés à ses centres d'intérêt, même si des lacunes lexicales entraînent des hésitations."},
+{l:"A2",t:"Peut interpréter et décrire des visuels simples portant sur des sujets familiers (carte météo, organigramme de base)."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Traiter un texte (résumer, synthétiser)":[
+{l:"C2",t:"Peut résumer des informations de sources diverses en recomposant les arguments. Peut expliquer les déductions faites alors que les liens et les implications ne sont pas explicites."},
+{l:"C1",t:"Peut résumer de longs textes difficiles. Peut résumer une discussion, approfondir et évaluer les différents points de vue. Peut exploiter l'information d'un texte complexe pour discuter d'un sujet."},
+{l:"B2",t:"Peut synthétiser et rapporter des informations et des arguments provenant d'un certain nombre de sources. Peut résumer une grande variété de textes factuels et de fiction."},
+{l:"B1",t:"Peut résumer les points principaux de textes clairs et bien structurés. Peut résumer de façon simple le contenu informatif de textes non complexes."},
+{l:"A2",t:"Peut rapporter les points principaux de programmes d'actualités simples. Peut résumer les points importants de courts textes informatifs simples."},
+{l:"A1",t:"Peut transmettre les informations simples et prévisibles de panneaux, avis, posters et programmes."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Traduire un texte écrit":[
+{l:"C2",t:"Peut assurer couramment la traduction orale de textes abstraits sur des sujets très variés, transmettant fidèlement les nuances et leurs implications."},
+{l:"C1",t:"Peut assurer couramment la traduction orale de textes complexes sur une grande variété de sujets généraux et spécialisés."},
+{l:"B2",t:"Peut assurer la traduction orale de textes informatifs et argumentatifs complexes sur des sujets de son domaine."},
+{l:"B1",t:"Peut assurer la traduction orale de textes informatifs sur des sujets de son domaine, s'ils sont rédigés dans une langue standard simple."},
+{l:"A2",t:"Peut assurer une traduction orale approximative de textes courants, courts et simples."},
+{l:"A1",t:"Peut assurer la traduction orale simple de mots et d'expressions simples sur des panneaux, affiches, programmes."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Coopérer dans un groupe":[
+{l:"C2",t:"Peut résumer, évaluer et combiner les différentes contributions de façon à faciliter l'adoption d'une solution."},
+{l:"C1",t:"Peut se montrer sensible aux différents points de vue exprimés dans un groupe. Peut recadrer une discussion pour décider de la conduite à tenir."},
+{l:"B2",t:"Peut mettre en évidence le problème principal à résoudre dans une tâche complexe. Peut contribuer à une prise de décision et résolution de problème collective."},
+{l:"B1",t:"Peut inviter des personnes du groupe à donner leurs points de vue. Peut répéter en partie ce que quelqu'un a dit pour s'assurer d'une compréhension mutuelle."},
+{l:"A2",t:"Peut participer à la réalisation de tâches communes simples. Peut faire des propositions d'une manière simple."},
+{l:"A1",t:"Peut demander aux participants de contribuer à des tâches très simples. Peut exprimer une idée et demander aux autres ce qu'ils en pensent."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Établir un espace pluriculturel":[
+{l:"C2",t:"Peut agir comme médiateur de façon efficace et naturelle entre des locuteurs de sa communauté ou d'une autre, tenant compte des différences socioculturelles."},
+{l:"C1",t:"Peut agir comme médiateur dans des rencontres interculturelles, contribuer à une culture de communication partagée en gérant les ambiguïtés."},
+{l:"B2",t:"Peut clarifier des malentendus lors de rencontres interculturelles. Peut travailler en collaboration avec des personnes qui ont des orientations culturelles différentes."},
+{l:"B1",t:"Peut contribuer à une communication interculturelle en lançant la conversation, montrant de l'intérêt et de l'empathie."},
+{l:"A2",t:"Peut contribuer à un échange interculturel, demander aux gens de s'expliquer et de clarifier."},
+{l:"A1",t:"Peut faciliter un échange interculturel par sa façon d'accueillir les gens et en manifestant son intérêt."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+]}},
+"Compétences linguistiques":{ic:"📐",col:"#6d28d9",s:{
+"Étendue linguistique générale":[
+{l:"C2",t:"Peut mettre à profit une maîtrise globale et fiable d'une gamme très étendue de langue pour formuler précisément sa pensée, insister, discriminer et lever l'ambiguïté."},
+{l:"C1",t:"Peut utiliser une gamme étendue de structures grammaticales complexes de façon appropriée et avec beaucoup de souplesse."},
+{l:"B2",t:"Possède une gamme assez étendue de langue pour faire des descriptions claires, exprimer des points de vue et développer des arguments en utilisant des phrases complexes."},
+{l:"B1",t:"Possède suffisamment de moyens linguistiques pour décrire des situations imprévisibles, expliquer les points principaux d'un problème ou d'une idée."},
+{l:"A2",t:"Peut produire de brèves expressions courantes afin de répondre à des besoins simples de type concret. Peut utiliser des modèles de phrases élémentaires."},
+{l:"A1",t:"Possède un choix élémentaire d'expressions simples pour les informations sur soi et les besoins courants."},
+{l:"PréA1",t:"Peut utiliser des mots isolés et des expressions simples pour donner des informations simples sur soi."}
+],
+"Étendue du vocabulaire":[
+{l:"C2",t:"Possède une bonne maîtrise d'un vaste répertoire lexical incluant des expressions idiomatiques et des termes familiers ; est conscient des niveaux de connotation sémantique."},
+{l:"C1",t:"Possède une bonne maîtrise d'un vaste répertoire lexical permettant de surmonter facilement les lacunes par des périphrases. Maîtrise bien les expressions idiomatiques."},
+{l:"B2",t:"Possède une bonne gamme de vocabulaire pour les sujets relatifs à son domaine et les sujets plus généraux. Peut varier sa formulation pour éviter des répétitions."},
+{l:"B1",t:"Possède un bon vocabulaire lié à des sujets familiers et à des situations de la vie quotidienne."},
+{l:"A2",t:"Possède un vocabulaire suffisant pour mener des transactions quotidiennes courantes dans des situations et sur des sujets familiers."},
+{l:"A1",t:"Possède un répertoire élémentaire de mots isolés et d'expressions relatifs à des situations concrètes précises."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Correction grammaticale":[
+{l:"C2",t:"Peut maintenir constamment un haut niveau de correction grammaticale même lorsque l'attention se porte ailleurs."},
+{l:"C1",t:"Peut maintenir constamment un haut degré de correction grammaticale ; les erreurs sont rares et difficiles à repérer."},
+{l:"B2",t:"A une bonne maîtrise grammaticale. Des bévues occasionnelles peuvent se produire mais elles sont rares et souvent corrigées rétrospectivement."},
+{l:"B1",t:"Communique avec une correction suffisante dans des contextes familiers. Des erreurs peuvent se produire mais le sens général reste clair."},
+{l:"A2",t:"Peut utiliser des structures simples correctement mais commet encore systématiquement des erreurs élémentaires."},
+{l:"A1",t:"A un contrôle limité de structures syntaxiques et de formes grammaticales simples appartenant à un répertoire mémorisé."},
+{l:"PréA1",t:"Peut utiliser des règles très simples pour l'ordre des mots dans des phrases courtes."}
+],
+"Maîtrise phonologique":[
+{l:"C2",t:"Peut utiliser tout l'éventail des traits phonologiques de la langue cible avec un haut degré de maîtrise – y compris l'accent tonique, le rythme et l'intonation."},
+{l:"C1",t:"Peut utiliser avec une assez bonne maîtrise tout l'éventail des traits phonologiques de la langue cible, de façon à être toujours intelligible."},
+{l:"B2",t:"Peut généralement utiliser la bonne intonation, placer correctement l'accent et articuler clairement les sons isolés."},
+{l:"B1",t:"La prononciation est en général intelligible ; l'intonation et l'accentuation n'empêchent pas la compréhension."},
+{l:"A2",t:"La prononciation est en général suffisamment claire pour être comprise mais les interlocuteurs devront parfois faire répéter."},
+{l:"A1",t:"La prononciation d'un répertoire très limité d'expressions et de mots mémorisés est compréhensible avec quelque effort."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Maîtrise de l'orthographe":[
+{l:"C2",t:"Les écrits sont sans faute d'orthographe."},
+{l:"C1",t:"La mise en page, les paragraphes et la ponctuation sont logiques et facilitants. L'orthographe est exacte à l'exception de quelques erreurs occasionnelles."},
+{l:"B2",t:"L'orthographe et la ponctuation sont relativement exactes mais peuvent subir l'influence de la première langue."},
+{l:"B1",t:"L'orthographe, la ponctuation et la mise en page sont suffisamment justes pour être en général suivies facilement."},
+{l:"A2",t:"Peut écrire avec une relative exactitude phonétique des mots courts qui appartiennent à son vocabulaire parlé."},
+{l:"A1",t:"Peut recopier de courtes expressions et des mots familiers. Peut orthographier son adresse et d'autres informations personnelles."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Aspects qualitatifs de la langue parlée : Étendue":[
+{l:"C2",t:"Montre une grande souplesse dans la reformulation d'idées sous des formes linguistiques variées pour transmettre avec précision des nuances fines de sens."},
+{l:"C1",t:"A une bonne maîtrise d'une grande gamme de discours parmi lesquels il peut choisir la formulation pour s'exprimer clairement et dans le registre convenable."},
+{l:"B2",t:"Possède une gamme assez étendue de langue pour faire des descriptions claires et exprimer son point de vue."},
+{l:"B1",t:"Possède assez de moyens linguistiques et un vocabulaire suffisant pour s'en sortir avec quelques hésitations sur des sujets tels que la famille, les loisirs, le travail."},
+{l:"A2",t:"Utilise des structures élémentaires constituées d'expressions mémorisées."},
+{l:"A1",t:"Possède un répertoire élémentaire de mots et d'expressions simples relatifs à des situations concrètes particulières."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Aspects qualitatifs de la langue parlée : Correction":[
+{l:"C2",t:"Maintient constamment un haut degré de correction grammaticale dans une langue complexe, même lorsque l'attention est ailleurs."},
+{l:"C1",t:"Maintient constamment un haut degré de correction grammaticale ; les erreurs sont rares, difficiles à repérer et généralement autocorrigées."},
+{l:"B2",t:"Montre un degré assez élevé de maîtrise grammaticale. Ne fait pas d'erreurs conduisant à des malentendus."},
+{l:"B1",t:"Utilise de façon assez exacte un répertoire de structures et schémas fréquents dans des situations prévisibles."},
+{l:"A2",t:"Utilise des structures simples correctement mais commet encore systématiquement des erreurs élémentaires."},
+{l:"A1",t:"A un contrôle limité de quelques formes grammaticales simples appartenant à un répertoire mémorisé."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Aspects qualitatifs de la langue parlée : Aisance":[
+{l:"C2",t:"Peut s'exprimer longuement, spontanément dans un discours naturel en évitant les difficultés ou en les contournant avec habileté."},
+{l:"C1",t:"Peut s'exprimer avec aisance et spontanéité presque sans effort. Seul un sujet conceptuellement difficile est susceptible de gêner le flot naturel du discours."},
+{l:"B2",t:"Peut parler relativement longtemps avec un débit assez régulier ; l'on remarque peu de longues pauses."},
+{l:"B1",t:"Peut discourir de manière compréhensible, même si les pauses pour trouver des formulations sont très évidentes dans les séquences plus longues."},
+{l:"A2",t:"Peut se faire comprendre dans une brève intervention même si les pauses, les faux démarrages et la reformulation sont évidents."},
+{l:"A1",t:"Peut se débrouiller avec des énoncés très courts, isolés, avec de nombreuses pauses pour chercher ses mots."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Aspects qualitatifs de la langue parlée : Cohérence":[
+{l:"C2",t:"Peut produire un discours soutenu cohérent en utilisant de manière complète et appropriée des structures organisationnelles variées et une gamme étendue de mots de liaisons."},
+{l:"C1",t:"Peut produire un texte clair, fluide et bien structuré, démontrant un usage contrôlé de connecteurs et d'articulateurs."},
+{l:"B2",t:"Peut utiliser un nombre limité d'articulateurs pour lier ses phrases en un discours clair et cohérent."},
+{l:"B1",t:"Peut relier une série d'éléments courts, simples et distincts en une suite linéaire de points qui s'enchaînent."},
+{l:"A2",t:"Peut relier des groupes de mots avec des connecteurs simples tels que « et », « mais » et « parce que »."},
+{l:"A1",t:"Peut relier des groupes de mots avec des connecteurs très élémentaires tels que « et » ou « alors »."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Aspects qualitatifs de la langue parlée : Interaction":[
+{l:"C2",t:"Peut interagir avec aisance et habileté en relevant et en utilisant les indices non verbaux et intonatifs sans effort apparent."},
+{l:"C1",t:"Peut choisir une expression adéquate dans un répertoire courant de fonctions discursives pour obtenir la parole ou la garder."},
+{l:"B2",t:"Peut prendre l'initiative de la parole et son tour quand cela convient et peut clore une conversation. Peut faciliter la poursuite d'une discussion en confirmant sa compréhension."},
+{l:"B1",t:"Peut engager, soutenir et clore une conversation simple sur des sujets familiers."},
+{l:"A2",t:"Peut répondre à des questions et réagir à des déclarations simples."},
+{l:"A1",t:"Peut répondre à des questions simples et en poser."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Adéquation sociolinguistique":[
+{l:"C2",t:"Manifeste une bonne maîtrise des expressions idiomatiques. Apprécie pratiquement toutes les implications sociolinguistiques et socioculturelles. Peut utiliser une série de stratégies de communication sophistiquées."},
+{l:"C1",t:"Peut reconnaître un large éventail d'expressions idiomatiques et apprécier les changements de registres. Peut comprendre l'humour, l'ironie et les références culturelles implicites."},
+{l:"B2",t:"Peut identifier et interpréter des codes socioculturels et sociolinguistiques et modifier en connaissance de cause sa façon de s'exprimer."},
+{l:"B1",t:"Peut s'exprimer et répondre à un large éventail de fonctions langagières en utilisant leurs expressions les plus courantes dans un registre neutre."},
+{l:"A2",t:"Peut employer des fonctions simples du langage et y répondre. Peut entrer en contact simplement mais efficacement."},
+{l:"A1",t:"Peut établir un contact social de base en utilisant les formes de politesse les plus élémentaires."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Compétence plurilingue et pluriculturelle":[
+{l:"C2",t:"Peut initier et maîtriser ses interventions, montrer qu'il/elle a conscience des différences culturelles et faire de subtils ajustements pour éviter des malentendus culturels."},
+{l:"C1",t:"Peut identifier des différences dans les conventions sociolinguistiques ou sociopragmatiques et adapter en conséquence sa façon de communiquer."},
+{l:"B2",t:"Peut décrire et juger des points de vue et des pratiques de son groupe social ou d'autres groupes. Peut interpréter et expliquer un document provenant d'une autre culture."},
+{l:"B1",t:"Peut, en général, tenir compte des conventions concernant la posture, le contact visuel, la distance entre les personnes. Peut expliquer des éléments de sa propre culture."},
+{l:"A2",t:"Peut reconnaître et appliquer les normes culturelles courantes liées aux échanges sociaux quotidiens."},
+{l:"A1",t:"Peut reconnaître différentes façons de numéroter, mesurer la distance, dire l'heure."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+]}},
+"Grilles d'évaluation":{ic:"📊",col:"#0f766e",s:{
+"Évaluation de l'écrit : Compétence générale":[
+{l:"C2",t:"Peut écrire des textes élaborés, limpides, fluides et parfaitement corrects dans un style personnel approprié et efficace qui transmet des nuances fines de sens."},
+{l:"C1",t:"Peut rédiger des textes bien structurés et corrects dans l'ensemble sur des sujets complexes. Peut souligner les points pertinents les plus saillants."},
+{l:"B2",t:"Peut rédiger des textes détaillés officiels ou presque officiels sur une gamme étendue de sujets relatifs à son domaine d'intérêt."},
+{l:"B1",t:"Peut rédiger de façon simple des textes reliés sur une gamme de sujets variés dans son domaine."},
+{l:"A2",t:"Peut rédiger une série d'expressions et de phrases simples reliées par des connecteurs simples."},
+{l:"A1",t:"Peut écrire des expressions et phrases simples isolées."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Évaluation de l'écrit : Cohérence et cohésion":[
+{l:"C2",t:"Peut créer un texte cohérent et cohésif en utilisant pleinement et pertinemment les structures organisationnelles adéquates et une grande variété d'articulateurs."},
+{l:"C1",t:"Peut produire un texte clair, fluide et bien structuré, démontrant un usage contrôlé de moyens linguistiques de structuration."},
+{l:"B2",t:"Peut utiliser avec efficacité une grande variété de mots de liaison pour marquer clairement les relations entre les idées."},
+{l:"B1",t:"Peut introduire un contre-argument dans un texte simple discursif. Peut relier une série d'éléments courts, simples et distincts."},
+{l:"A2",t:"Peut utiliser les connecteurs les plus fréquents pour relier des énoncés afin de raconter une histoire ou décrire quelque chose."},
+{l:"A1",t:"Peut relier des groupes de mots avec des connecteurs élémentaires tels que « et » ou « mais »."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Évaluation de l'écrit : Correction grammaticale":[
+{l:"C2",t:"Peut maintenir constamment un haut niveau de correction grammaticale même dans les formes très complexes du langage."},
+{l:"C1",t:"Maintient constamment un haut degré de correction grammaticale ; erreurs occasionnelles en grammaire et expressions idiomatiques."},
+{l:"B2",t:"Montre un degré assez élevé de contrôle grammatical. Ne fait pas d'erreurs conduisant à des malentendus."},
+{l:"B1",t:"Peut se servir avec une correction suffisante d'un répertoire de tournures et d'expressions fréquemment utilisées."},
+{l:"A2",t:"Peut utiliser des structures simples correctement mais commet encore systématiquement des erreurs élémentaires."},
+{l:"A1",t:"A un contrôle limité de quelques structures syntaxiques appartenant à un répertoire mémorisé."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Évaluation de l'écrit : Description":[
+{l:"C2",t:"Peut écrire des histoires ou des récits d'expérience captivants, de manière limpide et fluide, et dans un style approprié au genre adopté."},
+{l:"C1",t:"Peut écrire des textes descriptifs et de fiction clairs, détaillés, bien construits dans un style sûr, personnel et naturel."},
+{l:"B2",t:"Peut écrire des descriptions élaborées d'événements et d'expériences réels ou imaginaires."},
+{l:"B1",t:"Peut faire le compte rendu d'expériences en décrivant ses sentiments et ses réactions dans un texte simple et articulé."},
+{l:"A2",t:"Peut faire une description brève et élémentaire d'un événement, d'activités passées et d'expériences personnelles."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Évaluation de l'écrit : Argumentation":[
+{l:"C2",t:"Peut produire des rapports, articles ou essais complexes qui posent une problématique, ou donner une appréciation critique."},
+{l:"C1",t:"Peut exposer par écrit, clairement et de manière bien structurée, des sujets complexes. Peut exposer et prouver son point de vue à l'aide d'arguments."},
+{l:"B2",t:"Peut écrire un essai ou un rapport qui développe une argumentation de façon méthodique. Peut synthétiser des informations provenant de sources diverses."},
+{l:"B1",t:"Peut écrire de brefs essais simples sur des sujets d'intérêt général. Peut résumer un ensemble d'informations factuelles."},
+{l:"A2",t:"Peut produire des textes simples sur des sujets d'intérêt familiers, en liant les phrases avec des connecteurs."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+]}}};
+
+
+
+const GRILLES_TYPES=[
+  {
+    id:'globale',
+    label:'Échelle globale',
+    desc:'Vue synthétique A1→C2 de toutes les activités langagières',
+    sections:[
+      {title:'Compréhension de l\'oral',rows:[
+        {crit:'Compréhension générale',src:'Réception',sub:'Compréhension générale de l\'oral'},
+        {crit:'Entre locuteurs',src:'Réception',sub:'Comprendre une conversation entre tierces personnes'},
+        {crit:'En tant qu\'auditeur',src:'Réception',sub:'Comprendre en tant qu\'auditeur'},
+        {crit:'Médias audio',src:'Réception',sub:'Comprendre des médias audio et enregistrements'},
+        {crit:'TV, films, vidéos',src:'Réception',sub:'Comprendre des émissions de télévision, films et vidéos'},
+      ]},
+      {title:'Compréhension de l\'écrit',rows:[
+        {crit:'Compréhension générale',src:'Réception',sub:'Compréhension générale de l\'écrit'},
+        {crit:'Correspondance',src:'Réception',sub:'Comprendre la correspondance'},
+        {crit:'Pour s\'orienter',src:'Réception',sub:'Lire pour s\'orienter'},
+        {crit:'Pour s\'informer',src:'Réception',sub:'Lire pour s\'informer et discuter'},
+      ]},
+      {title:'Production orale',rows:[
+        {crit:'Production générale',src:'Production',sub:'Production orale générale'},
+        {crit:'Décrire l\'expérience',src:'Production',sub:'Monologue suivi : décrire l\'expérience'},
+        {crit:'Argumenter',src:'Production',sub:'Monologue suivi : argumenter'},
+        {crit:'S\'adresser à un auditoire',src:'Production',sub:'S\'adresser à un auditoire'},
+      ]},
+      {title:'Production écrite',rows:[
+        {crit:'Production générale',src:'Production',sub:'Production écrite générale'},
+        {crit:'Écriture créative',src:'Production',sub:'Écriture créative'},
+        {crit:'Essais et rapports',src:'Production',sub:'Essais et rapports'},
+      ]},
+      {title:'Interaction orale',rows:[
+        {crit:'Interaction générale',src:'Interaction',sub:'Interaction orale générale'},
+        {crit:'Conversation',src:'Interaction',sub:'Conversation'},
+        {crit:'Discussion informelle',src:'Interaction',sub:'Discussion informelle (entre amis)'},
+        {crit:'Discussion formelle',src:'Interaction',sub:'Discussion formelle (réunions)'},
+      ]},
+      {title:'Interaction écrite & en ligne',rows:[
+        {crit:'Interaction générale',src:'Interaction',sub:'Interaction écrite générale'},
+        {crit:'Correspondance',src:'Interaction',sub:'Correspondance'},
+        {crit:'Interaction en ligne',src:'Interaction',sub:'Interaction en ligne'},
+      ]},
+      {title:'Médiation',rows:[
+        {crit:'Médiation générale',src:'Médiation',sub:'Médiation générale'},
+        {crit:'Traiter un texte',src:'Médiation',sub:'Traiter un texte (résumer, synthétiser)'},
+        {crit:'Coopérer en groupe',src:'Médiation',sub:'Coopérer dans un groupe'},
+      ]},
+    ]
+  },
+  {
+    id:'production-ecrite',
+    label:'Production écrite (analytique)',
+    desc:'Grille analytique production écrite : 5 critères × 7 niveaux',
+    sections:[{title:'',rows:[
+      {crit:'Compétence générale',src:'Grilles d\'évaluation',sub:'Évaluation de l\'écrit : Compétence générale'},
+      {crit:'Étendue',src:'Compétences linguistiques',sub:'Aspects qualitatifs de la langue parlée : Étendue'},
+      {crit:'Cohérence et cohésion',src:'Grilles d\'évaluation',sub:'Évaluation de l\'écrit : Cohérence et cohésion'},
+      {crit:'Correction grammaticale',src:'Grilles d\'évaluation',sub:'Évaluation de l\'écrit : Correction grammaticale'},
+      {crit:'Description',src:'Grilles d\'évaluation',sub:'Évaluation de l\'écrit : Description'},
+      {crit:'Argumentation',src:'Grilles d\'évaluation',sub:'Évaluation de l\'écrit : Argumentation'},
+      {crit:'Maîtrise du vocabulaire',src:'Compétences linguistiques',sub:'Étendue du vocabulaire'},
+      {crit:'Orthographe',src:'Compétences linguistiques',sub:'Maîtrise de l\'orthographe'},
+    ]}]
+  },
+  {
+    id:'production-orale',
+    label:'Production orale (analytique)',
+    desc:'Grille analytique production orale : 6 critères qualitatifs × 7 niveaux',
+    sections:[{title:'',rows:[
+      {crit:'Étendue',src:'Compétences linguistiques',sub:'Aspects qualitatifs de la langue parlée : Étendue'},
+      {crit:'Correction',src:'Compétences linguistiques',sub:'Aspects qualitatifs de la langue parlée : Correction'},
+      {crit:'Aisance',src:'Compétences linguistiques',sub:'Aspects qualitatifs de la langue parlée : Aisance'},
+      {crit:'Interaction',src:'Compétences linguistiques',sub:'Aspects qualitatifs de la langue parlée : Interaction'},
+      {crit:'Cohérence',src:'Compétences linguistiques',sub:'Aspects qualitatifs de la langue parlée : Cohérence'},
+      {crit:'Phonologie',src:'Compétences linguistiques',sub:'Maîtrise phonologique'},
+    ]}]
+  },
+  {
+    id:'interaction',
+    label:'Interaction (analytique)',
+    desc:'Toutes les sous-compétences d\'interaction × niveaux',
+    sections:[{title:'',rows:[
+      {crit:'Interaction orale générale',src:'Interaction',sub:'Interaction orale générale'},
+      {crit:'Conversation',src:'Interaction',sub:'Conversation'},
+      {crit:'Discussion informelle',src:'Interaction',sub:'Discussion informelle (entre amis)'},
+      {crit:'Discussion formelle',src:'Interaction',sub:'Discussion formelle (réunions)'},
+      {crit:'Coopération fonctionnelle',src:'Interaction',sub:'Coopération à visée fonctionnelle'},
+      {crit:'Interaction écrite',src:'Interaction',sub:'Interaction écrite générale'},
+      {crit:'Interaction en ligne',src:'Interaction',sub:'Interaction en ligne'},
+    ]}]
+  },
+  {
+    id:'mediation',
+    label:'Médiation (analytique)',
+    desc:'Toutes les activités de médiation × niveaux',
+    sections:[{title:'',rows:[
+      {crit:'Médiation générale',src:'Médiation',sub:'Médiation générale'},
+      {crit:'Transmettre informations',src:'Médiation',sub:'Transmettre des informations spécifiques'},
+      {crit:'Expliquer données',src:'Médiation',sub:'Expliquer des données (graphiques, tableaux)'},
+      {crit:'Traiter un texte',src:'Médiation',sub:'Traiter un texte (résumer, synthétiser)'},
+      {crit:'Traduire',src:'Médiation',sub:'Traduire un texte écrit'},
+      {crit:'Coopérer en groupe',src:'Médiation',sub:'Coopérer dans un groupe'},
+      {crit:'Espace pluriculturel',src:'Médiation',sub:'Établir un espace pluriculturel'},
+    ]}]
+  },
+  {
+    id:'competences-ling',
+    label:'Compétences linguistiques',
+    desc:'Toutes les compétences linguistiques communicatives × niveaux',
+    sections:[{title:'',rows:[
+      {crit:'Étendue linguistique',src:'Compétences linguistiques',sub:'Étendue linguistique générale'},
+      {crit:'Vocabulaire (étendue)',src:'Compétences linguistiques',sub:'Étendue du vocabulaire'},
+      {crit:'Correction grammaticale',src:'Compétences linguistiques',sub:'Correction grammaticale'},
+      {crit:'Phonologie',src:'Compétences linguistiques',sub:'Maîtrise phonologique'},
+      {crit:'Orthographe',src:'Compétences linguistiques',sub:'Maîtrise de l\'orthographe'},
+      {crit:'Adéquation sociolinguistique',src:'Compétences linguistiques',sub:'Adéquation sociolinguistique'},
+      {crit:'Compétence plurilingue',src:'Compétences linguistiques',sub:'Compétence plurilingue et pluriculturelle'},
+    ]}]
+  },
+];
+
+
+
+
+// ── CONSTANTS ──────────────────────────────────────────────────────────
+// ── CONFIG PROXY N8N ────────────────────────────────────────────────────
+var N8N_WEBHOOK  = "https://n8n.incubateur.education.gouv.fr/webhook/grille-cecrl-ia";
+// ────────────────────────────────────────────────────────────────────────
+
+const LO=["C2","C1","B2","B1","A2","A1","PréA1"];
+const LC={C2:"c2",C1:"c1",B2:"b2",B1:"b1",A2:"a2",A1:"a1","PréA1":"pa"};
+const IDX={};
+let _cnt=0,_gm={};
+function gid(c,s,l){var k=c+"|"+s+"|"+l;if(!_gm[k])_gm[k]="d"+(++_cnt);return _gm[k];}
+function lc(l){return LC[l]||"pa";}
+var aLv=new Set(["C2","C1","B2","B1","A2","A1","PréA1"]);
+var sq="",sel=new Set(),curView="browse",_cust=0;
+
+// ── NOTIFY ──────────────────────────────────────────────────────────────
+function ntf(msg){
+  var n=document.getElementById("notif");
+  n.textContent=msg;n.classList.add("show");
+  setTimeout(function(){n.classList.remove("show");},1800);
+}
+
+// ── VIEW ────────────────────────────────────────────────────────────────
+function sv(v){
+  curView=v;
+  ["browse","grilles","grille","wizard"].forEach(function(id){
+    document.getElementById(id+"-view").style.display=id===v?"":"none";
+  });
+  document.querySelectorAll(".hd-act [data-view]").forEach(function(b){
+    b.classList.toggle("active",b.dataset.view===v);
+  });
+  if(v==="grille") rg();
+  if(v==="grilles") renderGT();
+}
+
+// ── BUILD SIDEBAR ────────────────────────────────────────────────────────
+function buildSB(){
+  var h="";
+  for(var cat in D){
+    var d=D[cat];
+    h+='<div class="sbt">'+d.ic+" "+cat+"</div>";
+    for(var sub in d.s){
+      var sid=encodeURIComponent(cat+sub);
+      h+='<button class="sbi" data-secid="'+sid+'"><span class="sbd" style="background:'+d.col+'"></span>'+sub+"</button>";
+    }
+    h+='<div class="sdiv"></div>';
+  }
+  document.getElementById("sbnav").innerHTML=h;
+}
+
+// ── BUILD CONTENT ────────────────────────────────────────────────────────
+function buildC(){
+  var h="";
+  for(var cat in D){
+    var d=D[cat];
+    h+='<div class="section" id="S-'+encodeURIComponent(cat)+'">';
+    h+='<div class="sh"><span class="si" style="background:'+d.col+'20;color:'+d.col+'">'+d.ic+"</span>"+cat+"</div>";
+    for(var sub in d.s){
+      var ds=d.s[sub];
+      h+='<div class="ssect" id="S-'+encodeURIComponent(cat+sub)+'">';
+      h+='<div class="stitle" style="border-left-color:'+d.col+'">'+sub+"</div>";
+      h+='<div class="dgrid">';
+      for(var i=0;i<ds.length;i++){
+        var desc=ds[i],id=gid(cat,sub,desc.l),c=lc(desc.l);
+        var nd=desc.t==="Pas de descripteur disponible.";
+        IDX[id]={lv:desc.l,cat:cat,sub:sub,tx:desc.t};
+        h+='<div class="dc '+c+'-bg" id="C-'+id+'" data-lv="'+desc.l+'" data-id="'+id+'">';
+        h+='<span class="dlv '+c+'-b">'+desc.l+"</span>";
+        h+='<span class="dt">'+(nd?'<em style="opacity:.4">—</em>':desc.t)+"</span>";
+        if(!nd)h+='<span class="dck" id="K-'+id+'"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1.5,5.5 4.5,8.5 9.5,2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+        h+="</div>";
+      }
+      h+="</div></div>";
+    }
+    h+="</div>";
+  }
+  document.getElementById("cont").innerHTML=h;
+  uc();
+}
+
+// ── FILTER ───────────────────────────────────────────────────────────────
+function flt(){
+  sq=(document.getElementById("si").value||"").toLowerCase();
+  var v=0;
+  document.querySelectorAll(".dc").forEach(function(c){
+    var info=IDX[c.dataset.id]||{};
+    var lv=info.lv||"",tx=(info.tx||"").toLowerCase(),sub=(info.sub||"").toLowerCase();
+    var ok=aLv.has(lv)&&(!sq||tx.includes(sq)||lv.toLowerCase().includes(sq)||sub.includes(sq));
+    if(ok){c.classList.remove("hid");v++;}else c.classList.add("hid");
+  });
+  document.querySelectorAll(".ssect").forEach(function(sec){
+    sec.style.display=sec.querySelector(".dc:not(.hid)")?"":"none";
+  });
+  document.querySelectorAll(".section").forEach(function(sec){
+    sec.style.display=sec.querySelector(".dc:not(.hid)")?"":"none";
+  });
+  document.getElementById("vc").textContent=v;
+}
+function tl(btn){
+  var lv=btn.dataset.lv;
+  if(aLv.has(lv)){aLv.delete(lv);btn.classList.remove("active");}
+  else{aLv.add(lv);btn.classList.add("active");}
+  flt();
+}
+function uc(){
+  document.getElementById("sc").textContent=sel.size;
+  document.getElementById("gc").textContent=sel.size;
+  flt();
+}
+function clrSel(){
+  sel.clear();
+  document.querySelectorAll(".dck").forEach(function(k){k.classList.remove("chk");});
+  document.querySelectorAll(".dc").forEach(function(c){c.classList.remove("sel");});
+  uc();rg();
+}
+function clrGrille(){clrSel();}
+function scr(id){
+  var el=document.getElementById("S-"+id);
+  if(el)el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function tog(dckEl){
+  var card=dckEl.closest(".dc");if(!card)return;
+  var id=card.dataset.id;
+  if(sel.has(id)){sel.delete(id);dckEl.classList.remove("chk");card.classList.remove("sel");}
+  else{sel.add(id);dckEl.classList.add("chk");card.classList.add("sel");ntf("Ajouté à la grille");}
+  uc();
+}
+function addCustom(){
+  var lv=document.getElementById("ca-lv").value;
+  var cat=document.getElementById("ca-cat").value;
+  var sub=document.getElementById("ca-sub").value.trim()||"Critère personnalisé";
+  var tx=document.getElementById("ca-tx").value.trim();
+  if(!tx){ntf("Saisissez un descripteur");return;}
+  var id="custom_"+(++_cust);
+  IDX[id]={lv:lv,cat:cat,sub:sub,tx:tx,custom:true};
+  sel.add(id);
+  document.getElementById("ca-tx").value="";
+  document.getElementById("ca-sub").value="";
+  uc();rg();ntf("Critère ajouté");
+}
+
+// ── MA GRILLE ────────────────────────────────────────────────────────────
+function rg(){
+  var el=document.getElementById("gc-el");if(!el)return;
+  if(sel.size===0){
+    el.innerHTML="<div class=\"ge\"><h3>Grille vide</h3><p>Cochez des descripteurs dans l'explorateur ou utilisez le mode guidé.</p></div>";
+    upTotal();return;
+  }
+  var groups={},order=[];
+  sel.forEach(function(id){
+    var info=IDX[id];if(!info)return;
+    var key=info.cat+"|||"+info.sub;
+    if(!groups[key]){groups[key]={cat:info.cat,sub:info.sub,items:[]};order.push(key);}
+    groups[key].items.push({id:id,lv:info.lv,tx:info.tx});
+  });
+  for(var k in groups)groups[k].items.sort(function(a,b){return LO.indexOf(a.lv)-LO.indexOf(b.lv);});
+  var h="";
+  for(var oi=0;oi<order.length;oi++){
+    var key=order[oi],g=groups[key];
+    var col=(D[g.cat]&&D[g.cat].col)||"#555";
+    var secId="gs_"+key.replace(/[^a-zA-Z0-9]/g,"_");
+    var savedSel=document.querySelector(".lv-sel[data-sec=\""+secId+"\"]");
+    var targetLv=savedSel?savedSel.value:(g.items[0]&&g.items[0].lv||"B1");
+    h+='<div class="grille-section" id="'+secId+'">';
+    h+='<div class="gs-head" style="background:'+col+'">';
+    h+='<div class="gs-title">'+g.cat+' <span style="opacity:.55;font-size:.78em">/ '+g.sub+"</span></div>";
+    h+='<div class="gs-controls no-print">';
+    h+='<span class="lv-lbl">Niveau visé :</span>';
+    h+='<select class="lv-sel" data-sec="'+secId+'">';
+    for(var li=0;li<LO.length;li++){
+      var lv=LO[li];
+      if(g.items.some(function(x){return x.lv===lv;}))
+        h+="<option"+(lv===targetLv?" selected":"")+">"+lv+"</option>";
+    }
+    h+="</select>";
+    h+='<button class="trash-btn" data-rmgroup="'+key+'" title="Retirer cette section"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>';
+    h+="</div></div>";
+    h+='<div class="gt-wrap"><table class="gt"><thead><tr>';
+    h+='<th class="th-crit">Niveau</th><th class="th-crit" style="min-width:240px">Descripteur</th>';
+    h+='<th class="td-pts">Points</th><th class="td-note">Note /</th></tr></thead><tbody>';
+    for(var ii=0;ii<g.items.length;ii++){
+      var it=g.items[ii],c=lc(it.lv),isTgt=it.lv===targetLv;
+      var savedPts=document.querySelector("input[data-pid=\""+it.id+"\"]");
+      var pts=savedPts?savedPts.value:"";
+      h+="<tr"+(isTgt?" class=\"is-target\"":"")+">";
+      h+='<td class="td-lv"><span class="dlv '+c+'-b">'+it.lv+"</span></td>";
+      h+='<td class="td-desc">'+it.tx+"</td>";
+      h+='<td class="td-pts"><input type="number" min="0" max="99" step="0.5" data-pid="'+it.id+'" value="'+pts+'" placeholder="—"></td>';
+      h+='<td class="td-note"></td></tr>';
+    }
+    h+="</tbody></table></div></div>";
+  }
+  el.innerHTML=h;upTotal();
+}
+function upTotal(){
+  var t=0;
+  document.querySelectorAll("input[data-pid]").forEach(function(i){var v=parseFloat(i.value);if(!isNaN(v))t+=v;});
+  var tv=document.getElementById("total-val");if(tv)tv.textContent=t%1===0?t:t.toFixed(1);
+}
+function rmGroup(btn){
+  var key=btn.dataset.rmgroup,toRm=[];
+  sel.forEach(function(id){var info=IDX[id];if(info&&info.cat+"|||"+info.sub===key)toRm.push(id);});
+  toRm.forEach(function(id){
+    sel.delete(id);
+    var k=document.getElementById("K-"+id);if(k)k.classList.remove("chk");
+    var c=document.getElementById("C-"+id);if(c)c.classList.remove("sel");
+  });
+  uc();rg();
+}
+
+
+
+
+var activeGT="globale";
+var DESC_LKP={};
+function buildLKP(){
+  for(var cat in D){
+    DESC_LKP[cat]={};
+    for(var sub in D[cat].s){
+      DESC_LKP[cat][sub]={};
+      var ds=D[cat].s[sub];
+      for(var i=0;i<ds.length;i++)DESC_LKP[cat][sub][ds[i].l]=ds[i].t;
+    }
+  }
+}
+function renderGT(){
+  if(!Object.keys(DESC_LKP).length)buildLKP();
+  var tabs="";
+  for(var gi=0;gi<GRILLES_TYPES.length;gi++){
+    var g=GRILLES_TYPES[gi];
+    tabs+='<button class="gtab'+(g.id===activeGT?" active":"")+'" data-gtid="'+g.id+'">'+g.label+"</button>";
+  }
+  document.getElementById("gtabs").innerHTML=tabs;
+  var grille=null;
+  for(var gi=0;gi<GRILLES_TYPES.length;gi++){if(GRILLES_TYPES[gi].id===activeGT){grille=GRILLES_TYPES[gi];break;}}
+  if(!grille)return;
+  var cols=["C2","C1","B2","B1","A2","A1","PréA1"];
+  var cc={C2:"c2",C1:"c1",B2:"b2",B1:"b1",A2:"a2",A1:"a1","PréA1":"pa"};
+  var h='<div style="font-size:.76rem;color:var(--mt);margin-bottom:.75rem">'+grille.desc+"</div>";
+  for(var si=0;si<grille.sections.length;si++){
+    var sec=grille.sections[si];
+    if(sec.title)h+='<div class="g-sec-title">'+sec.title+"</div>";
+    h+='<div class="gtable-wrap"><table class="gtable"><thead><tr><th class="col-crit">Compétence</th>';
+    for(var ci=0;ci<cols.length;ci++)h+='<th class="col-'+cc[cols[ci]]+'">'+cols[ci]+"</th>";
+    h+="</tr></thead><tbody>";
+    for(var ri=0;ri<sec.rows.length;ri++){
+      var row=sec.rows[ri];
+      h+='<tr><td class="col-crit">'+row.crit+"</td>";
+      for(var ci=0;ci<cols.length;ci++){
+        var lv=cols[ci];
+        var tx=DESC_LKP[row.src]&&DESC_LKP[row.src][row.sub]&&DESC_LKP[row.src][row.sub][lv];
+        h+='<td class="col-'+cc[lv]+'">';
+        h+=(!tx||tx==="Pas de descripteur disponible.")?'<span class="nd">&mdash;</span>':tx;
+        h+="</td>";
+      }
+      h+="</tr>";
+    }
+    h+="</tbody></table></div>";
+  }
+  document.getElementById("grilles-content").innerHTML=h;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// WIZARD
+// ══════════════════════════════════════════════════════════════════════════
+var WIZ={
+  step:0,
+  task:"",
+  pivot:"B2",
+  levels:["A2","B1","B2","C1","C2"], // 5 levels: pivot-2 to pivot+2
+  scores:[5,10,15,18,20],
+  crits:[], // [{label,cecrlIds:[],keywords:[],generated:{lv:text}}]
+  activeCrit:0
+};
+var ALL_LO=["PréA1","A1","A2","B1","B2","C1","C2"];
+
+function wizLevels(pivot){
+  var idx=ALL_LO.indexOf(pivot);
+  var lvls=[];
+  for(var i=-2;i<=2;i++){
+    var j=idx+i;
+    if(j>=0&&j<ALL_LO.length)lvls.push(ALL_LO[j]);
+    else if(j<0)lvls.push(ALL_LO[0]);
+    else lvls.push(ALL_LO[ALL_LO.length-1]);
+  }
+  // deduplicate keeping order
+  var seen={},res=[];
+  for(var k=0;k<lvls.length;k++){if(!seen[lvls[k]]){seen[lvls[k]]=1;res.push(lvls[k]);}}
+  return res;
+}
+
+function defaultScores(n){
+  // pivot index = 2 (middle of 5), everything at pivot+ = 20
+  // below pivot: linear from 5 up to 15 (one step below pivot)
+  var pivotIdx=WIZ.levels?WIZ.levels.indexOf(WIZ.pivot):2;
+  if(pivotIdx<0)pivotIdx=2;
+  var arr=[];
+  for(var i=0;i<n;i++){
+    if(i>=pivotIdx){
+      arr.push(20); // pivot and above = 20/20
+    } else {
+      // linear from 5 to 15 for the levels below pivot
+      var steps=pivotIdx; // number of steps below pivot
+      arr.push(Math.round(5+(10/(steps))*i));
+    }
+  }
+  return arr;
+}
+
+function renderWizScores(containerId){
+  var c=document.getElementById(containerId);if(!c)return;
+  var lvls=WIZ.levels,scores=WIZ.scores;
+  var h="";
+  for(var i=0;i<lvls.length;i++){
+    var isPivot=lvls[i]===WIZ.pivot;
+    var cls=lc(lvls[i]);
+    h+='<div class="score-cell">';
+    h+='<label class="dlv '+cls+'-b" style="display:inline-block;margin-bottom:.25rem;border-radius:4px;padding:.15rem .3rem"'+(isPivot?' title="Niveau attendu"':'')+'>'+lvls[i]+(isPivot?" ★":"")+"</label>";
+    h+='<input type="number" min="0" max="99" step="1" data-score-idx="'+i+'" value="'+(scores[i]||0)+'">';
+    h+="</div>";
+  }
+  c.innerHTML=h;
+}
+
+function updateWizPivot(lv){
+  WIZ.pivot=lv;
+  WIZ.levels=wizLevels(lv);
+  WIZ.scores=defaultScores(WIZ.levels.length);
+  // update pill UI
+  document.querySelectorAll("#w-pivot-sel .lv-pill").forEach(function(b){
+    b.classList.toggle("active",b.dataset.lv===lv);
+  });
+  // update range hint
+  var hint=WIZ.levels.map(function(l){return l===WIZ.pivot?"<u>"+l+"</u>":l;}).join(" · ");
+  var hd=document.getElementById("w-range-display");if(hd)hd.innerHTML=hint;
+  renderWizScores("w-scores");
+}
+
+function initWizStep0(){
+  updateWizPivot(WIZ.pivot);
+}
+
+function initWizStep1(){
+  // ensure at least 1 crit
+  if(WIZ.crits.length===0)WIZ.crits=[{label:"",cecrlIds:[],keywords:[],generated:{}}];
+  renderCrits();
+}
+
+function renderCrits(){
+  var c=document.getElementById("w-crits-list");if(!c)return;
+  var h="";
+  for(var i=0;i<WIZ.crits.length;i++){
+    h+='<div style="display:flex;gap:.4rem;align-items:center;margin-bottom:.5rem">';
+    h+='<span style="font-size:.78rem;color:var(--mt);width:18px;flex-shrink:0">'+(i+1)+".</span>";
+    h+='<input type="text" class="inp" style="flex:1" data-crit-idx="'+i+'" placeholder="Ex.: Je présente une information fausse de façon plausible" value="'+(WIZ.crits[i].label||"")+'">';
+    if(WIZ.crits.length>1)h+='<button class="btn btn-d" style="padding:.3rem .55rem;font-size:.75rem" data-rm-crit="'+i+'">✕</button>';
+    h+="</div>";
+  }
+  c.innerHTML=h;
+  var addBtn=document.getElementById("w-add-crit");
+  if(addBtn)addBtn.style.display=WIZ.crits.length>=4?"none":"inline-flex";
+}
+
+function initWizStep2(){
+  WIZ.activeCrit=0;
+  renderCritTabs("w-crit-tabs",2);
+  renderCPicker();
+}
+
+function renderCritTabs(containerId,step){
+  var c=document.getElementById(containerId);if(!c)return;
+  var h="";
+  for(var i=0;i<WIZ.crits.length;i++){
+    var lbl=WIZ.crits[i].label||("Critère "+(i+1));
+    if(lbl.length>28)lbl=lbl.slice(0,26)+"…";
+    var isDone=(step===2&&WIZ.crits[i].cecrlIds.length>0)||(step===3&&WIZ.crits[i].keywords.length>0);
+    h+='<button class="crit-tab'+(i===WIZ.activeCrit?" active":"")+(isDone?" done":"")+'" data-crit-tab="'+i+'" data-tab-step="'+step+'">'+lbl+"</button>";
+  }
+  c.innerHTML=h;
+}
+
+function renderCPicker(){
+  var c=document.getElementById("w-cpicker");if(!c)return;
+  var srchVal=(document.getElementById("w-cp-search")&&document.getElementById("w-cp-search").value||"").toLowerCase();
+  var critIds=WIZ.crits[WIZ.activeCrit].cecrlIds;
+  var h='<div style="font-size:.74rem;color:var(--mt);margin-bottom:.5rem">'+critIds.length+" descripteur(s) sélectionné(s) pour ce critère.</div>";
+  for(var cat in D){
+    var d=D[cat];
+    var catHasMatch=false;
+    var catH='<div style="margin-bottom:.8rem">';
+    catH+='<div style="font-size:.7rem;font-weight:700;font-family:Syne,sans-serif;color:'+d.col+';margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em">'+d.ic+" "+cat+"</div>";
+    for(var sub in d.s){
+      var ds=d.s[sub];
+      var subH='<div class="cp-ssect">';
+      subH+='<div class="cp-sub">'+sub+"</div>";
+      var subHasMatch=false;
+      for(var i=0;i<ds.length;i++){
+        var desc=ds[i];
+        if(desc.t==="Pas de descripteur disponible.")continue;
+        if(srchVal&&!desc.t.toLowerCase().includes(srchVal)&&!sub.toLowerCase().includes(srchVal)&&!desc.l.toLowerCase().includes(srchVal))continue;
+        var cid=gid(cat,sub,desc.l);
+        var isSel=critIds.indexOf(cid)>=0;
+        var c2=lc(desc.l);
+        subH+='<div class="cp-desc'+(isSel?" sel":"")+'" data-cpick="'+cid+'">';
+        subH+='<span class="cp-lv '+c2+'-b">'+desc.l+"</span>";
+        subH+='<span class="cp-tx">'+desc.t+"</span>";
+        subH+='<span class="cp-ck'+(isSel?" chk":"")+'"><svg width="10" height="10" viewBox="0 0 11 11" fill="none"><polyline points="1.5,5.5 4.5,8.5 9.5,2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+        subH+="</div>";
+        subHasMatch=true;
+      }
+      subH+="</div>";
+      if(subHasMatch){catH+=subH;catHasMatch=true;}
+    }
+    catH+="</div>";
+    if(catHasMatch)h+=catH;
+  }
+  c.innerHTML=h;
+}
+
+function initWizStep3(){
+  WIZ.activeCrit=0;
+  renderCritTabs("w-kw-tabs",3);
+  renderKWZone();
+  document.getElementById("w-to-step4").style.display="none";
+  // Check if all crits already have generated content
+  var allDone=WIZ.crits.every(function(cr){return cr.generated&&Object.keys(cr.generated).length>0;});
+  if(allDone)renderGenResults();
+}
+
+function renderKWZone(){
+  var c=document.getElementById("w-kw-zone");if(!c)return;
+  var crit=WIZ.crits[WIZ.activeCrit];
+  // Show selected CECRL descriptors
+  var previewH='<div style="margin-bottom:.7rem">';
+  previewH+='<div style="font-size:.75rem;font-weight:600;margin-bottom:.3rem;color:var(--mt)">Descripteurs CECRL sélectionnés pour ce critère :</div>';
+  if(!crit.cecrlIds||crit.cecrlIds.length===0){
+    previewH+='<div style="font-size:.74rem;color:#dc2626">Aucun descripteur sélectionné — retournez à l\'étape précédente.</div>';
+  } else {
+    for(var i=0;i<crit.cecrlIds.length;i++){
+      var info=IDX[crit.cecrlIds[i]];if(!info)continue;
+      var c2=lc(info.lv);
+      previewH+='<div style="display:flex;gap:.4rem;align-items:flex-start;margin-bottom:.2rem;font-size:.73rem">';
+      previewH+='<span class="dlv '+c2+'-b" style="font-size:.64rem;min-width:28px">'+info.lv+"</span>";
+      previewH+='<span style="color:var(--mt)">'+info.tx.slice(0,90)+(info.tx.length>90?"…":"")+"</span>";
+      previewH+="</div>";
+    }
+  }
+  previewH+="</div>";
+  // Keywords
+  var kwH='<div class="kw-area">';
+  kwH+='<div class="kw-title">Mots-clés pour "'+crit.label+'"</div>';
+  kwH+='<div class="kw-chips" id="kw-chips-'+WIZ.activeCrit+'">';
+  if(crit.keywords)for(var k=0;k<crit.keywords.length;k++){
+    kwH+='<span class="kw-chip">'+crit.keywords[k]+'<button data-rm-kw="'+k+'" data-kw-crit="'+WIZ.activeCrit+'">×</button></span>';
+  }
+  kwH+="</div>";
+  kwH+='<input class="kw-inp" id="kw-inp-'+WIZ.activeCrit+'" placeholder="Tapez un mot-clé et appuyez sur Entrée — ex. présent simple, voix off, complot...">';
+  kwH+="</div>";
+  c.innerHTML=previewH+kwH;
+}
+
+function renderGenResults(){
+  var c=document.getElementById("w-gen-results");if(!c)return;
+  var allEmpty=WIZ.crits.every(function(cr){return !cr.generated||Object.keys(cr.generated).length===0;});
+  if(allEmpty){c.innerHTML="";return;}
+  var h='<div style="font-size:.8rem;font-weight:600;margin-bottom:.6rem">Descripteurs générés — cliquez dans une cellule pour modifier :</div>';
+  h+='<div style="overflow-x:auto"><table class="res-table" style="min-width:500px"><thead><tr>';
+  h+='<th>Niveau</th>';
+  for(var ci=0;ci<WIZ.crits.length;ci++)h+='<th>'+WIZ.crits[ci].label+"</th>";
+  h+='<th style="width:55px">Points</th>';
+  h+="</tr></thead><tbody>";
+  for(var li=0;li<WIZ.levels.length;li++){
+    var lv=WIZ.levels[li];
+    var isPivot=lv===WIZ.pivot;
+    var clsLv=lc(lv);
+    h+='<tr'+(isPivot?' class="is-target-row"':'')+'>';
+    h+='<th class="lv-col"><span class="dlv '+clsLv+'-b">'+lv+(isPivot?" ★":"")+"</span></th>";
+    for(var ci2=0;ci2<WIZ.crits.length;ci2++){
+      var gen=WIZ.crits[ci2].generated||{};
+      var txt=gen[lv]||"";
+      h+='<td class="desc-col"><textarea data-gen-lv="'+lv+'" data-gen-ci="'+ci2+'">'+txt+"</textarea></td>";
+    }
+    h+='<td class="pts-col"><input type="number" min="0" max="99" data-score-lv="'+lv+'" value="'+(WIZ.scores[li]||0)+'"></td>';
+    h+="</tr>";
+  }
+  h+="</tbody></table></div>";
+  c.innerHTML=h;
+  document.getElementById("w-to-step4").style.display="inline-flex";
+}
+
+// ── ALBERT GENERATION ────────────────────────────────────────────────────
+async function generate(){
+  // Validate
+  for(var i=0;i<WIZ.crits.length;i++){
+    if(!WIZ.crits[i].label){ntf("Critère "+(i+1)+" sans libellé");return;}
+    if(!WIZ.crits[i].cecrlIds||WIZ.crits[i].cecrlIds.length===0){
+      ntf("Critère "+(i+1)+" : sélectionnez au moins un descripteur CECRL");return;
+    }
+  }
+  var statusEl=document.getElementById("gen-status");
+  statusEl.className="gen-status loading";
+  statusEl.innerHTML='<div class="spinner"></div><span>Albert génère les descripteurs… cela peut prendre quelques secondes.</span>';
+  statusEl.style.display="flex";
+
+  try{
+    for(var ci=0;ci<WIZ.crits.length;ci++){
+      var crit=WIZ.crits[ci];
+      // Build CECRL context
+      var cecrlContext="";
+      for(var ii=0;ii<crit.cecrlIds.length;ii++){
+        var info=IDX[crit.cecrlIds[ii]];if(!info)continue;
+        cecrlContext+="- ["+info.lv+"] "+info.sub+" : "+info.tx+"\n";
+      }
+      var kwStr=crit.keywords&&crit.keywords.length>0?crit.keywords.join(", "):"(aucun)";
+      var levelsStr=WIZ.levels.join(", ");
+      var prompt="Tu es un expert en didactique des langues et en évaluation. "
+        +"Voici une tâche finale : "+WIZ.task+"\n\n"
+        +"Le critère à évaluer est : "+crit.label+"\n\n"
+        +"Le niveau attendu (pivot) est : "+WIZ.pivot+"\n"
+        +"Tu dois rédiger des descripteurs pour ces 5 niveaux : "+levelsStr+"\n\n"
+        +"Descripteurs CECRL de référence sélectionnés :\n"+cecrlContext+"\n"
+        +"Mots-clés fournis par l'enseignant : "+kwStr+"\n\n"
+        +"CONSIGNES STRICTES :\n"
+        +"1. Rédige UN descripteur par niveau ("+levelsStr+").\n"
+        +"2. Chaque descripteur commence par \"Je \" (point de vue élève, 1ère personne).\n"
+        +"3. Adapte le descripteur à la tâche finale spécifique, en intégrant les mots-clés.\n"
+        +"4. Combine les descripteurs CECRL sélectionnés (ne les copie pas, synthétise-les).\n"
+        +"5. Le descripteur du niveau "+WIZ.pivot+" (attendu) est le pivot : au-dessus = maîtrise, en-dessous = insuffisance.\n"
+        +"6. Réponds UNIQUEMENT en JSON valide, format : {\""+WIZ.levels.join("\":\"...\",\"")+"\": \"...\"}\n"
+        +"   (chaque valeur est le descripteur complet pour ce niveau)\n"
+        +"7. Langue du descripteur : français, style direct et concis.\n";
+
+      var resp=await fetch(N8N_WEBHOOK,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+          messages:[
+            {role:"system",content:"Tu es un expert en didactique des langues et évaluation scolaire. Réponds uniquement en JSON valide, sans markdown ni backticks."},
+            {role:"user",content:prompt}
+          ],
+          module:"cecrl-grille"
+        })
+      });
+      var data=await resp.json();
+      var raw=data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content||"";
+      // Parse JSON
+      var jsonMatch=raw.match(/\{[\s\S]*\}/);
+      if(jsonMatch){
+        try{
+          WIZ.crits[ci].generated=JSON.parse(jsonMatch[0]);
+        }catch(e){
+          WIZ.crits[ci].generated={};
+          for(var li=0;li<WIZ.levels.length;li++)WIZ.crits[ci].generated[WIZ.levels[li]]="[Erreur de parsing — modifiez manuellement]";
+        }
+      }
+      statusEl.innerHTML='<div class="spinner"></div><span>Critère '+(ci+1)+"/"+WIZ.crits.length+" traité…</span>";
+    }
+    statusEl.className="gen-status";statusEl.style.display="none";
+    renderGenResults();
+    ntf("Génération terminée ✓");
+  }catch(err){
+    statusEl.className="gen-status error";
+    statusEl.textContent="Erreur : "+err.message;
+    statusEl.style.display="block";
+  }
+}
+
+function initWizStep4(){
+  // Sync scores from step 3 if modified there
+  var scoreInputs=document.querySelectorAll("[data-score-lv]");
+  scoreInputs.forEach(function(inp){
+    var lv=inp.dataset.scoreLv;
+    var idx=WIZ.levels.indexOf(lv);
+    if(idx>=0)WIZ.scores[idx]=parseFloat(inp.value)||WIZ.scores[idx];
+  });
+  // Sync edited descriptors
+  var genTAs=document.querySelectorAll("[data-gen-lv][data-gen-ci]");
+  genTAs.forEach(function(ta){
+    var lv=ta.dataset.genLv,ci=parseInt(ta.dataset.genCi);
+    if(!WIZ.crits[ci].generated)WIZ.crits[ci].generated={};
+    WIZ.crits[ci].generated[lv]=ta.value;
+  });
+  renderWizScores("w-scores-final");
+  renderFinalGrid();
+}
+
+function renderFinalGrid(){
+  var c=document.getElementById("w-final-grid-wrap");if(!c)return;
+  var nCrits=WIZ.crits.length;
+  var h='<div style="font-size:.78rem;font-weight:600;margin-bottom:.5rem">';
+  // title
+  var ttl=(document.getElementById("grille-title")&&document.getElementById("grille-title").value)||"Ma grille CECRL";
+  h+='<div style="font-family:Syne,sans-serif;font-size:1rem;font-weight:700;margin-bottom:.2rem">'+ttl+"</div>";
+  h+='<div style="font-size:.74rem;color:var(--mt);margin-bottom:.75rem">Tâche finale : '+WIZ.task+"</div>";
+  h+="</div>";
+  h+='<div style="overflow-x:auto"><table class="final-grid">';
+  // header
+  h+="<thead><tr><th class=\"th-lv\">Niveau</th>";
+  for(var ci=0;ci<nCrits;ci++)h+='<th style="min-width:200px">'+WIZ.crits[ci].label+"</th>";
+  h+='<th class="td-pts">Points</th><th class="td-note">Note /</th></tr></thead>';
+  h+="<tbody>";
+  for(var li=0;li<WIZ.levels.length;li++){
+    var lv=WIZ.levels[li],isPivot=lv===WIZ.pivot;
+    var clsLv=lc(lv);
+    var pts=WIZ.scores[li]||0;
+    h+='<tr'+(isPivot?' class="target-row"':'')+'>';
+    h+='<td class="td-lv" style="text-align:center"><span class="dlv '+clsLv+'-b">'+lv+(isPivot?" ★":"")+"</span></td>";
+    for(var ci2=0;ci2<nCrits;ci2++){
+      var gen=WIZ.crits[ci2].generated||{};
+      h+='<td>'+( gen[lv]||'<em style="opacity:.4">—</em>')+"</td>";
+    }
+    h+='<td class="td-pts">'+pts+"</td>";
+    h+='<td class="td-note"></td>';
+    h+="</tr>";
+  }
+  h+="</tbody></table></div>";
+  // Conversion table
+  // Max = pivot score * nCrits (= 20 pts each) => total max = nCrits * 20
+  var pivotIdx=WIZ.levels.indexOf(WIZ.pivot);
+  var pivotScore=WIZ.scores[pivotIdx>=0?pivotIdx:WIZ.levels.length-1];
+  var totalMax=pivotScore*nCrits; // this equals nCrits*20 since pivot=20
+  h+='<div style="margin-top:.8rem;font-size:.76rem;font-weight:600;margin-bottom:.3rem">';
+  h+='Table de conversion — niveau attendu (<strong>'+WIZ.pivot+'</strong>) = 20/20 par critère :</div>';
+  h+='<div style="overflow-x:auto"><table class="conv-table"><thead><tr><th>Niveau</th><th>Points / critère</th><th>Total ('+nCrits+' critères)</th><th>Note /20</th></tr></thead><tbody>';
+  for(var li2=0;li2<WIZ.levels.length;li2++){
+    var lv2=WIZ.levels[li2];
+    var scPts=WIZ.scores[li2];
+    var scTotal=scPts*nCrits;
+    var note=totalMax>0?Math.round(scTotal/totalMax*20*10)/10:0;
+    var isPivot=lv2===WIZ.pivot;
+    var isAbove=li2>pivotIdx;
+    h+='<tr'+(isPivot?' style="background:#fef9c3"':'')+'>';
+    h+='<td><span class="dlv '+lc(lv2)+'-b" style="font-size:.64rem;min-width:28px;display:inline-block;text-align:center;border-radius:3px;padding:.1rem .2rem">'+lv2+"</span></td>";
+    h+="<td>"+scPts+" pts"+(isAbove?' <em style="font-size:.7rem;color:#16a34a">(≥ attendu)</em>':isPivot?' <em style="font-size:.7rem;color:#b45309">★ attendu</em>':"")+"</td>";
+    h+="<td>"+scTotal+" pts</td>";
+    h+="<td><strong>"+note+(note===Math.round(note)?".0":"")+"/20</strong></td>";
+    h+="</tr>";
+  }
+  h+="</tbody></table></div>";
+  c.innerHTML=h;
+}
+
+function exportToGrille(){
+  // Push generated descriptors into the main grille as custom items
+  for(var ci=0;ci<WIZ.crits.length;ci++){
+    var crit=WIZ.crits[ci];
+    for(var li=0;li<WIZ.levels.length;li++){
+      var lv=WIZ.levels[li];
+      var tx=crit.generated&&crit.generated[lv];
+      if(!tx)continue;
+      var id="wiz_"+ci+"_"+lv;
+      IDX[id]={lv:lv,cat:"Grille guidée",sub:crit.label,tx:tx,custom:true};
+      sel.add(id);
+    }
+  }
+  uc();
+  sv("grille");
+  ntf("Grille envoyée vers Ma grille ✓");
+}
+
+function goWizStep(step){
+  // Validate current before advancing
+  if(step>WIZ.step){
+    if(WIZ.step===0){
+      WIZ.task=(document.getElementById("w-task").value||"").trim();
+      if(!WIZ.task){ntf("Saisissez la tâche finale");return;}
+      // Sync scores
+      document.querySelectorAll("[data-score-idx]").forEach(function(inp){
+        var i=parseInt(inp.dataset.scoreIdx);WIZ.scores[i]=parseFloat(inp.value)||WIZ.scores[i];
+      });
+    }
+    if(WIZ.step===1){
+      // Sync crit labels
+      document.querySelectorAll("[data-crit-idx]").forEach(function(inp){
+        WIZ.crits[parseInt(inp.dataset.critIdx)].label=inp.value.trim();
+      });
+      var empty=WIZ.crits.filter(function(c){return !c.label;});
+      if(empty.length>0){ntf("Tous les critères doivent avoir un libellé");return;}
+    }
+    if(WIZ.step===2){
+      var missing=WIZ.crits.filter(function(c){return !c.cecrlIds||c.cecrlIds.length===0;});
+      if(missing.length>0){ntf("Sélectionnez au moins 1 descripteur CECRL par critère");return;}
+    }
+    if(WIZ.step===3){
+      // Sync gen edits
+      document.querySelectorAll("[data-gen-lv][data-gen-ci]").forEach(function(ta){
+        var lv=ta.dataset.genLv,ci=parseInt(ta.dataset.genCi);
+        if(!WIZ.crits[ci].generated)WIZ.crits[ci].generated={};
+        WIZ.crits[ci].generated[lv]=ta.value;
+      });
+      var noGen=WIZ.crits.filter(function(c){return !c.generated||Object.keys(c.generated).length===0;});
+      if(noGen.length>0){ntf("Lancez la génération avant de continuer");return;}
+    }
+  }
+  WIZ.step=step;
+  // Update step UI
+  document.querySelectorAll(".wiz-step").forEach(function(el){
+    var s=parseInt(el.dataset.step);
+    el.classList.remove("active","done","locked");
+    if(s===step)el.classList.add("active");
+    else if(s<step)el.classList.add("done");
+    else el.classList.add("locked");
+  });
+  document.querySelectorAll(".wiz-panel").forEach(function(el){
+    el.classList.remove("active");
+  });
+  var panel=document.getElementById("wp-"+step);
+  if(panel)panel.classList.add("active");
+  // Init
+  if(step===0)initWizStep0();
+  if(step===1)initWizStep1();
+  if(step===2)initWizStep2();
+  if(step===3)initWizStep3();
+  if(step===4)initWizStep4();
+  window.scrollTo(0,0);
+}
+
+// ── PRINT ────────────────────────────────────────────────────────────────
+function printPage(){
+  var title="CECRL 2021",bodyHtml="";
+  if(curView==="browse"){ntf("Allez dans Ma grille, Grilles types ou Créer une grille guidée pour imprimer");return;}
+  if(curView==="grille"){
+    if(sel.size===0){ntf("Grille vide");return;}
+    var tv=document.getElementById("total-val").textContent;
+    var customTitle=(document.getElementById("grille-title").value||"").trim();
+    title=customTitle||"Ma grille CECRL 2021";
+    var gcEl=document.getElementById("gc-el");
+    bodyHtml='<div style="background:#292524;color:#fff;padding:.28rem .7rem;border-radius:3pt;margin-bottom:.45cm;display:flex;justify-content:space-between;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:9pt"><span>Total des points</span><strong>'+tv+"</strong></div>"+(gcEl?gcEl.innerHTML:"");
+  } else if(curView==="grilles"){
+    var at=document.querySelector(".gtab.active");
+    title="Grille CECRL "+(at?at.textContent:"");
+    var gc=document.getElementById("grilles-content");
+    bodyHtml=gc?gc.innerHTML:"";
+  } else if(curView==="wizard"){
+    if(WIZ.step<4){ntf("Finalisez la grille à l\'étape 5 avant d\'imprimer");return;}
+    var customTitle=(document.getElementById("grille-title")&&document.getElementById("grille-title").value)||"";
+    title=customTitle||"Grille CECRL guidée";
+    var fg=document.getElementById("w-final-grid-wrap");
+    bodyHtml=fg?fg.innerHTML:"";
+  }
+  if(!bodyHtml){ntf("Rien à imprimer");return;}
+  var w=window.open("","_blank","width=900,height=700");
+  if(!w){ntf("Autorisez les popups pour imprimer");return;}
+  var rv=":root{--A1:#1a7a4a;--A1l:#d4f0e3;--A1t:#0d4a2a;--A2:#2a9d5c;--A2l:#c0ebd5;--A2t:#12562e;--B1:#d97706;--B1l:#fef3c7;--B1t:#78350f;--B2:#b45309;--B2l:#fde68a;--B2t:#451a03;--C1:#6d28d9;--C1l:#ede9fe;--C1t:#2e1065;--C2:#4c1d95;--C2l:#ddd6fe;--C2t:#1e1150;--PA:#64748b;--PAl:#f1f5f9;--PAt:#1e293b;--bd:#e8e4dc;}";
+  var date=new Date().toLocaleDateString("fr-FR",{year:"numeric",month:"long",day:"numeric"});
+  var isLandscape=curView==="grilles"||(curView==="wizard");
+  var css=rv+"*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Instrument Sans',sans-serif;font-size:9.5pt;padding:.8cm;background:#fff;color:#111}"
+    +".gs-controls,.no-print,.trash-btn,.btn,.kw-area,.wiz-steps,.wiz-desc,.crit-tabs,.conv-table button{display:none!important}"
+    +".grille-section,.final-grid-wrap{break-inside:avoid;border:1pt solid #ccc;border-radius:3pt;margin-bottom:.4cm;overflow:hidden}"
+    +".gs-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:.22rem .45rem;display:flex;align-items:center}"
+    +".gs-title{font-size:7.5pt;font-weight:700;color:#fff}"
+    +".gt,.final-grid,.res-table{width:100%;border-collapse:collapse;font-size:7.5pt}"
+    +".gt th,.gt td,.final-grid th,.final-grid td,.res-table th,.res-table td{border:1pt solid #ccc;padding:.18rem .28rem;vertical-align:top}"
+    +".gt th,.final-grid th,.dlv{-webkit-print-color-adjust:exact;print-color-adjust:exact}"
+    +".gt td,.final-grid td{-webkit-print-color-adjust:exact;print-color-adjust:exact}"
+    +".dlv{font-size:.6rem;font-weight:700;min-width:26px;text-align:center;padding:.1rem;border-radius:2pt}"
+    +".pa-b{background:var(--PA);color:#fff}.a1-b{background:var(--A1);color:#fff}.a2-b{background:var(--A2);color:#fff}"
+    +".b1-b{background:var(--B1);color:#fff}.b2-b{background:var(--B2);color:#fff}.c1-b{background:var(--C1);color:#fff}.c2-b{background:var(--C2);color:#fff}"
+    +".final-grid .target-row td,.final-grid .target-row th{background:#fef9c3!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}"
+    +".td-pts input,.score-cell input{border:none;background:transparent;font-weight:600;font-size:7.5pt}"
+    +".conv-table{border-collapse:collapse;font-size:7pt;margin-top:.3cm}"
+    +".conv-table th,.conv-table td{border:1pt solid #ccc;padding:.15rem .3rem;text-align:center}"
+    +".conv-table th{background:#f0ede8!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}"
+    +".nd{opacity:.3;font-style:italic}"
+    +"@page{size:A4"+(isLandscape?" landscape":"")+";margin:1cm}";
+  w.document.write("<!DOCTYPE html><html><head><meta charset='UTF-8'><title>"+title+"</title>"
+    +"<link href='https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Instrument+Sans:wght@400;500&display=swap' rel='stylesheet'>"
+    +"<style>"+css+"</style></head><body>"
+    +'<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:2pt solid #333;padding-bottom:.22cm;margin-bottom:.4cm">'
+    +"<strong style=\"font-family:'Syne',sans-serif;font-size:11.5pt\">"+title+"</strong>"
+    +'<span style="font-size:7.5pt;color:#666">CECRL 2021 &ndash; Académie de Nice &ndash; '+date+"</span></div>"
+    +bodyHtml+"</body></html>");
+  w.document.close();
+  setTimeout(function(){w.focus();w.print();},700);
+}
+
+// ── UNIFIED EVENT DELEGATION ─────────────────────────────────────────────
+document.addEventListener("click",function(e){
+  // explorer
+  var dck=e.target.closest(".dck");if(dck){tog(dck);return;}
+  var sbi=e.target.closest(".sbi");if(sbi){var id=sbi.getAttribute("data-secid");if(id)scr(id);return;}
+  var fb=e.target.closest(".fb");if(fb){tl(fb);return;}
+  // navigation
+  var vsw=e.target.closest("[data-view]");if(vsw){sv(vsw.dataset.view);return;}
+  // actions
+  var act=e.target.closest("[data-action]");
+  if(act){
+    var a=act.dataset.action;
+    if(a==="print")printPage();
+    else if(a==="clrsel")clrSel();
+    else if(a==="clrgrille")clrGrille();
+    else if(a==="addcustom")addCustom();
+    else if(a==="generate")generate();
+    else if(a==="export-to-grille")exportToGrille();
+    return;
+  }
+  // grilles types tabs
+  var gtb=e.target.closest("[data-gtid]");if(gtb){activeGT=gtb.dataset.gtid;renderGT();return;}
+  // grille remove
+  var rmg=e.target.closest("[data-rmgroup]");if(rmg){rmGroup(rmg);return;}
+  // wizard nav
+  var wn=e.target.closest("[data-wiz-next]");if(wn){goWizStep(parseInt(wn.dataset.wizNext)+1);return;}
+  var wp=e.target.closest("[data-wiz-prev]");if(wp){goWizStep(parseInt(wp.dataset.wizPrev)-1);return;}
+  var ws=e.target.closest(".wiz-step:not(.locked)");if(ws){goWizStep(parseInt(ws.dataset.step));return;}
+  // wizard pivot
+  var pill=e.target.closest(".lv-pill[data-lv]");
+  if(pill&&pill.closest("#w-pivot-sel")){updateWizPivot(pill.dataset.lv);return;}
+  // crit tabs
+  var ctb=e.target.closest("[data-crit-tab]");
+  if(ctb){
+    WIZ.activeCrit=parseInt(ctb.dataset.critTab);
+    var tabStep=parseInt(ctb.dataset.tabStep);
+    renderCritTabs(tabStep===2?"w-crit-tabs":"w-kw-tabs",tabStep);
+    if(tabStep===2)renderCPicker();
+    else if(tabStep===3)renderKWZone();
+    return;
+  }
+  // cpicker
+  var cpd=e.target.closest("[data-cpick]");
+  if(cpd){
+    var cid=cpd.dataset.cpick;
+    var ids=WIZ.crits[WIZ.activeCrit].cecrlIds;
+    var idx=ids.indexOf(cid);
+    if(idx>=0)ids.splice(idx,1);
+    else if(ids.length<5)ids.push(cid);
+    else{ntf("Maximum 5 descripteurs par critère");return;}
+    renderCPicker();
+    renderCritTabs("w-crit-tabs",2);
+    return;
+  }
+  // add crit
+  var ac=e.target.closest("#w-add-crit");
+  if(ac){
+    if(WIZ.crits.length<4){WIZ.crits.push({label:"",cecrlIds:[],keywords:[],generated:{}});renderCrits();}
+    return;
+  }
+  // remove crit
+  var rmc=e.target.closest("[data-rm-crit]");
+  if(rmc){
+    var i=parseInt(rmc.dataset.rmCrit);WIZ.crits.splice(i,1);
+    if(WIZ.activeCrit>=WIZ.crits.length)WIZ.activeCrit=WIZ.crits.length-1;
+    renderCrits();return;
+  }
+  // remove keyword
+  var rmk=e.target.closest("[data-rm-kw]");
+  if(rmk){
+    var ki=parseInt(rmk.dataset.rmKw),kc=parseInt(rmk.dataset.kwCrit);
+    WIZ.crits[kc].keywords.splice(ki,1);
+    renderKWZone();renderCritTabs("w-kw-tabs",3);return;
+  }
+});
+
+document.addEventListener("input",function(e){
+  if(e.target.id==="si"){flt();return;}
+  if(e.target.matches("input[data-pid]")){upTotal();return;}
+  if(e.target.matches(".lv-sel")){rg();return;}
+  if(e.target.id==="w-cp-search"){renderCPicker();return;}
+  // crit label sync
+  if(e.target.matches("[data-crit-idx]")){
+    var i=parseInt(e.target.dataset.critIdx);
+    WIZ.crits[i].label=e.target.value;return;
+  }
+  // score sync step0
+  if(e.target.matches("[data-score-idx]")){
+    var i=parseInt(e.target.dataset.scoreIdx);
+    WIZ.scores[i]=parseFloat(e.target.value)||0;
+    // mirror to final step
+    renderWizScores("w-scores-final");
+    return;
+  }
+  // score sync step4
+  if(e.target.matches("[data-score-lv]")){
+    var lv=e.target.dataset.scoreLv,idx=WIZ.levels.indexOf(lv);
+    if(idx>=0){WIZ.scores[idx]=parseFloat(e.target.value)||0;}
+    renderWizScores("w-scores");
+    renderFinalGrid();return;
+  }
+  // gen textarea sync
+  if(e.target.matches("[data-gen-lv]")){
+    var lv=e.target.dataset.genLv,ci=parseInt(e.target.dataset.genCi);
+    if(!WIZ.crits[ci].generated)WIZ.crits[ci].generated={};
+    WIZ.crits[ci].generated[lv]=e.target.value;return;
+  }
+});
+
+document.addEventListener("keydown",function(e){
+  if(e.key!=="Enter")return;
+  // keyword add
+  var el=e.target;
+  if(el.matches(".kw-inp")){
+    var val=el.value.trim();if(!val)return;
+    var ci=WIZ.activeCrit;
+    if(!WIZ.crits[ci].keywords)WIZ.crits[ci].keywords=[];
+    WIZ.crits[ci].keywords.push(val);
+    el.value="";
+    renderKWZone();renderCritTabs("w-kw-tabs",3);
+    return;
+  }
+});
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+buildSB();
+buildC();
+flt();
+initWizStep0();
+</script>
+</body>
+</html>
