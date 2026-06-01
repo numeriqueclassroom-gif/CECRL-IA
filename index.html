@@ -342,11 +342,27 @@ textarea.inp{resize:vertical;min-height:72px}
 <!-- WIZARD -->
 <div id="wizard-view" style="display:none">
   <div class="wiz">
-    <div id="albert-config-notice" style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;padding:.7rem 1rem;margin-bottom:1rem;font-size:.8rem;display:flex;align-items:center;gap:.6rem">
-      <span style="font-size:1.1rem">✅</span>
-      <div>
-        <strong>Connecté à Albert via n8n</strong> — 
-        <span style="color:var(--mt)">La génération est disponible sans clé API. Cliquez sur <strong>✨ Générer avec Albert</strong> à l'étape 4.</span>
+    <div id="albert-config-notice" style="background:linear-gradient(135deg,#1e1b4b 0%,#3730a3 60%,#6d28d9 100%);border-radius:12px;padding:1.4rem 1.6rem;margin-bottom:1.4rem;color:#fff;position:relative;overflow:hidden">
+      <!-- decorative circles -->
+      <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.06)"></div>
+      <div style="position:absolute;bottom:-20px;right:60px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.04)"></div>
+      <div style="display:flex;align-items:flex-start;gap:1rem">
+        <div style="font-size:2rem;flex-shrink:0;line-height:1">✨</div>
+        <div style="flex:1">
+          <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.35rem;letter-spacing:-.01em">Créer une grille d'évaluation guidée par l'IA</div>
+          <div style="font-size:.8rem;line-height:1.6;opacity:.88;margin-bottom:.75rem">
+            En 5 étapes, construisez une grille personnalisée ancrée dans votre séquence&nbsp;: définissez votre tâche finale, choisissez vos critères, sélectionnez les descripteurs CECRL pertinents, ajoutez vos mots-clés de cours — et laissez <strong>Albert</strong> rédiger les descripteurs combinés pour chaque niveau.
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem">
+            <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:500">📋 5 étapes guidées</span>
+            <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:500">🎯 Niveau visé configurable</span>
+            <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:500">📐 Descripteurs CECRL 2021</span>
+            <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:500">🖨 Impression A4</span>
+          </div>
+          <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:7px;padding:.55rem .8rem;font-size:.74rem;line-height:1.5;opacity:.9">
+            <strong>⚠️ À noter&nbsp;:</strong> les descripteurs sont générés par un modèle de langage (LLM souverain). Relisez et ajustez chaque cellule avant utilisation, conformément au <a href="https://www.education.gouv.fr/cadre-d-usage-de-l-ia-en-education-450647" target="_blank" style="color:#c4b5fd;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(196,181,253,.4)">cadre d'usage de l'IA en éducation</a>. Démarche inspirée de <a href="https://pedagogie.ac-toulouse.fr/langues-vivantes/etiquettes/assess-them-if-i-can" target="_blank" style="color:#c4b5fd;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(196,181,253,.4)">Assess Them If I Can</a>, Académie de Toulouse.
+          </div>
+        </div>
       </div>
     </div>
     <div class="wiz-steps" id="wiz-steps">
@@ -416,6 +432,16 @@ textarea.inp{resize:vertical;min-height:72px}
     <div class="wiz-panel" id="wp-3">
       <div class="wiz-title">Mots-clés et génération</div>
       <div class="wiz-desc">Pour chaque critère, ajoutez des mots-clés spécifiques à votre tâche et à votre cours. Albert rédigera les descripteurs combinés adaptés à chaque niveau.</div>
+      <div style="background:#fefce8;border:1px solid #fde68a;border-radius:7px;padding:.65rem 1rem;margin-bottom:1rem;font-size:.78rem;line-height:1.55">
+        <strong>💡 Comment fonctionnent les mots-clés ?</strong><br>
+        <span style="color:var(--mt)">Les mots-clés sont <strong>optionnels</strong> mais fortement recommandés pour obtenir des descripteurs vraiment ancrés dans votre séquence.</span>
+        <ul style="margin:.4rem 0 0 1.1rem;color:var(--mt);display:flex;flex-direction:column;gap:.2rem">
+          <li><strong>Sans mots-clés</strong> — Albert s'appuie uniquement sur les descripteurs CECRL sélectionnés et votre tâche finale. Les descripteurs générés seront corrects mais génériques.</li>
+          <li><strong>Avec mots-clés</strong> — Albert intègre vos éléments de cours spécifiques : structures grammaticales étudiées, supports utilisés, genre discursif, vocabulaire attendu… Les descripteurs seront directement lisibles par vos élèves.</li>
+        </ul>
+        <div style="margin-top:.4rem;color:#92400e"><strong>Exemple :</strong> pour une vidéo conspirationniste, ajoutez <em>présent simple, prétérit, voix off, images détournées, registre alarmiste</em> — Albert les intégrera dans chaque niveau de descripteur.</div>
+        <div style="margin-top:.35rem;color:var(--mt)">ℹ️ Naviguez entre les critères via les onglets ci-dessous pour ajouter des mots-clés à chacun avant de générer.</div>
+      </div>
       <div class="crit-tabs" id="w-kw-tabs"></div>
       <div id="w-kw-zone"></div>
       <div class="gen-status" id="gen-status"></div>
@@ -1409,6 +1435,7 @@ function renderCrits(){
 
 function initWizStep2(){
   WIZ.activeCrit=0;
+  WIZ.cpAllLevels=false; // default: show pivot level only
   renderCritTabs("w-crit-tabs",2);
   renderCPicker();
 }
@@ -1429,7 +1456,19 @@ function renderCPicker(){
   var c=document.getElementById("w-cpicker");if(!c)return;
   var srchVal=(document.getElementById("w-cp-search")&&document.getElementById("w-cp-search").value||"").toLowerCase();
   var critIds=WIZ.crits[WIZ.activeCrit].cecrlIds;
-  var h='<div style="font-size:.74rem;color:var(--mt);margin-bottom:.5rem">'+critIds.length+" descripteur(s) sélectionné(s) pour ce critère.</div>";
+  var filterLv=WIZ.cpAllLevels?null:WIZ.pivot;
+  var h='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;flex-wrap:wrap;gap:.4rem">';
+  h+='<span style="font-size:.74rem;color:var(--mt)">'+critIds.length+" descripteur(s) sélectionné(s)</span>";
+  h+='<div style="display:flex;align-items:center;gap:.4rem">';
+  if(!WIZ.cpAllLevels){
+    var cls=lc(WIZ.pivot);
+    h+='<span style="font-size:.73rem;color:var(--mt)">Affichage : niveau </span>';
+    h+='<span class="dlv '+cls+'-b" style="font-size:.68rem;min-width:30px;text-align:center;border-radius:4px;padding:.15rem .3rem">'+WIZ.pivot+"</span>";
+  } else {
+    h+='<span style="font-size:.73rem;color:var(--mt)">Affichage : tous les niveaux</span>';
+  }
+  h+='<button class="btn" style="padding:.22rem .6rem;font-size:.72rem;background:var(--bg);border:1px solid var(--bd);color:var(--mt)" data-action="toggle-cp-levels">'+(WIZ.cpAllLevels?"Niveau "+WIZ.pivot+" uniquement":"Tous les niveaux")+"</button>";
+  h+="</div></div>";
   for(var cat in D){
     var d=D[cat];
     var catHasMatch=false;
@@ -1443,6 +1482,7 @@ function renderCPicker(){
       for(var i=0;i<ds.length;i++){
         var desc=ds[i];
         if(desc.t==="Pas de descripteur disponible.")continue;
+        if(filterLv&&desc.l!==filterLv)continue;
         if(srchVal&&!desc.t.toLowerCase().includes(srchVal)&&!sub.toLowerCase().includes(srchVal)&&!desc.l.toLowerCase().includes(srchVal))continue;
         var cid=gid(cat,sub,desc.l);
         var isSel=critIds.indexOf(cid)>=0;
@@ -1589,16 +1629,29 @@ async function generate(){
       });
       var data=await resp.json();
       var raw=data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content||"";
-      // Parse JSON
-      var jsonMatch=raw.match(/\{[\s\S]*\}/);
+      // Parse JSON — robuste : gère backticks, texte libre, JSON mal formé
+      var parsed=null;
+      // 1. Nettoyer les backticks markdown
+      var cleaned=raw.replace(/```json/gi,"").replace(/```/g,"").trim();
+      // 2. Chercher le premier bloc JSON complet
+      var jsonMatch=cleaned.match(/\{[\s\S]*\}/);
       if(jsonMatch){
-        try{
-          WIZ.crits[ci].generated=JSON.parse(jsonMatch[0]);
-        }catch(e){
-          WIZ.crits[ci].generated={};
-          for(var li=0;li<WIZ.levels.length;li++)WIZ.crits[ci].generated[WIZ.levels[li]]="[Erreur de parsing — modifiez manuellement]";
+        try{ parsed=JSON.parse(jsonMatch[0]); }catch(e2){}
+      }
+      // 3. Si pas de JSON trouvé, construire manuellement depuis le texte
+      if(!parsed){
+        parsed={};
+        for(var li=0;li<WIZ.levels.length;li++){
+          var lv2=WIZ.levels[li];
+          // chercher le niveau dans le texte : "B2" : "texte..." ou B2 - texte
+          var rx=new RegExp(lv2.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"[^a-zA-Z][\s\S]{0,20}?[:\-]\s*([^\n]{20,300})","i");
+          var m2=cleaned.match(rx);
+          parsed[lv2]=m2?m2[1].trim():"[Non généré — modifiez manuellement]";
         }
       }
+      WIZ.crits[ci].generated=parsed;
+      // Log pour debug
+      console.log("Critère "+ci+" généré:",parsed);
       statusEl.innerHTML='<div class="spinner"></div><span>Critère '+(ci+1)+"/"+WIZ.crits.length+" traité…</span>";
     }
     statusEl.className="gen-status";statusEl.style.display="none";
@@ -1842,6 +1895,9 @@ document.addEventListener("click",function(e){
   }
   // grilles types tabs
   var gtb=e.target.closest("[data-gtid]");if(gtb){activeGT=gtb.dataset.gtid;renderGT();return;}
+  // toggle cpicker level filter
+  var tcpl=e.target.closest("[data-action='toggle-cp-levels']");
+  if(tcpl){WIZ.cpAllLevels=!WIZ.cpAllLevels;renderCPicker();return;}
   // grille remove
   var rmg=e.target.closest("[data-rmgroup]");if(rmg){rmGroup(rmg);return;}
   // wizard nav
