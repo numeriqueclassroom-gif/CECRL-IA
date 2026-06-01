@@ -1485,7 +1485,7 @@ function renderCritTabs(containerId,step){
   for(var i=0;i<WIZ.crits.length;i++){
     var lbl=WIZ.crits[i].label||("Critère "+(i+1));
     if(lbl.length>32)lbl=lbl.slice(0,30)+"…";
-    var isDone=(step===2&&WIZ.crits[i].cecrlIds.length>0)||(step===3&&WIZ.crits[i].keywords.length>0);
+    var isDone=(step===2&&WIZ.crits[i].cecrlIds&&WIZ.crits[i].cecrlIds.length>0)||(step===3&&WIZ.crits[i].keywords&&WIZ.crits[i].keywords.length>0);
     var isActive=i===WIZ.activeCrit;
     // indicator: green check if done, orange dot if not
     var indicator=isDone
@@ -1495,11 +1495,11 @@ function renderCritTabs(containerId,step){
   }
   // completion summary
   var doneCount=WIZ.crits.filter(function(cr){
-    return step===2?cr.cecrlIds.length>0:cr.keywords.length>0;
+    return step===2?(cr.cecrlIds&&cr.cecrlIds.length>0):(cr.keywords&&cr.keywords.length>0);
   }).length;
   var total=WIZ.crits.length;
   var allDone=doneCount===total;
-  h+='<div style="margin-left:auto;font-size:.72rem;color:'+(allDone?"#16a34a":"#f59e0b")+'font-weight:500;display:flex;align-items:center;gap:.25rem;padding:.2rem .5rem;background:'+(allDone?"#f0fdf4":"#fefce8")+'border:1px solid '+(allDone?"#bbf7d0":"#fde68a")+'border-radius:5px">'
+  h+='<div style="margin-left:auto;font-size:.72rem;color:'+(allDone?"#16a34a":"#f59e0b")+';font-weight:500;display:flex;align-items:center;gap:.25rem;padding:.2rem .5rem;background:'+(allDone?"#f0fdf4":"#fefce8")+';border:1px solid '+(allDone?"#bbf7d0":"#fde68a")+';border-radius:5px">'
     +(allDone?"✅ Tous les critères complétés":"⚠️ "+doneCount+"/"+total+" critères complétés")
     +"</div>";
   c.innerHTML=h;
@@ -1594,7 +1594,7 @@ function renderKWZone(){
     kwH+='<span class="kw-chip">'+crit.keywords[k]+'<button data-rm-kw="'+k+'" data-kw-crit="'+WIZ.activeCrit+'">×</button></span>';
   }
   kwH+="</div>";
-  kwH+='<input class="kw-inp" id="kw-inp-'+WIZ.activeCrit+'" placeholder="Tapez un mot-clé et appuyez sur Entrée — ex. présent simple, voix off, complot...">';
+  kwH+='<input class="kw-inp" id="kw-inp-'+WIZ.activeCrit+'" placeholder="Tapez un ou plusieurs mots-clés séparés par des virgules, puis Entrée — ex. présent simple, voix off, complot">';
   kwH+="</div>";
   c.innerHTML=previewH+kwH;
 }
@@ -2072,12 +2072,18 @@ document.addEventListener("keydown",function(e){
   // keyword add
   var el=e.target;
   if(el.matches(".kw-inp")){
-    var val=el.value.trim();if(!val)return;
+    var raw=el.value.trim();if(!raw)return;
     var ci=WIZ.activeCrit;
     if(!WIZ.crits[ci].keywords)WIZ.crits[ci].keywords=[];
-    WIZ.crits[ci].keywords.push(val);
+    // split by comma or semicolon, add each
+    raw.split(/[,;]+/).forEach(function(w){
+      var v=w.trim();if(v)WIZ.crits[ci].keywords.push(v);
+    });
     el.value="";
-    renderKWZone();renderCritTabs("w-kw-tabs",3);
+    renderKWZone();
+    renderCritTabs("w-kw-tabs",3);
+    var newInp=document.getElementById("kw-inp-"+ci);
+    if(newInp)newInp.focus();
     return;
   }
 });
