@@ -1387,6 +1387,19 @@ function wizLevels(pivot){
   return res;
 }
 
+function defaultScoresForCrit(){
+  // returns array of scores indexed by WIZ.levels, pivot and above = 20
+  var n=WIZ.levels.length;
+  var pivotIdx=WIZ.levels.indexOf(WIZ.pivot);
+  if(pivotIdx<0)pivotIdx=Math.floor(n/2);
+  var arr=[];
+  for(var i=0;i<n;i++){
+    if(i>=pivotIdx) arr.push(20);
+    else arr.push(Math.round(5+(10/pivotIdx)*i)||5);
+  }
+  return arr;
+}
+
 function defaultScores(n){
   // pivot index = 2 (middle of 5), everything at pivot+ = 20
   // below pivot: linear from 5 up to 15 (one step below pivot)
@@ -1942,6 +1955,11 @@ document.addEventListener("click",function(e){
   if(tcpl){WIZ.cpAllLevels=!WIZ.cpAllLevels;renderCPicker();return;}
   // grille remove
   var rmg=e.target.closest("[data-rmgroup]");if(rmg){rmGroup(rmg);return;}
+  // final grid add/remove extra row
+  var aer=e.target.closest("[data-action='add-extra-row']");
+  if(aer){if(!WIZ.extraRows)WIZ.extraRows=[];WIZ.extraRows.push({text:""});renderFinalGrid();return;}
+  var rmer=e.target.closest("[data-rm-extra]");
+  if(rmer){WIZ.extraRows.splice(parseInt(rmer.dataset.rmExtra),1);renderFinalGrid();return;}
   // wizard nav
   var wn=e.target.closest("[data-wiz-next]");if(wn){goWizStep(parseInt(wn.dataset.wizNext)+1);return;}
   var wp=e.target.closest("[data-wiz-prev]");if(wp){goWizStep(parseInt(wp.dataset.wizPrev)-1);return;}
@@ -1996,6 +2014,14 @@ document.addEventListener("click",function(e){
 
 document.addEventListener("input",function(e){
   if(e.target.id==="si"){flt();return;}
+  if(e.target.matches("[data-crit-score-ci]")){
+    var ci=parseInt(e.target.dataset.critScoreCi);
+    var li=parseInt(e.target.dataset.critScoreLi);
+    if(!WIZ.critScores)WIZ.critScores=[];
+    while(WIZ.critScores.length<=ci)WIZ.critScores.push(defaultScoresForCrit());
+    WIZ.critScores[ci][li]=parseFloat(e.target.value)||0;
+    return;
+  }
   if(e.target.matches("input[data-pid]")){upTotal();return;}
   if(e.target.matches(".lv-sel")){rg();return;}
   if(e.target.id==="w-cp-search"){renderCPicker();return;}
@@ -2018,6 +2044,20 @@ document.addEventListener("input",function(e){
     if(idx>=0){WIZ.scores[idx]=parseFloat(e.target.value)||0;}
     renderWizScores("w-scores");
     renderFinalGrid();return;
+  }
+  // final grid per-crit score sync
+  if(e.target.matches("[data-fg-ci]")){
+    var ci=parseInt(e.target.dataset.fgCi),li=parseInt(e.target.dataset.fgLi);
+    if(!WIZ.critScores)WIZ.critScores=[];
+    while(WIZ.critScores.length<=ci)WIZ.critScores.push(defaultScoresForCrit());
+    WIZ.critScores[ci][li]=parseFloat(e.target.value)||0;
+    renderFinalGrid();return;
+  }
+  // extra row text sync
+  if(e.target.matches("[data-extra-row]")){
+    var ri=parseInt(e.target.dataset.extraRow);
+    if(WIZ.extraRows&&WIZ.extraRows[ri])WIZ.extraRows[ri].text=e.target.value;
+    return;
   }
   // gen textarea sync
   if(e.target.matches("[data-gen-lv]")){
