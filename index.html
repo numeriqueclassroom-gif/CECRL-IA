@@ -207,6 +207,8 @@ textarea.inp{resize:vertical;min-height:72px}
 .notif{position:fixed;bottom:1rem;right:1rem;background:var(--ac);color:#fff;padding:.48rem .88rem;border-radius:7px;font-size:.76rem;opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none;z-index:300}
 .notif.show{opacity:1;transform:none}
 .no-print{display:block}
+.home-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,.09)}
+.home-card[data-view="wizard"]:hover{box-shadow:0 6px 24px rgba(124,58,237,.2)}
 /* PRINT */
 @media print{
   .no-print,.app-hd,.toolbar,.lgd,.cb,.sb,.ca-zone,.total-bar,.trash-btn,.gs-controls,
@@ -247,17 +249,58 @@ textarea.inp{resize:vertical;min-height:72px}
   </div>
   <!-- CENTER: nav buttons -->
   <div class="hd-act" style="flex:1;justify-content:center">
-    <button class="btn btn-g" data-view="browse">📚 Explorer</button>
-    <button class="btn btn-g" data-view="grilles">📊 Grilles types</button>
-    <button class="btn btn-g" data-view="grille">📋 Ma grille <span id="gc" style="background:rgba(255,255,255,.18);border-radius:10px;padding:0 6px;margin-left:2px">0</span></button>
-    <button class="btn" data-view="wizard" style="background:linear-gradient(135deg,#7c3aed,#4338ca);color:#fff;border:none;position:relative;box-shadow:0 0 10px rgba(124,58,237,.45)">
-      ✨ Créer une grille guidée
-      <span style="position:absolute;top:-7px;right:-7px;background:#f59e0b;color:#fff;font-size:.57rem;font-weight:700;padding:.1rem .36rem;border-radius:10px;font-family:'Syne',sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.25)">NOUVEAU</span>
+    <button class="btn btn-g" data-view="home">🏠 Accueil</button>
+    <button class="btn btn-g" data-view="browse">📚 Descripteurs CECRL</button>
+    <button class="btn" data-view="wizard" style="background:linear-gradient(135deg,#7c3aed,#4338ca);color:#fff;border:none;box-shadow:0 0 10px rgba(124,58,237,.45)">
+      ✨ Grille de tâche finale
     </button>
+    <button class="btn btn-g" data-view="grille">📋 Grille libre <span id="gc" style="background:rgba(255,255,255,.18);border-radius:10px;padding:0 6px;margin-left:2px">0</span></button>
   </div>
   <!-- RIGHT: print -->
   <div style="flex-shrink:0">
     <button class="btn btn-p" data-action="print" style="padding:.4rem .9rem">🖨 Imprimer</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="home-view">
+  <div style="max-width:900px;margin:0 auto;padding:2.5rem 1.5rem">
+    <div style="text-align:center;margin-bottom:2rem">
+      <div style="font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:.4rem">Bienvenue sur l'outil CECRL interactif</div>
+      <div style="font-size:.88rem;color:var(--mt);max-width:560px;margin:0 auto">Explorez les descripteurs du Volume complémentaire 2021 ou créez une grille d'évaluation adaptée à votre séquence.</div>
+    </div>
+    <!-- 3 cards -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem">
+      <!-- Card 1: Descripteurs -->
+      <div class="home-card" data-view="browse" style="border:1px solid var(--bd);border-radius:12px;padding:1.5rem;cursor:pointer;background:var(--sf);transition:all .18s">
+        <div style="font-size:2rem;margin-bottom:.7rem">📚</div>
+        <div style="font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.25rem">Descripteurs CECRL</div>
+        <div style="font-size:.75rem;color:var(--ac);font-weight:500;margin-bottom:.6rem;font-style:italic">Explorer le référentiel</div>
+        <div style="font-size:.8rem;color:var(--mt);line-height:1.55">Consultez les 471 descripteurs du Volume complémentaire 2021, filtrés par niveau et par domaine. Cochez ceux qui vous intéressent pour les ajouter à votre grille libre.</div>
+        <div style="margin-top:1rem;display:flex;align-items:center;gap:.3rem;font-size:.76rem;font-weight:600;color:var(--ac)">Explorer →</div>
+      </div>
+      <!-- Card 2: Grille IA -->
+      <div class="home-card" data-view="wizard" style="border:2px solid #7c3aed;border-radius:12px;padding:1.5rem;cursor:pointer;background:linear-gradient(135deg,#faf5ff,#ede9fe);transition:all .18s;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-15px;right:-15px;width:80px;height:80px;border-radius:50%;background:rgba(124,58,237,.08)"></div>
+        <div style="font-size:2rem;margin-bottom:.7rem">✨</div>
+        <div style="font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.25rem;color:#4c1d95">Grille de tâche finale</div>
+        <div style="font-size:.75rem;color:#7c3aed;font-weight:500;margin-bottom:.6rem;font-style:italic">Production — assistée par IA</div>
+        <div style="font-size:.8rem;color:#5b21b6;line-height:1.55">Pour évaluer une production orale, écrite ou en interaction. Définissez votre tâche finale, vos critères, sélectionnez les descripteurs CECRL — Albert rédige les niveaux de compétence adaptés à votre séquence.</div>
+        <div style="margin-top:1rem;display:flex;align-items:center;gap:.3rem;font-size:.76rem;font-weight:600;color:#7c3aed">Créer avec l'IA →</div>
+      </div>
+      <!-- Card 3: Grille libre -->
+      <div class="home-card" data-view="grille" style="border:1px solid var(--bd);border-radius:12px;padding:1.5rem;cursor:pointer;background:var(--sf);transition:all .18s">
+        <div style="font-size:2rem;margin-bottom:.7rem">📋</div>
+        <div style="font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.25rem">Grille libre</div>
+        <div style="font-size:.75rem;color:var(--ac);font-weight:500;margin-bottom:.6rem;font-style:italic">Tous types d'évaluation</div>
+        <div style="font-size:.8rem;color:var(--mt);line-height:1.55">Pour toute autre évaluation&nbsp;: compréhension, participation, dossier, projet, bilan de séquence… Pichez dans les descripteurs CECRL ou saisissez librement vos propres critères.</div>
+        <div style="margin-top:1rem;display:flex;align-items:center;gap:.3rem;font-size:.76rem;font-weight:600;color:var(--ac)">Créer ma grille →</div>
+      </div>
+    </div>
+    <!-- bottom note -->
+    <div style="text-align:center;margin-top:1.8rem;font-size:.72rem;color:var(--mt)">
+      Démarche inspirée de <a href="https://pedagogie.ac-toulouse.fr/langues-vivantes/etiquettes/assess-them-if-i-can" target="_blank" style="color:var(--mt);text-decoration:underline">Assess Them If I Can</a>, Académie de Toulouse &nbsp;·&nbsp; Académie de Nice · 2026
+    </div>
   </div>
 </div>
 
@@ -293,7 +336,7 @@ textarea.inp{resize:vertical;min-height:72px}
       <div class="li"><div class="ld" style="background:var(--C2)"></div>C2</div>
     </div>
     <div style="font-size:.74rem;color:var(--mt);text-align:right;max-width:340px">
-      Cochez &#9745; pour ajouter à votre grille · ou utilisez <strong>✨ Créer une grille guidée</strong>
+      Cochez &#9745; pour ajouter à <strong>Ma grille personnalisée</strong> · ou <strong>✨ Créer une grille guidée</strong> avec l'IA
     </div>
   </div>
   <div class="cb">
@@ -308,7 +351,7 @@ textarea.inp{resize:vertical;min-height:72px}
 </div>
 
 <!-- GRILLES TYPES -->
-<div id="grilles-view" style="display:none">
+<div id="grilles-view" style="display:none!important;visibility:hidden">
   <div class="toolbar no-print" style="justify-content:space-between">
     <span class="syne" style="font-weight:600;font-size:.88rem">Grilles types CECRL</span>
     <button class="btn btn-plain" data-view="browse">Retour</button>
@@ -375,7 +418,7 @@ textarea.inp{resize:vertical;min-height:72px}
       <div style="display:flex;align-items:flex-start;gap:1rem">
         <div style="font-size:2rem;flex-shrink:0;line-height:1">✨</div>
         <div style="flex:1">
-          <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.35rem;letter-spacing:-.01em">Créer une grille d'évaluation guidée par l'IA</div>
+          <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.35rem;letter-spacing:-.01em">Créer une grille d'évaluation assistée par IA</div>
           <div style="font-size:.8rem;line-height:1.6;opacity:.88;margin-bottom:.75rem">
             En 5 étapes, construisez une grille personnalisée ancrée dans votre séquence&nbsp;: définissez votre tâche finale, choisissez vos critères, sélectionnez les descripteurs CECRL pertinents, ajoutez vos mots-clés de cours — et laissez <strong>Albert</strong> rédiger les descripteurs combinés pour chaque niveau.
           </div>
@@ -508,6 +551,105 @@ const D={
 {l:"A2",t:"Peut comprendre des phrases isolées et des expressions fréquemment utilisées en relation avec des domaines de priorité immédiate. Peut communiquer lors de tâches simples et habituelles ne demandant qu'un échange d'informations simple."},
 {l:"A1",t:"Peut comprendre et utiliser des expressions familières et quotidiennes ainsi que des énoncés très simples. Peut se présenter ou présenter quelqu'un. Peut communiquer de façon simple si l'interlocuteur parle lentement et distinctement."}
 ]}},
+"Production":{ic:"🗣️",col:"#047857",s:{
+"Production orale générale":[
+{l:"C2",t:"Peut produire un discours clair, limpide et fluide, avec une structure logique efficace qui aide le destinataire à remarquer les points importants."},
+{l:"C1",t:"Peut faire une présentation ou une description claire d'un sujet complexe en intégrant des thèmes secondaires et en développant des points particuliers."},
+{l:"B2",t:"Peut développer méthodiquement une présentation en soulignant les points importants et les détails pertinents."},
+{l:"B1",t:"Peut assez aisément mener à bien une description directe et non compliquée sur des sujets variés dans son domaine."},
+{l:"A2",t:"Peut décrire ou présenter simplement des gens, des conditions de vie ou de travail, des activités quotidiennes, par de courtes séries d'expressions."},
+{l:"A1",t:"Peut produire des expressions simples isolées sur les gens et les choses."},
+{l:"PréA1",t:"Peut produire des phrases courtes pour parler de soi et donner des renseignements simples personnels."}
+],
+"Monologue suivi : décrire l'expérience":[
+{l:"C2",t:"Peut faire des descriptions claires, élaborées et souvent remarquables."},
+{l:"C1",t:"Peut faire des descriptions claires et détaillées de sujets complexes, intégrant des thèmes secondaires et terminant par une conclusion appropriée."},
+{l:"B2",t:"Peut faire une description claire et détaillée sur une gamme étendue de sujets. Peut dire en quoi des événements le/la touchent personnellement."},
+{l:"B1",t:"Peut exprimer clairement ses sentiments par rapport à quelque chose vécu. Peut raconter l'intrigue d'un livre ou d'un film. Peut décrire un rêve, un espoir ou une ambition."},
+{l:"A2",t:"Peut raconter une histoire ou décrire quelque chose par une simple liste de points. Peut décrire des projets, habitudes et activités passées."},
+{l:"A1",t:"Peut se décrire, décrire ce qu'il/elle fait, ainsi que son lieu d'habitation."},
+{l:"PréA1",t:"Peut parler de soi (nom, âge, famille) en utilisant des expressions toutes faites, à condition de pouvoir préparer à l'avance."}
+],
+"Monologue suivi : donner des informations":[
+{l:"C1",t:"Peut faire remarquer des distinctions très précises entre des idées similaires. Peut donner des consignes pour effectuer des procédures professionnelles ou académiques complexes."},
+{l:"B2",t:"Peut communiquer des informations et des recommandations complexes sur la vaste gamme de sujets liés à son activité. Peut transmettre de manière fiable une information détaillée."},
+{l:"B1",t:"Peut expliquer les points principaux d'une idée ou d'un problème de façon précise. Peut transmettre des informations factuelles explicites sur un sujet familier."},
+{l:"A2",t:"Peut donner des consignes simples pour aller d'un endroit à un autre."},
+{l:"A1",t:"Peut nommer un objet en indiquant sa forme et sa couleur, en utilisant des mots simples."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Monologue suivi : argumenter":[
+{l:"C1",t:"Peut débattre d'un problème complexe, formuler de façon précise les points soulevés. Peut développer un argument systématiquement dans un langage bien structuré."},
+{l:"B2",t:"Peut développer méthodiquement une argumentation en mettant en évidence les points significatifs. Peut bâtir une séquence d'arguments logiques."},
+{l:"B1",t:"Peut développer une argumentation suffisamment bien pour être compris la plupart du temps. Peut donner des raisons simples pour justifier un point de vue."},
+{l:"A2",t:"Peut donner les raisons pour lesquelles il/elle aime ou n'aime pas quelque chose. Peut présenter son point de vue en termes simples."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"S'adresser à un auditoire":[
+{l:"C2",t:"Peut présenter avec assurance un sujet complexe à un auditoire pour qui ce sujet n'est pas familier. Peut gérer un questionnement difficile, voire hostile."},
+{l:"C1",t:"Peut faire un exposé clair et bien structuré sur un sujet complexe. Peut gérer les objections convenablement, y répondant avec spontanéité."},
+{l:"B2",t:"Peut développer un exposé de manière claire et méthodique. Peut s'écarter spontanément d'un texte préparé pour suivre les points soulevés par des auditeurs."},
+{l:"B1",t:"Peut faire une présentation préparée à l'avance sur un sujet familier. Peut gérer les questions qui suivent mais peut devoir faire répéter."},
+{l:"A2",t:"Peut faire un bref exposé répété sur un sujet relatif à sa vie quotidienne et donner brièvement des justifications."},
+{l:"A1",t:"Peut utiliser un texte préparé très bref pour faire une déclaration répétée (présenter une personne formellement, proposer un toast)."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Production écrite générale":[
+{l:"C2",t:"Peut composer des textes clairs, limpides et fluides, dans un style approprié et efficace, avec une structure logique."},
+{l:"C1",t:"Peut composer des textes clairs, bien structurés sur des sujets complexes, en soulignant les points pertinents les plus saillants."},
+{l:"B2",t:"Peut composer des textes clairs et détaillés sur une gamme étendue de sujets relatifs à son domaine d'intérêt."},
+{l:"B1",t:"Peut produire des textes suivis non complexes sur une gamme de sujets variés."},
+{l:"A2",t:"Peut produire une série d'expressions et de phrases simples reliées par des connecteurs simples."},
+{l:"A1",t:"Peut donner des renseignements sur des sujets relevant de sa vie privée en utilisant des mots et des expressions simples."},
+{l:"PréA1",t:"Peut donner des renseignements simples et personnels (nom, adresse, nationalité) en utilisant éventuellement un dictionnaire."}
+],
+"Écriture créative":[
+{l:"C2",t:"Peut raconter des histoires ou des récits d'expérience captivants, de manière limpide et fluide et dans un style approprié au genre adopté."},
+{l:"C1",t:"Peut composer des textes descriptifs et de fiction clairs, détaillés, bien construits dans un style sûr, personnel et naturel."},
+{l:"B2",t:"Peut faire des descriptions élaborées d'événements et d'expériences réels ou imaginaires. Peut faire une critique de film, de livre ou de pièce de théâtre."},
+{l:"B1",t:"Peut indiquer clairement l'ordre chronologique d'un texte narratif. Peut faire le compte rendu d'expériences en décrivant ses sentiments et ses réactions."},
+{l:"A2",t:"Peut décrire les aspects quotidiens de son environnement. Peut raconter une histoire simple."},
+{l:"A1",t:"Peut produire des phrases et des expressions simples sur lui/elle-même et des personnages imaginaires."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Essais et rapports":[
+{l:"C2",t:"Peut produire des rapports, articles ou essais complexes clairs et fluides qui posent une problématique, ou donner une appréciation critique sur des propositions ou des œuvres littéraires."},
+{l:"C1",t:"Peut exposer clairement et de façon bien structurée des sujets complexes. Peut développer et soutenir des points de vue à l'aide d'arguments secondaires et d'exemples."},
+{l:"B2",t:"Peut produire un essai ou un rapport qui développe une argumentation de façon méthodique. Peut synthétiser des informations et des arguments issus de sources diverses."},
+{l:"B1",t:"Peut produire de courts essais simples sur des sujets d'intérêt général. Peut résumer avec une certaine assurance un ensemble d'informations factuelles."},
+{l:"A2",t:"Peut produire des textes simples sur des sujets d'intérêt familiers, en liant les phrases avec des connecteurs."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Annonces publiques":[{l:"C2",t:"Pas de descripteur disponible."},
+{l:"C1",t:"Peut faire une annonce avec aisance, presque sans effort, avec l\'accent et l\'intonation qui transmettent de façon exacte des nuances fines de sens."},
+{l:"B2",t:"Peut faire des annonces sur la plupart des sujets généraux avec un degré de clarté, d\'aisance et de spontanéité qui ne procurent à l\'auditeur ni tension ni inconfort."},
+{l:"B1",t:"Peut faire de brèves annonces préparées sur un sujet quotidien dans son domaine, éventuellement même avec un accent tonique et une intonation qui n\'empêchent pas d\'être clairement intelligible."},
+{l:"A2",t:"Peut faire de très brèves annonces préparées avec un contenu prévisible et appris, intelligibles pour des auditeurs attentifs."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Planification":[{l:"C2",t:"Pas de descripteur disponible."},
+{l:"C1",t:"Peut, en préparant un texte formel, adopter consciemment les conventions propres à un type particulier de texte (par exemple la structure, le niveau de formalité). Peut planifier ce qu\'il(elle) va dire en prévision de réactions différentes de ses interlocuteurs."},
+{l:"B2",t:"Peut planifier ce qu\'il faut dire et les moyens de le dire en tenant compte de l\'effet à produire sur le(s) destinataire(s)."},
+{l:"B1",t:"Peut prévoir et préparer la façon de communiquer les points importants qu\'il(elle) veut transmettre, en utilisant ses ressources de manière efficace."},
+{l:"A2",t:"Peut tirer de son répertoire une série d\'expressions appropriées, les préparer et les mémoriser avec quelques ajustements."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Compensation":[{l:"C2",t:"Peut substituer à un mot/un signe qui lui échappe un terme équivalent de manière si habile que l\'on s\'en rende à peine compte."},
+{l:"C1",t:"Peut utiliser de façon créative une grande variété de vocabulaire afin de pouvoir choisir de manière efficace des périphrases dans presque toutes les situations."},
+{l:"B2",t:"Peut utiliser des périphrases et des paraphrases pour dissimuler des lacunes lexicales et structurales. Peut faire face à la plupart des problèmes de communication en utilisant des périphrases."},
+{l:"B1",t:"Peut utiliser un mot/un signe simple signifiant quelque chose de semblable au concept voulu et inviter l\'interlocuteur à corriger."},
+{l:"A2",t:"Peut identifier ce qu\'il(elle) veut en le désignant du doigt, en demandant « Je veux ça, s\'il vous plaît »."},
+{l:"A1",t:"Peut accompagner ses mots de gestes pour exprimer un besoin."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Contrôle et correction":[{l:"C2",t:"Peut revenir sur une difficulté et restructurer son propos de manière si habile que l\'interlocuteur s\'en rende à peine compte."},
+{l:"C1",t:"Peut revenir sur une difficulté et reformuler ce qu\'il(elle) veut dire sans interrompre complètement le fil du discours. Peut s\'autocorriger avec beaucoup d\'efficacité."},
+{l:"B2",t:"Peut généralement corriger lapsus et erreurs après en avoir pris conscience ou si ceux-ci ont entraîné des malentendus."},
+{l:"B1",t:"Peut se faire confirmer la correction d\'une forme utilisée. Peut recommencer avec une formulation différente si la communication échoue."},
+{l:"A2",t:"Pas de descripteur disponible."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}]}},
 "Réception":{ic:"👂",col:"#0369a1",s:{
 "Compréhension générale de l'oral":[
 {l:"C2",t:"Peut comprendre sans effort pratiquement toute langue, en direct ou enregistrée, si le débit est naturel."},
@@ -609,78 +751,14 @@ const D={
 {l:"A2",t:"Peut utiliser sa perception du sens général d'un texte court pour déduire le sens probable de mots inconnus."},
 {l:"A1",t:"Peut déduire la signification d'un mot inconnu concernant une action concrète, à condition que le texte soit très simple."},
 {l:"PréA1",t:"Peut déduire le sens d'un mot à partir de l'illustration ou du pictogramme qui l'accompagne."}
-]}},
-"Production":{ic:"🗣️",col:"#047857",s:{
-"Production orale générale":[
-{l:"C2",t:"Peut produire un discours clair, limpide et fluide, avec une structure logique efficace qui aide le destinataire à remarquer les points importants."},
-{l:"C1",t:"Peut faire une présentation ou une description claire d'un sujet complexe en intégrant des thèmes secondaires et en développant des points particuliers."},
-{l:"B2",t:"Peut développer méthodiquement une présentation en soulignant les points importants et les détails pertinents."},
-{l:"B1",t:"Peut assez aisément mener à bien une description directe et non compliquée sur des sujets variés dans son domaine."},
-{l:"A2",t:"Peut décrire ou présenter simplement des gens, des conditions de vie ou de travail, des activités quotidiennes, par de courtes séries d'expressions."},
-{l:"A1",t:"Peut produire des expressions simples isolées sur les gens et les choses."},
-{l:"PréA1",t:"Peut produire des phrases courtes pour parler de soi et donner des renseignements simples personnels."}
 ],
-"Monologue suivi : décrire l'expérience":[
-{l:"C2",t:"Peut faire des descriptions claires, élaborées et souvent remarquables."},
-{l:"C1",t:"Peut faire des descriptions claires et détaillées de sujets complexes, intégrant des thèmes secondaires et terminant par une conclusion appropriée."},
-{l:"B2",t:"Peut faire une description claire et détaillée sur une gamme étendue de sujets. Peut dire en quoi des événements le/la touchent personnellement."},
-{l:"B1",t:"Peut exprimer clairement ses sentiments par rapport à quelque chose vécu. Peut raconter l'intrigue d'un livre ou d'un film. Peut décrire un rêve, un espoir ou une ambition."},
-{l:"A2",t:"Peut raconter une histoire ou décrire quelque chose par une simple liste de points. Peut décrire des projets, habitudes et activités passées."},
-{l:"A1",t:"Peut se décrire, décrire ce qu'il/elle fait, ainsi que son lieu d'habitation."},
-{l:"PréA1",t:"Peut parler de soi (nom, âge, famille) en utilisant des expressions toutes faites, à condition de pouvoir préparer à l'avance."}
-],
-"Monologue suivi : donner des informations":[
-{l:"C1",t:"Peut faire remarquer des distinctions très précises entre des idées similaires. Peut donner des consignes pour effectuer des procédures professionnelles ou académiques complexes."},
-{l:"B2",t:"Peut communiquer des informations et des recommandations complexes sur la vaste gamme de sujets liés à son activité. Peut transmettre de manière fiable une information détaillée."},
-{l:"B1",t:"Peut expliquer les points principaux d'une idée ou d'un problème de façon précise. Peut transmettre des informations factuelles explicites sur un sujet familier."},
-{l:"A2",t:"Peut donner des consignes simples pour aller d'un endroit à un autre."},
-{l:"A1",t:"Peut nommer un objet en indiquant sa forme et sa couleur, en utilisant des mots simples."},
-{l:"PréA1",t:"Pas de descripteur disponible."}
-],
-"Monologue suivi : argumenter":[
-{l:"C1",t:"Peut débattre d'un problème complexe, formuler de façon précise les points soulevés. Peut développer un argument systématiquement dans un langage bien structuré."},
-{l:"B2",t:"Peut développer méthodiquement une argumentation en mettant en évidence les points significatifs. Peut bâtir une séquence d'arguments logiques."},
-{l:"B1",t:"Peut développer une argumentation suffisamment bien pour être compris la plupart du temps. Peut donner des raisons simples pour justifier un point de vue."},
-{l:"A2",t:"Peut donner les raisons pour lesquelles il/elle aime ou n'aime pas quelque chose. Peut présenter son point de vue en termes simples."},
-{l:"A1",t:"Pas de descripteur disponible."},
-{l:"PréA1",t:"Pas de descripteur disponible."}
-],
-"S'adresser à un auditoire":[
-{l:"C2",t:"Peut présenter avec assurance un sujet complexe à un auditoire pour qui ce sujet n'est pas familier. Peut gérer un questionnement difficile, voire hostile."},
-{l:"C1",t:"Peut faire un exposé clair et bien structuré sur un sujet complexe. Peut gérer les objections convenablement, y répondant avec spontanéité."},
-{l:"B2",t:"Peut développer un exposé de manière claire et méthodique. Peut s'écarter spontanément d'un texte préparé pour suivre les points soulevés par des auditeurs."},
-{l:"B1",t:"Peut faire une présentation préparée à l'avance sur un sujet familier. Peut gérer les questions qui suivent mais peut devoir faire répéter."},
-{l:"A2",t:"Peut faire un bref exposé répété sur un sujet relatif à sa vie quotidienne et donner brièvement des justifications."},
-{l:"A1",t:"Peut utiliser un texte préparé très bref pour faire une déclaration répétée (présenter une personne formellement, proposer un toast)."},
-{l:"PréA1",t:"Pas de descripteur disponible."}
-],
-"Production écrite générale":[
-{l:"C2",t:"Peut composer des textes clairs, limpides et fluides, dans un style approprié et efficace, avec une structure logique."},
-{l:"C1",t:"Peut composer des textes clairs, bien structurés sur des sujets complexes, en soulignant les points pertinents les plus saillants."},
-{l:"B2",t:"Peut composer des textes clairs et détaillés sur une gamme étendue de sujets relatifs à son domaine d'intérêt."},
-{l:"B1",t:"Peut produire des textes suivis non complexes sur une gamme de sujets variés."},
-{l:"A2",t:"Peut produire une série d'expressions et de phrases simples reliées par des connecteurs simples."},
-{l:"A1",t:"Peut donner des renseignements sur des sujets relevant de sa vie privée en utilisant des mots et des expressions simples."},
-{l:"PréA1",t:"Peut donner des renseignements simples et personnels (nom, adresse, nationalité) en utilisant éventuellement un dictionnaire."}
-],
-"Écriture créative":[
-{l:"C2",t:"Peut raconter des histoires ou des récits d'expérience captivants, de manière limpide et fluide et dans un style approprié au genre adopté."},
-{l:"C1",t:"Peut composer des textes descriptifs et de fiction clairs, détaillés, bien construits dans un style sûr, personnel et naturel."},
-{l:"B2",t:"Peut faire des descriptions élaborées d'événements et d'expériences réels ou imaginaires. Peut faire une critique de film, de livre ou de pièce de théâtre."},
-{l:"B1",t:"Peut indiquer clairement l'ordre chronologique d'un texte narratif. Peut faire le compte rendu d'expériences en décrivant ses sentiments et ses réactions."},
-{l:"A2",t:"Peut décrire les aspects quotidiens de son environnement. Peut raconter une histoire simple."},
-{l:"A1",t:"Peut produire des phrases et des expressions simples sur lui/elle-même et des personnages imaginaires."},
-{l:"PréA1",t:"Pas de descripteur disponible."}
-],
-"Essais et rapports":[
-{l:"C2",t:"Peut produire des rapports, articles ou essais complexes clairs et fluides qui posent une problématique, ou donner une appréciation critique sur des propositions ou des œuvres littéraires."},
-{l:"C1",t:"Peut exposer clairement et de façon bien structurée des sujets complexes. Peut développer et soutenir des points de vue à l'aide d'arguments secondaires et d'exemples."},
-{l:"B2",t:"Peut produire un essai ou un rapport qui développe une argumentation de façon méthodique. Peut synthétiser des informations et des arguments issus de sources diverses."},
-{l:"B1",t:"Peut produire de courts essais simples sur des sujets d'intérêt général. Peut résumer avec une certaine assurance un ensemble d'informations factuelles."},
-{l:"A2",t:"Peut produire des textes simples sur des sujets d'intérêt familiers, en liant les phrases avec des connecteurs."},
-{l:"A1",t:"Pas de descripteur disponible."},
-{l:"PréA1",t:"Pas de descripteur disponible."}
-]}},
+"Lire comme activité de loisir":[{l:"C2",t:"Peut lire pratiquement toute forme d\'écrit, y compris des textes de types différents, littéraires ou non, en langue classique ou familière en appréciant de subtiles distinctions de style ainsi que le sens implicite et explicite."},
+{l:"C1",t:"Peut lire sans grande difficulté des textes littéraires et des ouvrages généralistes contemporains, écrits en langage standard, en appréciant l\'implicite et les idées."},
+{l:"B2",t:"Peut lire et apprécier une grande variété de textes (guides, passages de chansons, poèmes), en choisissant les sources adéquates. Peut lire des textes contemporains ou classiques."},
+{l:"B1",t:"Peut comprendre des descriptions d\'événements, sentiments et souhaits suffisamment bien pour entretenir une correspondance régulière avec un ami. Peut lire des textes exprimés dans des récits, des guides et des articles de magazines."},
+{l:"A2",t:"Peut comprendre des textes courts et simples sur des sujets familiers avec des mots simples. Peut comprendre ce qu\'il se passe dans un roman-photo."},
+{l:"A1",t:"Peut comprendre dans les grandes lignes des histoires courtes illustrées, à condition que le sujet soit familier."},
+{l:"PréA1",t:"Pas de descripteur disponible."}]}},
 "Interaction":{ic:"💬",col:"#b45309",s:{
 "Interaction orale générale":[
 {l:"C2",t:"Possède une bonne maîtrise d'expressions idiomatiques et de tournures courantes, est sensible aux niveaux de sens connotatif. Peut exprimer avec précision des nuances fines de sens."},
@@ -752,7 +830,42 @@ const D={
 {l:"A2",t:"Peut se présenter et gérer des échanges simples en ligne. Peut publier de courtes descriptions sur des questions quotidiennes."},
 {l:"A1",t:"Peut écrire des messages personnels en ligne très simples, sur ses loisirs, à l'aide d'un outil de traduction."},
 {l:"PréA1",t:"Peut publier des messages simples de salutation en ligne."}
-]}},
+],
+"Comprendre un interlocuteur":[{l:"C2",t:"Peut comprendre tout interlocuteur même sur des sujets spécialisés abstraits ou complexes et hors de son domaine, si on lui donne l\'occasion de s\'habituer à une variété d\'accent moins familière."},
+{l:"C1",t:"Peut comprendre en détail un interlocuteur s\'exprimant sur des sujets spécialisés abstraits ou complexes même hors de son domaine, mais peut avoir besoin de faire confirmer quelques détails si la variété de langue n\'est pas familière."},
+{l:"B2",t:"Peut comprendre en détail ce qu\'on lui dit en langue standard ou dans une variété moins familière, même dans un environnement gênant d\'un point de vue sonore et visuel."},
+{l:"B1",t:"Peut suivre un discours d\'une clarté raisonnable et devra quelquefois faire répéter certains mots ou expressions."},
+{l:"A2",t:"Peut comprendre ce qui lui est dit clairement, lentement et directement dans une conversation quotidienne simple."},
+{l:"A1",t:"Peut comprendre des questions et des instructions qui lui sont adressées lentement et distinctement et en suivre des indications simples."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Obtenir des biens et des services":[{l:"C2",t:"Pas de descripteur disponible."},
+{l:"C1",t:"Peut négocier des transactions complexes ou délicates dans les domaines de la vie publique, professionnelle ou académique."},
+{l:"B2",t:"Peut présenter ses conditions et poser des questions détaillées concernant des services complexes. Peut gérer une négociation pour trouver une solution à une situation conflictuelle."},
+{l:"B1",t:"Peut faire face à la plupart des situations susceptibles de se produire lors d\'un voyage, par exemple en demandant à retourner un achat défectueux. Peut formuler une plainte."},
+{l:"A2",t:"Peut effectuer des transactions simples dans les magasins, les bureaux de poste, les banques et utiliser les transports en commun."},
+{l:"A1",t:"Peut demander à manger et à boire en utilisant des expressions élémentaires. Peut demander à un interlocuteur de lui donner quelque chose."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Échanger des informations":[{l:"C2",t:"Pas de descripteur disponible."},
+{l:"C1",t:"Pas de descripteur disponible."},
+{l:"B2",t:"Peut comprendre et échanger une information complexe et des avis sur une gamme étendue de sujets relatifs à son rôle professionnel. Peut transmettre fidèlement une information détaillée."},
+{l:"B1",t:"Peut trouver et transmettre une information factuelle explicite. Peut demander et suivre des instructions détaillées."},
+{l:"A2",t:"Peut communiquer dans le cadre d\'une tâche simple et routinière ne demandant qu\'un échange d\'informations simples et directs sur des sujets familiers."},
+{l:"A1",t:"Peut poser et répondre à des questions simples sur soi-même et sur des sujets familiers. Peut parler du temps avec des expressions simples."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Interviewer et être interviewé":[{l:"C2",t:"Peut prendre part au dialogue extrêmement bien, en structurant le discours et en échangeant avec autorité et une aisance naturelle, que ce soit comme intervieweur(euse) ou comme interviewé(e)."},
+{l:"C1",t:"Peut participer activement à un entretien, comme intervieweur(euse) ou comme interviewé(e), en développant et en mettant en valeur le point discuté, couramment et sans aucune aide."},
+{l:"B2",t:"Peut prendre des initiatives dans un entretien et développer ses idées, sans grande aide de la part de l\'intervieweur(euse)."},
+{l:"B1",t:"Peut prendre certaines initiatives dans une consultation ou un entretien (par exemple, pour aborder un nouveau sujet), mais il(elle) dépend encore beaucoup de l\'intervieweur(euse)."},
+{l:"A2",t:"Peut répondre à des questions simples et réagir à des déclarations simples dans un entretien."},
+{l:"A1",t:"Peut déclarer simplement la nature d\'un problème à un professionnel de santé et répondre à des questions simples."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Notes, messages et formulaires":[{l:"C2",t:"Pas de descripteur disponible."},
+{l:"C1",t:"Pas de descripteur disponible."},
+{l:"B2",t:"Peut prendre des messages personnels et professionnels complexes, à condition qu\'il(elle) puisse, si nécessaire, demander des éclaircissements ou des compléments d\'information."},
+{l:"B1",t:"Peut prendre les messages habituels que l\'on peut trouver dans des contextes personnels, professionnels ou académiques. Peut rédiger des notes qui transmettent une information simple et immédiatement pertinente."},
+{l:"A2",t:"Peut rédiger une note ou un message simples et brefs, concernant des besoins immédiats."},
+{l:"A1",t:"Peut laisser un message simple indiquant par exemple l\'endroit où il(elle) est allé(e) et l\'heure à laquelle il(elle) sera de retour."},
+{l:"PréA1",t:"Pas de descripteur disponible."}]}},
 "Médiation":{ic:"🔄",col:"#7c3aed",s:{
 "Médiation générale":[
 {l:"C2",t:"Peut agir en tant que médiateur de façon efficace et naturelle, endosser des rôles différents. Peut expliquer dans un langage clair et fluide la façon dont les faits et les arguments sont présentés."},
@@ -815,7 +928,28 @@ const D={
 {l:"A2",t:"Peut contribuer à un échange interculturel, demander aux gens de s'expliquer et de clarifier."},
 {l:"A1",t:"Peut faciliter un échange interculturel par sa façon d'accueillir les gens et en manifestant son intérêt."},
 {l:"PréA1",t:"Pas de descripteur disponible."}
-]}},
+],
+"Prendre des notes":[{l:"C2",t:"A conscience de l\'implicite et des sous-entendus dans ce qui est dit et peut les prendre en notes. Peut prendre des notes fiables lors de réunions ou séminaires, même si le sujet est complexe."},
+{l:"C1",t:"Peut prendre des notes de manière sélective, en paraphrasant ou en abrégeant efficacement afin de saisir les concepts abstraits et les relations entre des idées, dans le cadre de sujets non familiers."},
+{l:"B2",t:"Peut prendre des notes fidèles dans des réunions et des conférences, à condition que le sujet soit familier et le discours clair et bien structuré."},
+{l:"B1",t:"Peut prendre des notes sous forme d\'une liste de points clés lors d\'une conférence ou d\'une présentation bien structurée sur un sujet familier."},
+{l:"A2",t:"Peut prendre de brèves notes avec des informations simples, à condition que le présentateur fasse des mises au point et donne le temps de prendre les notes."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Agir en tant qu'intermédiaire informel":[{l:"C2",t:"Peut communiquer couramment, de façon claire et bien structurée en langue B, le sens de ce qui est dit en langue A sur une grande variété de sujets généraux et spécialisés, en conservant le style et le registre appropriés."},
+{l:"C1",t:"Peut communiquer couramment en langue B le sens de ce qui est dit en langue A sur une grande variété de sujets d\'intérêt personnel, académique et professionnel."},
+{l:"B2",t:"Peut relater une anecdote ou un exposé dans son domaine, interpréter correctement les indices culturels et reformuler dans un autre registre."},
+{l:"B1",t:"Peut communiquer en langue B le sens principal de ce qui est dit en langue A sur des sujets familiers, de façon relativement fluide."},
+{l:"A2",t:"Peut communiquer en langue B le point principal de ce qui est dit en langue A sur des sujets familiers très concrets."},
+{l:"A1",t:"Peut communiquer en langue B le sens d\'énoncés simples sur des sujets prévisibles en langue A, à condition que l\'on l\'aide à formuler."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Expliquer un nouveau concept":[{l:"C2",t:"Peut présenter des concepts complexes en donnant des définitions détaillées et des explications qui font des liens entre les idées, facilitant ainsi la compréhension d\'une question complexe."},
+{l:"C1",t:"Peut aider les autres à comprendre un problème abstrait en présentant l\'information sous forme d\'un schéma, et en adaptant le langage pour correspondre au niveau de perfectionnement requis."},
+{l:"B2",t:"Peut poser des questions et faire des commentaires pour inciter les gens à faire des liens entre ce qu\'ils savent déjà et le nouveau concept à apprendre. Peut relier à un savoir préalable."},
+{l:"B1",t:"Peut expliquer un nouveau concept ou une nouvelle procédure en utilisant des exemples qui s\'appuient sur les expériences quotidiennes des apprenants."},
+{l:"A2",t:"Pas de descripteur disponible."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}]}},
 "Compétences linguistiques":{ic:"📐",col:"#6d28d9",s:{
 "Étendue linguistique générale":[
 {l:"C2",t:"Peut mettre à profit une maîtrise globale et fiable d'une gamme très étendue de langue pour formuler précisément sa pensée, insister, discriminer et lever l'ambiguïté."},
@@ -924,7 +1058,28 @@ const D={
 {l:"A2",t:"Peut reconnaître et appliquer les normes culturelles courantes liées aux échanges sociaux quotidiens."},
 {l:"A1",t:"Peut reconnaître différentes façons de numéroter, mesurer la distance, dire l'heure."},
 {l:"PréA1",t:"Pas de descripteur disponible."}
-]}},
+],
+"Souplesse":[{l:"C2",t:"Montre une grande souplesse dans la reformulation d\'idées en les présentant sous des formes linguistiques variées pour en souligner l\'importance, marquer une différence selon la situation ou l\'interlocuteur, et lever une ambiguïté."},
+{l:"C1",t:"Peut modifier son expression pour exprimer des degrés d\'engagement ou d\'hésitation, de conviction ou d\'incertitude."},
+{l:"B2",t:"Peut s\'adapter aux changements d\'idées, de style et de ton rencontrés normalement dans les textes et les conversations."},
+{l:"B1",t:"Peut exploiter avec souplesse une gamme étendue de langue simple afin d\'exprimer l\'essentiel de ce qu\'il(elle) veut."},
+{l:"A2",t:"Peut adapter des expressions apprises par un léger changement de lexique."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Développement thématique":[{l:"C2",t:"Peut utiliser les conventions propres au type de texte concerné avec assez de souplesse pour communiquer efficacement des idées complexes, retenir facilement l\'attention du lecteur et atteindre tous ses objectifs communicatifs."},
+{l:"C1",t:"Peut utiliser les conventions propres au type de texte concerné pour retenir l\'attention du lecteur cible et communiquer des idées complexes. Peut écrire une introduction et une conclusion appropriées."},
+{l:"B2",t:"Peut faire une description ou un récit clair en développant et justifiant les points importants à l\'aide de détails et d\'exemples."},
+{l:"B1",t:"Montre qu\'il(elle) a conscience de la structure conventionnelle d\'un texte au moins de façon partielle."},
+{l:"A2",t:"Pas de descripteur disponible."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}],
+"Précision":[{l:"C2",t:"Peut exprimer avec précision des nuances de sens assez fines, en utilisant avec une correction suffisante une gamme étendue de procédés de modalisation. Peut insister, discriminer et lever l\'ambiguïté."},
+{l:"C1",t:"Peut utiliser à bon escient les modalités linguistiques pour indiquer la force d\'une affirmation, d\'un doute, ou d\'une confiance. Peut juger de façon précise en termes de certitude ou similarité."},
+{l:"B2",t:"Peut communiquer les points essentiels même dans des situations exigeantes, bien qu\'une certaine perte de précision soit possible."},
+{l:"B1",t:"Peut transmettre une information simple et claire, d\'intérêt immédiat, en mettant en évidence le point important."},
+{l:"A2",t:"Peut s\'exprimer avec assez de précision sur des sujets familiers et habituels, mais doit généralement faire des compromis sur des sujets moins familiers."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}]}},
 "Grilles d'évaluation":{ic:"📊",col:"#0f766e",s:{
 "Évaluation de l'écrit : Compétence générale":[
 {l:"C2",t:"Peut écrire des textes élaborés, limpides, fluides et parfaitement corrects dans un style personnel approprié et efficace qui transmet des nuances fines de sens."},
@@ -970,10 +1125,9 @@ const D={
 {l:"A2",t:"Peut produire des textes simples sur des sujets d'intérêt familiers, en liant les phrases avec des connecteurs."},
 {l:"A1",t:"Pas de descripteur disponible."},
 {l:"PréA1",t:"Pas de descripteur disponible."}
-]}}};
+]}}
 
-
-
+}
 const GRILLES_TYPES=[
   {
     id:'globale',
@@ -1121,14 +1275,14 @@ function ntf(msg){
 // ── VIEW ────────────────────────────────────────────────────────────────
 function sv(v){
   curView=v;
-  ["browse","grilles","grille","wizard"].forEach(function(id){
-    document.getElementById(id+"-view").style.display=id===v?"":"none";
+  ["home","browse","grille","wizard"].forEach(function(id){
+    var el=document.getElementById(id+"-view");
+    if(el) el.style.display=id===v?"":"none";
   });
   document.querySelectorAll(".hd-act [data-view]").forEach(function(b){
     b.classList.toggle("active",b.dataset.view===v);
   });
   if(v==="grille") rg();
-  if(v==="grilles") renderGT();
 }
 
 // ── BUILD SIDEBAR ────────────────────────────────────────────────────────
@@ -1373,18 +1527,20 @@ var WIZ={
 var ALL_LO=["PréA1","A1","A2","B1","B2","C1","C2"];
 
 function wizLevels(pivot){
+  // 2 levels below pivot, pivot itself, 1 level above
   var idx=ALL_LO.indexOf(pivot);
   var lvls=[];
-  for(var i=-2;i<=2;i++){
+  // 2 below
+  for(var i=-2;i<=-1;i++){
     var j=idx+i;
-    if(j>=0&&j<ALL_LO.length)lvls.push(ALL_LO[j]);
-    else if(j<0)lvls.push(ALL_LO[0]);
-    else lvls.push(ALL_LO[ALL_LO.length-1]);
+    if(j>=0) lvls.push(ALL_LO[j]);
   }
-  // deduplicate keeping order
-  var seen={},res=[];
-  for(var k=0;k<lvls.length;k++){if(!seen[lvls[k]]){seen[lvls[k]]=1;res.push(lvls[k]);}}
-  return res;
+  // pivot
+  lvls.push(pivot);
+  // 1 above only
+  var above=idx+1;
+  if(above<ALL_LO.length) lvls.push(ALL_LO[above]);
+  return lvls;
 }
 
 function defaultScoresForCrit(){
@@ -1523,6 +1679,8 @@ function renderCPicker(){
   h+='<button class="btn" style="padding:.22rem .6rem;font-size:.72rem;background:var(--bg);border:1px solid var(--bd);color:var(--mt)" data-action="toggle-cp-levels">'+(WIZ.cpAllLevels?"Niveau "+WIZ.pivot+" uniquement":"Tous les niveaux")+"</button>";
   h+="</div></div>";
   for(var cat in D){
+    // In wizard: only Production, Interaction, Médiation, Compétences linguistiques
+    if(cat==="Réception"||cat==="Niveaux communs"||cat==="Grilles d'évaluation") continue;
     var d=D[cat];
     var catHasMatch=false;
     var catH='<div style="margin-bottom:1rem;border-radius:8px;overflow:hidden;border:1px solid var(--bd)">';
@@ -1936,6 +2094,7 @@ document.addEventListener("click",function(e){
   var fb=e.target.closest(".fb");if(fb){tl(fb);return;}
   // navigation
   var vsw=e.target.closest("[data-view]");if(vsw){sv(vsw.dataset.view);return;}
+  var hc=e.target.closest(".home-card");if(hc){sv(hc.dataset.view);return;}
   // actions
   var act=e.target.closest("[data-action]");
   if(act){
@@ -2092,6 +2251,7 @@ document.addEventListener("keydown",function(e){
 buildSB();
 buildC();
 flt();
+sv('home');
 initWizStep0();
 </script>
 </body>
