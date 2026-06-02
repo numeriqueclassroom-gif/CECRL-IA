@@ -90,7 +90,7 @@ body{font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Helvetica N
 .gt-wrap{overflow-x:auto}.gt{width:100%;border-collapse:collapse;font-size:.76rem}
 .gt th{padding:.38rem .48rem;font-size:.66rem;font-weight:700;font-family:"Syne","Helvetica Neue",Arial,sans-serif;border:1px solid var(--bd);text-align:center;white-space:nowrap}
 .gt td{padding:.36rem .48rem;border:1px solid var(--bd);vertical-align:top;line-height:1.4}
-.gt .th-crit{text-align:left;background:#f4f2ee;min-width:96px}.gt .td-lv{vertical-align:middle;text-align:center}.gt .td-desc{font-size:.74rem}.gt .td-desc[contenteditable]{cursor:text;border-radius:3px;transition:background .15s,outline .15s}.gt .td-desc[contenteditable]:hover{background:rgba(6,78,59,.06)}.gt .td-desc[contenteditable]:focus{outline:2px solid #065f46;outline-offset:-1px;background:rgba(6,78,59,.05)}
+.gt .th-crit{text-align:left;background:#f4f2ee;min-width:96px}.gt .td-lv{vertical-align:middle;text-align:center}.gt .td-desc{font-size:.74rem}.gt .td-desc[contenteditable]{cursor:text;border-radius:3px;transition:background .15s,outline .15s}.gt .td-desc[contenteditable]:hover{background:rgba(36,105,173,.06)}.gt .td-desc[contenteditable]:focus{outline:2px solid #2469AD;outline-offset:-1px;background:rgba(36,105,173,.05)}
 .gt .td-pts{text-align:center;vertical-align:middle;min-width:50px}
 .gt .td-pts input{width:42px;padding:.16rem .22rem;border:1px solid var(--bd);border-radius:4px;font-size:.74rem;text-align:center;font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;background:var(--bg)}
 .gt .td-pts input:focus{outline:none;border-color:#999}
@@ -104,11 +104,11 @@ body{font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Helvetica N
 .ca-form{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
 .ca-sel,.ca-inp{padding:.33rem .48rem;border:1px solid var(--bd);border-radius:6px;font-size:.76rem;background:var(--bg);font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:var(--tx);-webkit-appearance:none}
 .ca-sel:focus,.ca-inp:focus{outline:none;border-color:#999}
-.gp-pill{padding:.22rem .6rem;border:1px solid var(--bd);border-radius:20px;font-size:.74rem;font-weight:600;background:var(--bg);color:var(--tx);cursor:pointer;font-family:'Syne','Helvetica Neue',Arial,sans-serif;transition:all .15s}
-.gp-pill:hover{border-color:#065f46;color:#065f46}
-.gp-pill.active{background:#065f46;border-color:#065f46;color:#fff;box-shadow:0 0 0 2px rgba(6,95,70,.25)}
-.td-desc[contenteditable]:hover{background:rgba(6,78,59,.06);border-radius:3px}
-.td-desc[contenteditable]:focus{outline:2px solid #065f46!important;outline-offset:1px;background:rgba(6,78,59,.05);border-radius:3px}
+.gp-pill{padding:.22rem .6rem;border:1px solid var(--bd);border-radius:20px;font-size:.74rem;font-weight:600;background:var(--bg);color:var(--tx);cursor:pointer;font-family:'Syne','Helvetica Neue',Arial,sans-serif;transition:all .15s;opacity:.65}
+.gp-pill:hover{opacity:1}
+.gp-pill.active{opacity:1;box-shadow:0 0 0 2px rgba(0,0,0,.15)}
+.td-desc[contenteditable]:hover{background:rgba(36,105,173,.06);border-radius:3px}
+.td-desc[contenteditable]:focus{outline:2px solid #2469AD!important;outline-offset:1px;background:rgba(36,105,173,.05);border-radius:3px}
 .td-desc-empty[contenteditable]:hover,.td-desc-empty[contenteditable]:focus{color:var(--tx)!important;font-style:normal!important}
 /* GRILLES TYPES */
 .gtabs{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:.9rem}
@@ -265,22 +265,7 @@ textarea.inp{resize:vertical;min-height:72px}
     </div>
     <div>
       <div class="app-title" style="font-size:1.1rem">CECRL <span>/ Volume complémentaire interactif</span></div>
-      <div class="hd-sub" style="font-size:.67rem;opacity:.7;margin-top:2px;display:flex;align-items:center;flex-wrap:wrap;gap:.18rem .5rem">
-        <span>Académie de Nice</span>
-        <span style="opacity:.4">·</span>
-        <span>Site pédagogique d'anglais</span>
-        <span style="opacity:.4">·</span>
-        <span>2026</span>
-        <span style="opacity:.4">·</span>
-        <span style="display:inline-flex;align-items:center;gap:.22rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:.06rem .45rem;font-size:.64rem" title="Interface et mise en forme générées avec l'IA générative Claude (Anthropic)">
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.75"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-          Mis en forme par Claude · Anthropic
-        </span>
-        <span style="display:inline-flex;align-items:center;gap:.22rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:.06rem .45rem;font-size:.64rem" title="Les descripteurs combinés sont générés par Albert, LLM souverain de l'État français">
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.75"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg>
-          Génération · Albert (LLM souverain)
-        </span>
-      </div>
+      <div class="hd-sub" style="font-size:.67rem;opacity:.55;margin-top:1px">Académie de Nice &nbsp;·&nbsp; Site pédagogique d'anglais &nbsp;·&nbsp; 2026</div>
     </div>
   </div>
   <!-- CENTER: nav buttons -->
@@ -292,10 +277,6 @@ textarea.inp{resize:vertical;min-height:72px}
     </button>
     <button class="btn btn-g" data-view="grille">📋 Grille libre <span id="gc" style="background:rgba(255,255,255,.18);border-radius:10px;padding:0 6px;margin-left:2px">0</span></button>
   </div>
-  <!-- RIGHT: print -->
-  <div style="flex-shrink:0">
-    <button class="btn btn-p" data-action="print" style="padding:.4rem .9rem">🖨 Imprimer</button>
-  </div>
 </div>
 
 <!-- HOME -->
@@ -306,32 +287,68 @@ textarea.inp{resize:vertical;min-height:72px}
       <div style="font-size:.88rem;color:var(--mt);max-width:560px;margin:0 auto">Explorez les descripteurs du Volume complémentaire 2021 ou créez une grille d'évaluation adaptée à votre séquence.</div>
     </div>
     <!-- 3 cards -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;align-items:start">
+
       <!-- Card 1: Descripteurs -->
-      <div class="home-card" data-view="browse" style="border:1px solid var(--bd);border-radius:12px;padding:1.5rem;cursor:pointer;background:var(--sf);transition:all .18s">
-        <div style="font-size:2rem;margin-bottom:.7rem">📚</div>
-        <div style="font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.25rem">Descripteurs CECRL</div>
-        <div style="font-size:.75rem;color:var(--ac);font-weight:500;margin-bottom:.6rem;font-style:italic">Explorer le référentiel</div>
-        <div style="font-size:.8rem;color:var(--mt);line-height:1.55">Consultez les 471 descripteurs du Volume complémentaire 2021, filtrés par niveau et par domaine. Cochez ceux qui vous intéressent pour les ajouter à votre grille libre.</div>
-        <div style="margin-top:1rem;display:flex;align-items:center;gap:.3rem;font-size:.76rem;font-weight:600;color:var(--ac)">Explorer →</div>
+      <div class="home-card" data-view="browse" style="border:1px solid var(--bd);border-radius:14px;padding:1.5rem 1.4rem;cursor:pointer;background:var(--bg);transition:all .18s;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--A2),var(--B1))"></div>
+        <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem">
+          <div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--A2l),var(--B1l));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📚</div>
+          <div>
+            <div style="font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-size:.95rem;font-weight:700;line-height:1.2">Descripteurs CECRL</div>
+            <div style="font-size:.7rem;color:var(--A2);font-weight:600;margin-top:.1rem">Volume complémentaire 2021</div>
+          </div>
+        </div>
+        <div style="font-size:.79rem;color:var(--mt);line-height:1.6;margin-bottom:1rem">Explorez et filtrez les 471 descripteurs par niveau et domaine. Cochez-en pour les importer directement dans votre grille personnalisée.</div>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem">
+          <span style="font-size:.68rem;background:var(--A1l);color:var(--A1t);border-radius:20px;padding:.15rem .5rem;font-weight:500">PréA1 → C2</span>
+          <span style="font-size:.68rem;background:var(--B1l);color:var(--B1t);border-radius:20px;padding:.15rem .5rem;font-weight:500">471 descripteurs</span>
+          <span style="font-size:.68rem;background:#f0fdf4;color:#1e3a8a;border-radius:20px;padding:.15rem .5rem;font-weight:500">Recherche plein texte</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.3rem;font-size:.76rem;font-weight:700;color:var(--A2)">Explorer le référentiel →</div>
       </div>
-      <!-- Card 2: Grille IA -->
-      <div class="home-card" data-view="wizard" style="border:2px solid #7c3aed;border-radius:12px;padding:1.5rem;cursor:pointer;background:linear-gradient(135deg,#faf5ff,#ede9fe);transition:all .18s;position:relative;overflow:hidden">
-        <div style="position:absolute;top:-15px;right:-15px;width:80px;height:80px;border-radius:50%;background:rgba(124,58,237,.08)"></div>
-        <div style="font-size:2rem;margin-bottom:.7rem">✨</div>
-        <div style="font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.25rem;color:#4c1d95">Grille de tâche finale</div>
-        <div style="font-size:.75rem;color:#7c3aed;font-weight:500;margin-bottom:.6rem;font-style:italic">Production — assistée par IA</div>
-        <div style="font-size:.8rem;color:#5b21b6;line-height:1.55">Pour évaluer une production orale, écrite ou en interaction. Définissez votre tâche finale, vos critères, sélectionnez les descripteurs CECRL — Albert rédige les niveaux de compétence adaptés à votre séquence.</div>
-        <div style="margin-top:1rem;display:flex;align-items:center;gap:.3rem;font-size:.76rem;font-weight:600;color:#7c3aed">Créer avec l'IA →</div>
+
+      <!-- Card 2: Grille IA — mise en avant -->
+      <div class="home-card" data-view="wizard" style="border:2px solid #7c3aed;border-radius:14px;padding:1.5rem 1.4rem;cursor:pointer;background:linear-gradient(160deg,#f5f3ff 0%,#ede9fe 60%,#faf5ff 100%);transition:all .18s;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(124,58,237,.15)">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(124,58,237,.07)"></div>
+        <div style="position:absolute;bottom:-15px;left:-15px;width:70px;height:70px;border-radius:50%;background:rgba(124,58,237,.05)"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7c3aed,#a78bfa,#7c3aed)"></div>
+        <div style="display:inline-flex;align-items:center;gap:.3rem;background:#7c3aed;color:#fff;border-radius:20px;padding:.2rem .6rem;font-size:.65rem;font-weight:700;margin-bottom:.8rem;letter-spacing:.03em">✨ RECOMMANDÉ</div>
+        <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem">
+          <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#4338ca);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;box-shadow:0 2px 8px rgba(124,58,237,.35)">✨</div>
+          <div>
+            <div style="font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-size:1rem;font-weight:700;color:#3b0764;line-height:1.2">Grille de tâche finale</div>
+            <div style="font-size:.7rem;color:#7c3aed;font-weight:600;margin-top:.1rem">Production · assistée par IA</div>
+          </div>
+        </div>
+        <div style="font-size:.79rem;color:#4c1d95;line-height:1.6;margin-bottom:1rem">Pour évaluer une production orale, écrite ou en interaction. Définissez votre tâche finale, vos critères, sélectionnez les descripteurs CECRL — <strong>Albert</strong> 🇫🇷 <span style="font-size:.72rem;opacity:.8">(IA souveraine)</span> rédige les niveaux de compétence adaptés à votre séquence.</div>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem">
+          <span style="font-size:.68rem;background:rgba(124,58,237,.12);color:#6d28d9;border-radius:20px;padding:.15rem .5rem;font-weight:500">5 étapes guidées</span>
+          <span style="font-size:.68rem;background:rgba(124,58,237,.12);color:#6d28d9;border-radius:20px;padding:.15rem .5rem;font-weight:500">Descripteurs générés</span>
+          <span style="font-size:.68rem;background:rgba(124,58,237,.12);color:#6d28d9;border-radius:20px;padding:.15rem .5rem;font-weight:500">Impression A4</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:700;color:#7c3aed">Créer ma grille guidée →</div>
       </div>
+
       <!-- Card 3: Grille libre -->
-      <div class="home-card" data-view="grille" style="border:1px solid var(--bd);border-radius:12px;padding:1.5rem;cursor:pointer;background:var(--sf);transition:all .18s">
-        <div style="font-size:2rem;margin-bottom:.7rem">📋</div>
-        <div style="font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.25rem">Grille libre</div>
-        <div style="font-size:.75rem;color:var(--ac);font-weight:500;margin-bottom:.6rem;font-style:italic">Tous types d'évaluation</div>
-        <div style="font-size:.8rem;color:var(--mt);line-height:1.55">Pour toute autre évaluation&nbsp;: compréhension, participation, dossier, projet, bilan de séquence… Pichez dans les descripteurs CECRL ou saisissez librement vos propres critères.</div>
-        <div style="margin-top:1rem;display:flex;align-items:center;gap:.3rem;font-size:.76rem;font-weight:600;color:var(--ac)">Créer ma grille →</div>
+      <div class="home-card" data-view="grille" style="border:1px solid var(--bd);border-radius:14px;padding:1.5rem 1.4rem;cursor:pointer;background:var(--bg);transition:all .18s;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2469AD,#3a7ec2)"></div>
+        <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem">
+          <div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#dbeafe,#bfdbfe);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📋</div>
+          <div>
+            <div style="font-family:'Syne','Helvetica Neue',Arial,sans-serif;font-size:.95rem;font-weight:700;line-height:1.2">Grille personnalisée</div>
+            <div style="font-size:.7rem;color:#2469AD;font-weight:600;margin-top:.1rem">Tous types d'évaluation</div>
+          </div>
+        </div>
+        <div style="font-size:.79rem;color:var(--mt);line-height:1.6;margin-bottom:1rem">Pour toute évaluation formative&nbsp;: compréhension, dossier, projet, bilan de séquence… Piochez dans les descripteurs CECRL pour les personnaliser, ou saisissez librement vos propres critères.</div>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem">
+          <span style="font-size:.68rem;background:#dbeafe;color:#2469AD;border-radius:20px;padding:.15rem .5rem;font-weight:500">Critères libres</span>
+          <span style="font-size:.68rem;background:#dbeafe;color:#2469AD;border-radius:20px;padding:.15rem .5rem;font-weight:500">Import CECRL</span>
+          <span style="font-size:.68rem;background:#dbeafe;color:#2469AD;border-radius:20px;padding:.15rem .5rem;font-weight:500">Barème auto</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.3rem;font-size:.76rem;font-weight:700;color:#2469AD">Créer ma grille →</div>
       </div>
+
     </div>
     <!-- bottom note -->
     <div style="text-align:center;margin-top:1.8rem;font-size:.71rem;color:var(--mt);line-height:1.7">
@@ -416,10 +433,11 @@ textarea.inp{resize:vertical;min-height:72px}
     <div style="display:flex;gap:.4rem">
       <button class="btn btn-plain" data-view="browse">Retour</button>
       <button class="btn btn-d" data-action="clrgrille">Vider</button>
+      <button class="btn btn-p" data-action="print" style="padding:.4rem .9rem">🖨 Imprimer</button>
     </div>
   </div>
   <div class="no-print" style="padding:.9rem 1.5rem;border-bottom:1px solid var(--bd)">
-    <div style="background:linear-gradient(135deg,#064e3b 0%,#065f46 55%,#0f766e 100%);border-radius:12px;padding:1.4rem 1.6rem;color:#fff;position:relative;overflow:hidden">
+    <div style="background:linear-gradient(135deg,#1a4f8a 0%,#2469AD 55%,#3a7ec2 100%);border-radius:12px;padding:1.4rem 1.6rem;color:#fff;position:relative;overflow:hidden">
       <!-- decorative circles -->
       <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.06)"></div>
       <div style="position:absolute;bottom:-20px;right:60px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.04)"></div>
@@ -444,17 +462,18 @@ textarea.inp{resize:vertical;min-height:72px}
     </div>
   </div>
   <div class="no-print" id="gp-pivot-bar" style="background:var(--sf);border-bottom:1px solid var(--bd);padding:.5rem 1.5rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
-    <span style="font-size:.78rem;font-weight:600;color:var(--ac)">Niveau visé (pivot) :</span>
+    <span style="font-size:.78rem;font-weight:600;color:var(--ac)">Niveau visé ★ :</span>
     <div style="display:flex;gap:.35rem;flex-wrap:wrap" id="gp-pivot-pills">
-      <button class="gp-pill" data-lv="PréA1">Pré-A1</button>
-      <button class="gp-pill" data-lv="A1">A1</button>
-      <button class="gp-pill" data-lv="A2">A2</button>
-      <button class="gp-pill active" data-lv="B1">B1</button>
-      <button class="gp-pill" data-lv="B2">B2</button>
-      <button class="gp-pill" data-lv="C1">C1</button>
-      <button class="gp-pill" data-lv="C2">C2</button>
+      <button class="gp-pill pa-c" data-lv="PréA1">Pré-A1</button>
+      <button class="gp-pill a1-c" data-lv="A1">A1</button>
+      <button class="gp-pill a2-c" data-lv="A2">A2</button>
+      <button class="gp-pill b1-c active" data-lv="B1">B1 ★</button>
+      <button class="gp-pill b2-c" data-lv="B2">B2</button>
+      <button class="gp-pill c1-c" data-lv="C1">C1</button>
+      <button class="gp-pill c2-c" data-lv="C2">C2</button>
     </div>
-    <span style="font-size:.72rem;color:var(--mt);margin-left:.25rem">— les niveaux inférieurs et supérieurs s'organisent automatiquement autour du pivot ★</span>
+    <button class="btn" data-action="gp-suggest-scores" style="font-size:.74rem;padding:.28rem .7rem;background:var(--bg);border:1px solid var(--bd);flex-shrink:0">✨ Barème suggéré</button>
+    <span style="font-size:.72rem;color:var(--mt)">— pivot = 5 pts · N-1 = 3 · N-2 = 1 · N+1 = 10 → total pivot × 4 critères = 20/20</span>
   </div>
   <div class="total-bar no-print">
     <span>Total des points attribués</span>
@@ -463,19 +482,41 @@ textarea.inp{resize:vertical;min-height:72px}
   <div class="ca-zone no-print">
     <div class="ca-title">+ Ajouter un critère personnalisé</div>
     <div class="ca-form">
-      <select id="ca-lv" class="ca-sel">
-        <option>C2</option><option>C1</option><option>B2</option>
-        <option selected>B1</option><option>A2</option><option>A1</option>
-        <option value="PréA1">Pré-A1</option>
-      </select>
-      <select id="ca-cat" class="ca-sel">
-        <option>Réception</option><option>Production</option>
-        <option>Interaction</option><option>Médiation</option>
-        <option>Compétences linguistiques</option><option>Personnalisé</option>
-      </select>
-      <input type="text" id="ca-sub" class="ca-inp" placeholder="Nom de la compétence" style="flex:2;min-width:140px">
-      <input type="text" id="ca-tx" class="ca-inp" placeholder="Peut... (descripteur)" style="flex:3;min-width:190px">
+      <input type="text" id="ca-cat" class="ca-inp" list="ca-cat-list" placeholder="Catégorie" style="flex:1;min-width:140px">
+      <datalist id="ca-cat-list">
+        <option>Réception</option>
+        <option>Réception écrite</option>
+        <option>Réception orale</option>
+        <option>Production</option>
+        <option>Production écrite</option>
+        <option>Production orale en continu</option>
+        <option>Interaction</option>
+        <option>Interaction orale</option>
+        <option>Interaction écrite</option>
+        <option>Médiation</option>
+        <option>Médiation de textes</option>
+        <option>Médiation de concepts</option>
+        <option>Compétences linguistiques</option>
+        <option>Compétences grammaticales</option>
+        <option>Compétences lexicales</option>
+        <option>Compétences phonologiques</option>
+        <option>Compétences orthographiques</option>
+        <option>Compétences pragmatiques</option>
+        <option>Compétences sociolinguistiques</option>
+        <option>Cohérence et cohésion</option>
+        <option>Richesse et précision</option>
+      </datalist>
+      <input type="text" id="ca-sub" class="ca-inp" placeholder="Nom du critère (ex. Correction grammaticale)" style="flex:2;min-width:160px">
+      <div style="display:flex;align-items:center;gap:.35rem;flex-shrink:0">
+        <label style="font-size:.74rem;color:var(--mt);white-space:nowrap">Niveau visé</label>
+        <span id="ca-lv-display" class="dlv b1-b" style="font-size:.8rem;font-weight:700;padding:.2rem .55rem;border-radius:20px;font-family:'Syne',sans-serif">B1 ★</span>
+        <input type="hidden" id="ca-lv" value="B1">
+      </div>
+      <input type="text" id="ca-tx" class="ca-inp" placeholder="Descripteur du niveau visé : Je peux…" style="flex:3;min-width:190px">
       <button class="btn btn-ac" data-action="addcustom">Ajouter</button>
+    </div>
+    <div style="font-size:.71rem;color:var(--mt);padding:.25rem .75rem .4rem">
+      Les lignes des niveaux inférieurs et supérieur seront créées automatiquement (vides — modifiables dans la grille).
     </div>
   </div>
   <div class="cont" style="max-width:880px;margin:0 auto" id="gc-el">
@@ -540,7 +581,8 @@ textarea.inp{resize:vertical;min-height:72px}
       <div class="field-row" style="margin-top:1rem">
         <label class="field-label">Points-score par défaut <span style="font-weight:400;color:var(--mt)">(modifiables à l'étape 5)</span></label>
         <div class="score-grid" id="w-scores"></div>
-        <div class="field-hint">Échelle linéaire suggérée — ajustez librement.</div>
+        <button class="btn" data-action="wiz-suggest-scores" style="margin-top:.4rem;font-size:.74rem;padding:.28rem .7rem;background:var(--bg);border:1px solid var(--bd)">✨ Barème suggéré (CECRL)</button>
+        <div class="field-hint" style="margin-top:.3rem">Pivot = 5 pts · N-1 = 3 pts · N-2 = 1 pt · N+1 = 10 pts → total pivot × 4 critères = 20/20. Ajustez librement.</div>
       </div>
       <button class="btn btn-ac" data-wiz-next="0" style="margin-top:.5rem">Continuer →</button>
     </div>
@@ -601,13 +643,15 @@ textarea.inp{resize:vertical;min-height:72px}
       <div class="wiz-title">Barème et finalisation</div>
       <div class="wiz-desc">Ajustez les points-score, vérifiez la grille finale et imprimez.</div>
       <div class="field-row">
-        <label class="field-label">Points-score par niveau</label>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.3rem">
+          <label class="field-label" style="margin:0">Points-score par niveau</label>
+          <button class="btn" data-action="wiz-suggest-scores" style="font-size:.74rem;padding:.28rem .7rem;background:var(--bg);border:1px solid var(--bd)">✨ Barème suggéré (CECRL)</button>
+        </div>
         <div class="score-grid" id="w-scores-final"></div>
       </div>
       <div id="w-final-grid-wrap"></div>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem">
         <button class="btn btn-plain" data-wiz-prev="4">← Retour</button>
-        <button class="btn btn-ok" data-action="export-to-grille">Envoyer vers Ma grille</button>
         <button class="btn btn-p" data-action="print">🖨 Imprimer</button>
       </div>
     </div>
@@ -1155,7 +1199,7 @@ const D={
 {l:"A2",t:"Peut s\'exprimer avec assez de précision sur des sujets familiers et habituels, mais doit généralement faire des compromis sur des sujets moins familiers."},
 {l:"A1",t:"Pas de descripteur disponible."},
 {l:"PréA1",t:"Pas de descripteur disponible."}]}},
-"Grilles d'évaluation":{ic:"📊",col:"#0f766e",s:{
+"Grilles d'évaluation":{ic:"📊",col:"#3a7ec2",s:{
 "Évaluation de l'écrit : Compétence générale":[
 {l:"C2",t:"Peut écrire des textes élaborés, limpides, fluides et parfaitement corrects dans un style personnel approprié et efficace qui transmet des nuances fines de sens."},
 {l:"C1",t:"Peut rédiger des textes bien structurés et corrects dans l'ensemble sur des sujets complexes. Peut souligner les points pertinents les plus saillants."},
@@ -1350,7 +1394,7 @@ function ntf(msg){
 // ── VIEW ────────────────────────────────────────────────────────────────
 function sv(v){
   curView=v;
-  ["home","browse","grille","wizard"].forEach(function(id){
+  ["home","browse","grille","wizard","grilles"].forEach(function(id){
     var el=document.getElementById(id+"-view");
     if(el) el.style.display=id===v?"":"none";
   });
@@ -1453,33 +1497,74 @@ function tog(dckEl){
   uc();
 }
 function addCustom(){
-  var lv=document.getElementById("ca-lv").value;
-  var cat=document.getElementById("ca-cat").value;
+  var pivotLv=document.getElementById("ca-lv").value;
+  var cat=document.getElementById("ca-cat").value.trim()||"Personnalisé";
   var sub=document.getElementById("ca-sub").value.trim()||"Critère personnalisé";
-  var tx=document.getElementById("ca-tx").value.trim();
-  if(!tx){ntf("Saisissez un descripteur");return;}
-  var id="custom_"+(++_cust);
-  IDX[id]={lv:lv,cat:cat,sub:sub,tx:tx,custom:true};
-  sel.add(id);
+  var pivotTx=document.getElementById("ca-tx").value.trim();
+  if(!sub){ntf("Saisissez le nom du critère");return;}
+
+  // Générer toutes les lignes de la plage autour du niveau visé
+  var levels=wizLevels(pivotLv); // [bas…, pivot, haut]
+  for(var i=0;i<levels.length;i++){
+    var lv=levels[i];
+    var tx=lv===pivotLv
+      ? (pivotTx||"Je peux… (niveau visé — à compléter)")
+      : "Je peux… (à compléter)";
+    var id="custom_"+(++_cust);
+    IDX[id]={lv:lv,cat:cat,sub:sub,tx:tx,custom:true};
+    sel.add(id);
+  }
+
+  // Synchroniser le pivot global sur le niveau visé du critère si c'est le premier critère
+  if(sel.size===levels.length) gpSetPivot(pivotLv);
+
   document.getElementById("ca-tx").value="";
   document.getElementById("ca-sub").value="";
-  uc();rg();ntf("Critère ajouté");
+  uc();rg();ntf("Critère ajouté ("+levels.length+" niveaux)");
 }
 
 // ── MA GRILLE (final-grid format) ─────────────────────────────────────────
-var GP_PIVOT="B1"; // pivot global grille libre
-var GP_SCORES={}; // {lv: pts} sauvegarde barème
+var GP_PIVOT="B1";
+var GP_SCORES={}; // {lv: pts-score} — même valeur pour tous les critères à ce niveau
 
 function gpSetPivot(lv){
   GP_PIVOT=lv;
+  GP_SCORES={};
   document.querySelectorAll(".gp-pill").forEach(function(b){
-    b.classList.toggle("active",b.dataset.lv===lv);
+    var isActive=b.dataset.lv===lv;
+    b.classList.toggle("active",isActive);
+    // Retirer/ajouter l'étoile
+    b.textContent=b.dataset.lv+(isActive?" ★":"");
   });
+  // Sync form display
+  var disp=document.getElementById("ca-lv-display");
+  if(disp){
+    disp.textContent=lv+" ★";
+    // Mettre à jour la couleur CECRL
+    disp.className="dlv "+lc(lv)+"-b";
+    disp.style.cssText="font-size:.8rem;font-weight:700;padding:.2rem .55rem;border-radius:20px;font-family:'Syne',sans-serif";
+  }
+  var hid=document.getElementById("ca-lv");
+  if(hid) hid.value=lv;
   rg();
 }
 
+function gpSuggestScores(){
+  // Calculer sur la plage wizLevels du pivot (= 2 en dessous, pivot, 1 au dessus)
+  var levels=wizLevels(GP_PIVOT); // bas→haut
+  var scores=suggestScores(levels,GP_PIVOT);
+  levels.forEach(function(lv,i){GP_SCORES[lv]=scores[i]+"";});
+  // Mettre à jour les inputs déjà rendus sans re-render complet
+  levels.forEach(function(lv){
+    var inp=document.querySelector("input[data-gp-lv='"+lv+"']");
+    if(inp) inp.value=GP_SCORES[lv];
+  });
+  rg(); // re-render pour mettre à jour la table de conversion
+  ntf("Barème appliqué ✓ — modifiez les valeurs si besoin");
+}
+
 function rg(){
-  // 1. Sauvegarder descripteurs édités et points avant re-render
+  // 1. Sauvegarder descripteurs édités et barème
   document.querySelectorAll(".td-desc[data-did]").forEach(function(td){
     var id=td.dataset.did;if(IDX[id])IDX[id].tx=td.textContent.trim();
   });
@@ -1499,104 +1584,272 @@ function rg(){
     var info=IDX[id];if(!info)return;
     var key=info.cat+"|||"+info.sub;
     if(!groups[key]){groups[key]={cat:info.cat,sub:info.sub,cells:{}};order.push(key);}
-    // Une cellule par niveau (le dernier importé pour ce niveau gagne)
-    if(!groups[key].cells[info.lv]){
-      groups[key].cells[info.lv]={id:id,tx:info.tx};
-    }
+    if(!groups[key].cells[info.lv]) groups[key].cells[info.lv]={id:id,tx:info.tx};
   });
 
-  // 3. Déterminer les niveaux présents dans la grille, ordonnés de bas en haut
+  // 3. Niveaux présents, ordonnés haut→bas (comme le PDF officiel)
   var presentLvSet={};
   order.forEach(function(key){
     Object.keys(groups[key].cells).forEach(function(lv){presentLvSet[lv]=true;});
   });
-  // Ordonner du plus bas au plus haut selon ALL_LO
   var presentLvs=ALL_LO.filter(function(lv){return presentLvSet[lv];});
-
-  // S'assurer que le pivot est dans la liste (même sans descripteur)
   if(presentLvs.indexOf(GP_PIVOT)<0) presentLvs.push(GP_PIVOT);
   presentLvs.sort(function(a,b){return ALL_LO.indexOf(a)-ALL_LO.indexOf(b);});
+  var displayLvs=presentLvs.slice().reverse(); // haut→bas
 
-  var pivotIdx=presentLvs.indexOf(GP_PIVOT);
+  // Auto-initialiser le barème si vide (premier affichage ou après reset)
+  var hasScores=presentLvs.some(function(lv){return GP_SCORES[lv]&&GP_SCORES[lv]!=="";});
+  if(!hasScores){
+    var autoScores=suggestScores(presentLvs,GP_PIVOT);
+    presentLvs.forEach(function(lv,i){GP_SCORES[lv]=autoScores[i]+"";});
+  }
+
   var nCrits=order.length;
+  var minW=140+nCrits*210+80;
+  var h='<div style="overflow-x:auto"><table class="final-grid" style="min-width:'+minW+'px">';
 
-  // 4. Construire le tableau final-grid
-  var h='<div style="overflow-x:auto"><table class="final-grid" style="min-width:'+(180+nCrits*200)+'px">';
-
-  // En-tête : Niveau | Critère1 | Critère2 ... | Points | Note
+  // ── En-tête : Niveau | Critère1 | Critère2 … | Points-score | Score
   h+='<thead><tr>';
-  h+='<th class="th-lv" style="min-width:56px">Niveau</th>';
+  h+='<th class="th-lv" style="min-width:54px;text-align:center;vertical-align:middle">Niveau</th>';
   for(var ci=0;ci<order.length;ci++){
     var g=groups[order[ci]];
     var col=(D[g.cat]&&D[g.cat].col)||"#555";
-    h+='<th style="min-width:200px;text-align:left;padding:.4rem .55rem;position:relative">';
-    h+='<div style="font-size:.68rem;font-weight:700;color:'+col+';text-transform:uppercase;letter-spacing:.04em;margin-bottom:.12rem">'+g.cat+'</div>';
-    h+='<div style="font-size:.76rem;font-weight:600;color:var(--tx)">'+g.sub+'</div>';
-    h+='<button class="trash-btn no-print" data-rmgroup="'+order[ci]+'" title="Retirer ce critère" style="position:absolute;top:.35rem;right:.35rem"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>';
-    h+='</th>';
+    h+='<th style="min-width:200px;text-align:left;padding:.38rem .55rem;background:#f8f7f5;border-bottom:2px solid '+col+'">';
+    h+='<div style="font-size:.64rem;font-weight:700;color:'+col+';text-transform:uppercase;letter-spacing:.04em;margin-bottom:.1rem">'+g.cat+'</div>';
+    h+='<div style="display:flex;align-items:center;justify-content:space-between">';
+    h+='<span style="font-size:.76rem;font-weight:600;color:var(--tx)">'+g.sub+'</span>';
+    h+='<button class="trash-btn no-print" data-rmgroup="'+order[ci]+'" title="Retirer ce critère" style="margin-left:.4rem"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>';
+    h+='</div></th>';
   }
-  h+='<th class="td-pts" style="min-width:62px">Points <span class="no-print" style="font-weight:400;font-size:.62rem;display:block;opacity:.6">/ critère</span></th>';
-  h+='<th class="td-note">Note /</th></tr></thead>';
+  // Colonnes droites : Points-score (barème) + Score élève
+  h+='<th class="td-pts" style="min-width:58px;text-align:center;vertical-align:middle;font-size:.7rem;line-height:1.3">Points<br>score</th>';
+  h+='<th class="td-note" style="min-width:52px;text-align:center;vertical-align:middle;font-size:.7rem;line-height:1.3">Score<br>élève</th>';
+  h+='</tr></thead>';
 
-  // Corps : une ligne par niveau
+  // ── Corps : une ligne par niveau
   h+='<tbody>';
-  for(var li=0;li<presentLvs.length;li++){
-    var lv=presentLvs[li];
+  for(var li=0;li<displayLvs.length;li++){
+    var lv=displayLvs[li];
     var isPivot=lv===GP_PIVOT;
-    var isAbove=li>pivotIdx;
+    var isAbove=ALL_LO.indexOf(lv)>ALL_LO.indexOf(GP_PIVOT);
     var clsLv=lc(lv);
+    var bgRow=isPivot?'background:#fef9c3':(isAbove?'background:#f0fdf4':'');
     var savedPts=GP_SCORES[lv]||"";
-    h+='<tr'+(isPivot?' class="target-row"':'')+'>';
-    // Cellule niveau
-    h+='<td class="td-lv" style="text-align:center;vertical-align:middle">';
+    h+='<tr'+(bgRow?' style="'+bgRow+'"':'')+' data-lv-row="'+lv+'">';
+    // Niveau
+    h+='<td class="td-lv" style="text-align:center;vertical-align:middle;white-space:nowrap;'+(bgRow?bgRow:'')+'">';
     h+='<span class="dlv '+clsLv+'-b">'+lv+(isPivot?" ★":"")+'</span>';
     h+='</td>';
-    // Cellules descripteurs
+    // Descripteur par critère
     for(var ci2=0;ci2<order.length;ci2++){
-      var cell=groups[order[ci2]].cells[lv];
-      var isEmpty=!cell;
-      h+='<td style="vertical-align:top'+(isPivot?';background:#fef9c3':(isAbove?';background:#f0fdf4':''))+'">';
+      var critKey=order[ci2];
+      var cell=groups[critKey].cells[lv];
+      h+='<td style="vertical-align:top;'+(bgRow?bgRow:'')+'">';
       if(cell){
-        h+='<div class="td-desc" contenteditable="true" spellcheck="false" data-did="'+cell.id+'" title="Cliquez pour modifier" style="min-height:2.4rem;line-height:1.45;font-size:.74rem;outline:none;border-radius:3px;padding:1px 2px">'+cell.tx+'</div>';
+        h+='<div class="td-desc" contenteditable="true" spellcheck="false" data-did="'+cell.id+'" style="min-height:2.2rem;line-height:1.45;font-size:.74rem;border-radius:3px;padding:1px 2px">'+cell.tx+'</div>';
       } else {
-        // Cellule vide : prof peut saisir librement
-        var emptyId="empty_"+order[ci2].replace(/[^a-zA-Z0-9]/g,"_")+"_"+lv;
-        h+='<div class="td-desc td-desc-empty" contenteditable="true" spellcheck="false" data-did-empty="'+emptyId+'" data-lv="'+lv+'" data-critkey="'+order[ci2]+'" title="Cliquez pour saisir un descripteur" style="min-height:2.4rem;line-height:1.45;font-size:.74rem;color:#bbb;font-style:italic;border-radius:3px;padding:1px 2px">Peut…</div>';
+        h+='<div class="td-desc td-desc-empty" contenteditable="true" spellcheck="false" style="min-height:2.2rem;line-height:1.45;font-size:.74rem;color:#ccc;font-style:italic;border-radius:3px;padding:1px 2px">Je peux\u2026</div>';
       }
       h+='</td>';
     }
-    // Points par niveau
-    h+='<td class="td-pts"><input type="number" min="0" max="99" step="0.5" data-gp-lv="'+lv+'" value="'+savedPts+'" placeholder="—" style="width:46px"></td>';
-    h+='<td class="td-note"></td>';
+    // Points-score (barème, unique pour la ligne)
+    h+='<td class="td-pts" style="text-align:center;vertical-align:middle;'+(bgRow?bgRow:'')+'">';
+    h+='<input type="number" min="0" max="999" step="0.5" data-gp-lv="'+lv+'" value="'+savedPts+'" placeholder="—" style="width:44px;text-align:center">';
+    h+='</td>';
+    // Score élève (case vide à remplir à la main ou laisser vide pour impression)
+    h+='<td class="td-note" style="text-align:center;vertical-align:middle"></td>';
     h+='</tr>';
   }
   h+='</tbody></table></div>';
+
+  // Table de conversion — vérifier la progressivité du barème
+  var lvsBH=presentLvs.slice(); // bas→haut
+  var scoresArr=lvsBH.map(function(lv){return parseFloat(GP_SCORES[lv])||0;});
+  var progressionOk=true;
+  for(var pi=1;pi<scoresArr.length;pi++){
+    if(scoresArr[pi]<=scoresArr[pi-1]){progressionOk=false;break;}
+  }
+  if(!progressionOk){
+    h+='<div style="margin-top:.8rem;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:.65rem .9rem;font-size:.76rem;color:#991b1b;display:flex;align-items:flex-start;gap:.5rem">';
+    h+='<span style="font-size:1rem;flex-shrink:0">⚠️</span>';
+    h+='<div><strong>Bar\u00e8me non progressif</strong> \u2014 les points-score doivent \u00eatre strictement croissants du niveau le plus bas au plus haut (ex. 1 \u00b7 3 \u00b7 5 \u00b7 10). La table de conversion ne s\'affiche pas tant que le bar\u00e8me n\'est pas corrig\u00e9.</div>';
+    h+='</div>';
+  } else {
+    h+=buildConvTable(lvsBH,scoresArr,GP_PIVOT,nCrits,
+      "Table de conversion — niveau visé <strong>"+GP_PIVOT+"</strong> = 20/20 &nbsp;·&nbsp; "+nCrits+" critère"+(nCrits>1?"s":""));
+  }
+
   // Légende
-  h+='<div class="no-print" style="margin-top:.55rem;display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.71rem;color:var(--mt);padding:0 .2rem">';
-  h+='<span style="display:flex;align-items:center;gap:.3rem"><span style="display:inline-block;width:12px;height:12px;background:#fef9c3;border:1px solid #d97706;border-radius:2px"></span> Niveau visé ★</span>';
-  h+='<span style="display:flex;align-items:center;gap:.3rem"><span style="display:inline-block;width:12px;height:12px;background:#f0fdf4;border:1px solid #86efac;border-radius:2px"></span> Niveau supérieur</span>';
-  h+='<span style="display:flex;align-items:center;gap:.3rem"><span style="display:inline-block;width:12px;height:12px;background:#fff;border:1px solid var(--bd);border-radius:2px"></span> Niveau inférieur</span>';
-  h+='<span style="margin-left:auto;opacity:.75">✏️ Cliquez sur une cellule pour modifier le descripteur</span>';
+  h+='<div class="no-print" style="margin-top:.5rem;display:flex;gap:1.1rem;flex-wrap:wrap;font-size:.71rem;color:var(--mt)">';
+  h+='<span style="display:flex;align-items:center;gap:.3rem"><span style="display:inline-block;width:12px;height:12px;background:#fef9c3;border:1px solid #d97706;border-radius:2px"></span>Niveau visé ★</span>';
+  h+='<span style="display:flex;align-items:center;gap:.3rem"><span style="display:inline-block;width:12px;height:12px;background:#f0fdf4;border:1px solid #86efac;border-radius:2px"></span>Niveau supérieur</span>';
+  h+='<span style="margin-left:auto;opacity:.7">Le correcteur entoure <strong>une case par critère</strong> · Points-score = barème par niveau (identique pour tous les critères)</span>';
   h+='</div>';
 
   el.innerHTML=h;
 
-  // Focus handler : vider le placeholder "Peut…" à la première saisie
   el.querySelectorAll(".td-desc-empty").forEach(function(div){
     div.addEventListener("focus",function(){
-      if(div.textContent.trim()==="Peut…"){div.textContent="";div.style.color="";div.style.fontStyle="";}
+      if(div.textContent.trim()==="Je peux\u2026"){div.textContent="";div.style.color="";div.style.fontStyle="";}
     },{once:true});
   });
 
   upTotal();
 }
-function upTotal(){
-  var t=0;
-  // grille libre : points par niveau × nombre de critères
-  var nCrits=document.querySelectorAll(".final-grid thead th:not(.th-lv):not(.td-pts):not(.td-note)").length||1;
-  document.querySelectorAll("input[data-gp-lv]").forEach(function(i){
-    var v=parseFloat(i.value);if(!isNaN(v))t+=v*nCrits;
+
+function buildConvTable(levels, scoresArr, pivotLv, nCrits, label){
+  // levels: bas→haut, scoresArr: pts-score par niveau (même valeur tous critères)
+  // On génère tous les totaux possibles (somme de nCrits valeurs choisies dans scoresArr)
+  // puis on les mappe sur une note /20 par paliers (logique grilles MEN)
+
+  var pivotIdx=levels.indexOf(pivotLv);
+  if(pivotIdx<0) pivotIdx=levels.length-1;
+  var pivotPts=parseFloat(scoresArr[pivotIdx])||0;
+  var totalRef=pivotPts*nCrits;
+  if(totalRef<=0||levels.length===0) return "";
+
+  var pts=scoresArr.map(function(v){return parseFloat(v)||0;});
+  var minPt=Math.min.apply(null,pts);
+  var maxPt=Math.max.apply(null,pts);
+
+  // ── Construire les paliers par score total ───────────────────────────
+  // On liste tous les totaux distincts atteignables (énumération exacte, max 5 niveaux × 4 critères)
+  // puis on associe chaque palier à : description + note /20
+
+  // Fonction récursive pour obtenir tous les totaux possibles avec n choix dans pts[]
+  function allTotals(n){
+    if(n===0) return [0];
+    var sub=allTotals(n-1);
+    var set={};
+    sub.forEach(function(s){
+      pts.forEach(function(p){set[Math.round((s+p)*10)/10]=true;});
+    });
+    return Object.keys(set).map(Number).sort(function(a,b){return a-b;});
+  }
+  var totals=allTotals(nCrits);
+  var tMin=totals[0], tMax=totals[totals.length-1];
+
+  // Description sémantique d'un total (basée sur la logique MEN)
+  function describeTotal(t){
+    var ratio=t/totalRef;
+    // Combinaisons-clés
+    var allAbove = Math.round(maxPt*nCrits*10)/10;
+    var allPivot = totalRef;
+    var n1below  = Math.round((pts[Math.max(0,pivotIdx-1)]+(nCrits-1)*pivotPts)*10)/10;
+    var allN1    = Math.round(pts[Math.max(0,pivotIdx-1)]*nCrits*10)/10;
+    var n2below  = Math.round((pts[Math.max(0,pivotIdx-2)]+(nCrits-1)*pivotPts)*10)/10;
+    var allN2    = Math.round(pts[Math.max(0,pivotIdx-2)]*nCrits*10)/10;
+
+    if(t===0)                    return "Copie blanche / Non évalué";
+    if(t<=allN2*1.2&&t<allN1)   return "Niveau global N-2 (très insuffisant)";
+    if(t<allN1)                  return "Niveau fragile (entre N-2 et N-1)";
+    if(Math.abs(t-allN1)<0.1)   return "Niveau global N-1 partout";
+    if(t<n1below&&t>allN1)       return "En deçà du niveau visé (N-1 majoritaire)";
+    if(Math.abs(t-n1below)<0.1) return "1 critère en deçà, reste au niveau visé";
+    if(t<allPivot)               return "Proche du niveau visé";
+    if(Math.abs(t-allPivot)<0.1)return "Niveau visé atteint partout";
+    if(t<allAbove)               return "Niveau visé atteint (avec dépassement partiel)";
+    return "Objectif dépassé (N+1 sur tous les critères)";
+  }
+
+  // Note /20 par interpolation linéaire dans [0..totalRef..tMax] → [0..20..20]
+  // + arrondi aux paliers entiers pairs (style grilles MEN : 0,2,4,6,8,10,12,15,18,20)
+  var PALIERS=[0,2,4,6,8,10,12,15,18,20];
+  function scoreToNote(t){
+    if(t<=0) return 0;
+    if(t>=tMax) return 20;
+    // Interpolation dans [tMin..totalRef] → [0..20], puis [totalRef..tMax] capé à 20
+    var raw;
+    if(t<=totalRef){
+      raw=t/totalRef*20;
+    } else {
+      raw=20; // au-delà du pivot = capé à 20
+    }
+    // Arrondir au palier le plus proche
+    var best=PALIERS[0];
+    PALIERS.forEach(function(p){var d=Math.abs(p-raw),db=Math.abs(best-raw);if(d<db||(d===db&&p<best))best=p;});
+    return best;
+  }
+
+  // ── Construire les lignes du tableau ──────────────────────────────────
+  // Regrouper les totaux consécutifs ayant la même note en plages
+  var rows=[];
+  var prevNote=null, rowStart=null;
+  for(var ti=totals.length-1;ti>=0;ti--){
+    var t=totals[ti];
+    var note=scoreToNote(t);
+    if(note!==prevNote){
+      if(rowStart!==null) rows.push({note:prevNote,tMax:rowStart,tMin:t+0.1,desc:describeTotal(rowStart)});
+      rowStart=t; prevNote=note;
+    }
+  }
+  if(rowStart!==null) rows.push({note:prevNote,tMax:rowStart,tMin:0,desc:describeTotal(rowStart)});
+
+  // ── Rendu HTML ────────────────────────────────────────────────────────
+  var h='<div style="margin-top:.9rem">';
+  h+='<div style="font-size:.76rem;font-weight:600;margin-bottom:.2rem">'+(label||"Table de conversion")+'</div>';
+  h+='<div style="font-size:.71rem;color:var(--mt);margin-bottom:.4rem">';
+  h+='Niveau visé <strong>'+pivotLv+'</strong> = '+pivotPts+' pts × '+nCrits+' critère'+(nCrits>1?'s':'')+' = <strong>'+totalRef+' pts = 20/20</strong>';
+  h+=' &nbsp;·&nbsp; Plage totale possible : '+tMin+' – '+tMax+' pts';
+  h+='</div>';
+  // Table 1 : points-score par niveau (horizontale)
+  h+='<table class="conv-table" style="margin-bottom:.5rem"><thead><tr>';
+  h+='<th style="text-align:left">Points-score</th>';
+  levels.slice().reverse().forEach(function(lv){
+    var isPivot=lv===pivotLv;
+    h+='<th style="-webkit-print-color-adjust:exact;print-color-adjust:exact;text-align:center">';
+    h+='<span class="dlv '+lc(lv)+'-b" style="font-size:.62rem;border-radius:3px;padding:.08rem .3rem;display:inline-block">'+lv+'</span>'+(isPivot?' ★':'');
+    h+='</th>';
   });
+  h+='</tr></thead><tbody><tr>';
+  h+='<td style="font-size:.68rem;color:var(--mt)">pts / critère</td>';
+  levels.slice().reverse().forEach(function(lv,i){
+    var p=pts[levels.length-1-i];
+    var isPivot=lv===pivotLv;
+    h+='<td style="text-align:center;font-weight:'+(isPivot?'700':'400')+'">'+p+'</td>';
+  });
+  h+='</tr></tbody></table>';
+
+  // Table 2 : score total → note /20 (horizontale : une colonne par palier)
+  h+='<div style="font-size:.7rem;font-weight:600;margin-bottom:.25rem;color:var(--mt)">Tableau de conversion — '+nCrits+' critère'+(nCrits>1?'s':'')+' (score total → note /20)</div>';
+  h+='<table class="conv-table"><thead><tr>';
+  h+='<th style="text-align:left">Score total</th>';
+  rows.forEach(function(row){
+    var isPivotRow=row.tMax===totalRef;
+    var isAbove=row.tMax>totalRef;
+    var bg=isAbove?'background:#f0fdf4;':isPivotRow?'background:#fef9c3;':'';
+    var tRange=Math.ceil(row.tMin)+' – '+row.tMax;
+    if(Math.ceil(row.tMin)>row.tMax) tRange=''+row.tMax;
+    if(row.tMax===0) tRange='0';
+    h+='<th style="text-align:center;'+bg+'-webkit-print-color-adjust:exact;print-color-adjust:exact">'+tRange+'</th>';
+  });
+  h+='</tr></thead><tbody><tr>';
+  h+='<th style="text-align:left;font-weight:400;font-size:.68rem;color:var(--mt)">Note /20</th>';
+  rows.forEach(function(row){
+    var isPivotRow=row.tMax===totalRef;
+    var isAbove=row.tMax>totalRef;
+    var bg=isAbove?'background:#f0fdf4;':isPivotRow?'background:#fef9c3;':'';
+    h+='<td style="text-align:center;'+bg+'-webkit-print-color-adjust:exact;print-color-adjust:exact"><strong>'+row.note+'</strong></td>';
+  });
+  h+='</tr></tbody></table>';
+  h+='</div>';
+  return h;
+}
+
+function buildGPConvTable(displayLvs,nCrits){
+  var levels=displayLvs.slice().reverse();
+  var scoresArr=levels.map(function(lv){return parseFloat(GP_SCORES[lv])||0;});
+  for(var pi=1;pi<scoresArr.length;pi++){
+    if(scoresArr[pi]<=scoresArr[pi-1]) return ""; // non progressif : pas de table
+  }
+  return buildConvTable(levels,scoresArr,GP_PIVOT,nCrits,
+    "Table de conversion — niveau visé <strong>"+GP_PIVOT+"</strong> = 20/20 &nbsp;·&nbsp; "+nCrits+" critère"+(nCrits>1?"s":""));
+}
+function upTotal(){
+  // Total de référence = pts-score niveau visé × nombre de critères
+  var pivotPts=parseFloat(GP_SCORES[GP_PIVOT])||0;
+  var nCrits=document.querySelectorAll(".final-grid thead tr th:not(.th-lv):not(.td-pts):not(.td-note)").length||1;
+  var t=pivotPts*nCrits;
   // fallback ancienne grille (data-pid)
   document.querySelectorAll("input[data-pid]").forEach(function(i){var v=parseFloat(i.value);if(!isNaN(v))t+=v;});
   var tv=document.getElementById("total-val");if(tv)tv.textContent=t%1===0?t:t.toFixed(1);
@@ -1695,35 +1948,38 @@ function wizLevels(pivot){
   return lvls;
 }
 
+// ── Barème officiel CECRL par niveau (grilles MEN) ──────────────────────
+// Valeurs de référence issues des grilles d'attestation LVA/LVB
+// ── Barème normalisé : pivot = 5 pts (× 4 critères = 20/20)
+// Ratios officiels MEN : N-2 = 20%, N-1 = 60%, N = 100%, N+1 = 200%
+// Fonctionne quel que soit le niveau pivot choisi.
+var SCORE_PIVOT=5;
+var SCORE_RATIOS={"n-2":0.20,"n-1":0.60,"n":1.00,"n+1":2.00,"n+2":3.00,"n-3":0.10};
+
+function suggestScores(levels, pivotLv, pivotTarget){
+  // pivotTarget ignoré — on utilise toujours SCORE_PIVOT=5
+  // pour que pivot × 4 critères = 20 (référence normalisée)
+  var pivotIdx=levels.indexOf(pivotLv);
+  if(pivotIdx<0) pivotIdx=Math.floor(levels.length/2);
+  return levels.map(function(lv, i){
+    var diff=i-pivotIdx; // position relative au pivot (bas→haut)
+    var ratio;
+    if(diff===0)       ratio=SCORE_RATIOS["n"];
+    else if(diff===1)  ratio=SCORE_RATIOS["n+1"];
+    else if(diff>=2)   ratio=SCORE_RATIOS["n+2"];
+    else if(diff===-1) ratio=SCORE_RATIOS["n-1"];
+    else if(diff===-2) ratio=SCORE_RATIOS["n-2"];
+    else               ratio=SCORE_RATIOS["n-3"];
+    return Math.round(SCORE_PIVOT*ratio*10)/10;
+  });
+}
+
 function defaultScoresForCrit(){
-  // returns array of scores indexed by WIZ.levels, pivot and above = 20
-  var n=WIZ.levels.length;
-  var pivotIdx=WIZ.levels.indexOf(WIZ.pivot);
-  if(pivotIdx<0)pivotIdx=Math.floor(n/2);
-  var arr=[];
-  for(var i=0;i<n;i++){
-    if(i>=pivotIdx) arr.push(20);
-    else arr.push(Math.round(5+(10/pivotIdx)*i)||5);
-  }
-  return arr;
+  return suggestScores(WIZ.levels, WIZ.pivot, 20);
 }
 
 function defaultScores(n){
-  // pivot index = 2 (middle of 5), everything at pivot+ = 20
-  // below pivot: linear from 5 up to 15 (one step below pivot)
-  var pivotIdx=WIZ.levels?WIZ.levels.indexOf(WIZ.pivot):2;
-  if(pivotIdx<0)pivotIdx=2;
-  var arr=[];
-  for(var i=0;i<n;i++){
-    if(i>=pivotIdx){
-      arr.push(20); // pivot and above = 20/20
-    } else {
-      // linear from 5 to 15 for the levels below pivot
-      var steps=pivotIdx; // number of steps below pivot
-      arr.push(Math.round(5+(10/(steps))*i));
-    }
-  }
-  return arr;
+  return suggestScores(WIZ.levels, WIZ.pivot, 20);
 }
 
 function renderWizScores(containerId){
@@ -2109,29 +2365,11 @@ function renderFinalGrid(){
     h+="</tr>";
   }
   h+="</tbody></table></div>";
-  // Conversion table
-  // Max = pivot score * nCrits (= 20 pts each) => total max = nCrits * 20
-  var pivotIdx=WIZ.levels.indexOf(WIZ.pivot);
-  var pivotScore=WIZ.scores[pivotIdx>=0?pivotIdx:WIZ.levels.length-1];
-  var totalMax=pivotScore*nCrits; // this equals nCrits*20 since pivot=20
-  h+='<div style="margin-top:.8rem;font-size:.76rem;font-weight:600;margin-bottom:.3rem">';
-  h+='Table de conversion — niveau attendu (<strong>'+WIZ.pivot+'</strong>) = 20/20 par critère :</div>';
-  h+='<div style="overflow-x:auto"><table class="conv-table"><thead><tr><th>Niveau</th><th>Points / critère</th><th>Total ('+nCrits+' critères)</th><th>Note /20</th></tr></thead><tbody>';
-  for(var li2=0;li2<WIZ.levels.length;li2++){
-    var lv2=WIZ.levels[li2];
-    var scPts=WIZ.scores[li2];
-    var scTotal=scPts*nCrits;
-    var note=totalMax>0?Math.round(scTotal/totalMax*20*10)/10:0;
-    var isPivot=lv2===WIZ.pivot;
-    var isAbove=li2>pivotIdx;
-    h+='<tr'+(isPivot?' style="background:#fef9c3"':'')+'>';
-    h+='<td><span class="dlv '+lc(lv2)+'-b" style="font-size:.64rem;min-width:28px;display:inline-block;text-align:center;border-radius:3px;padding:.1rem .2rem">'+lv2+"</span></td>";
-    h+="<td>"+scPts+" pts"+(isAbove?' <em style="font-size:.7rem;color:#16a34a">(≥ attendu)</em>':isPivot?' <em style="font-size:.7rem;color:#b45309">★ attendu</em>':"")+"</td>";
-    h+="<td>"+scTotal+" pts</td>";
-    h+="<td><strong>"+note+(note===Math.round(note)?".0":"")+"/20</strong></td>";
-    h+="</tr>";
-  }
-  h+="</tbody></table></div>";
+  // Conversion table via buildConvTable partagée
+  // WIZ.levels est bas→haut (ALL_LO order)
+  var wizLvsBH=WIZ.levels.slice(); // bas→haut
+  h+=buildConvTable(wizLvsBH,WIZ.scores,WIZ.pivot,nCrits,
+    "Table de conversion — niveau attendu <strong>"+WIZ.pivot+"</strong> = 20/20 &nbsp;·&nbsp; "+nCrits+" critère"+(nCrits>1?"s":""));
   c.innerHTML=h;
 }
 
@@ -2214,13 +2452,14 @@ function goWizStep(step){
 function printPage(){
   var title="CECRL 2021",bodyHtml="";
   if(curView==="browse"){ntf("Allez dans Ma grille, Grilles types ou Créer une grille guidée pour imprimer");return;}
+  var isLandscape=false;
   if(curView==="grille"){
     if(sel.size===0){ntf("Grille vide");return;}
-    var tv=document.getElementById("total-val").textContent;
     var customTitle=(document.getElementById("grille-title").value||"").trim();
     title=customTitle||"Ma grille CECRL 2021";
     var gcEl=document.getElementById("gc-el");
-    bodyHtml='<div style="background:#292524;color:#fff;padding:.28rem .7rem;border-radius:3pt;margin-bottom:.45cm;display:flex;justify-content:space-between;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:9pt"><span>Total des points</span><strong>'+tv+"</strong></div>"+(gcEl?gcEl.innerHTML:"");
+    bodyHtml=gcEl?gcEl.innerHTML:"";
+    isLandscape=true;
   } else if(curView==="grilles"){
     var at=document.querySelector(".gtab.active");
     title="Grille CECRL "+(at?at.textContent:"");
@@ -2238,7 +2477,7 @@ function printPage(){
   if(!w){ntf("Autorisez les popups pour imprimer");return;}
   var rv=":root{--A1:#1a7a4a;--A1l:#d4f0e3;--A1t:#0d4a2a;--A2:#2a9d5c;--A2l:#c0ebd5;--A2t:#12562e;--B1:#d97706;--B1l:#fef3c7;--B1t:#78350f;--B2:#b45309;--B2l:#fde68a;--B2t:#451a03;--C1:#6d28d9;--C1l:#ede9fe;--C1t:#2e1065;--C2:#4c1d95;--C2l:#ddd6fe;--C2t:#1e1150;--PA:#64748b;--PAl:#f1f5f9;--PAt:#1e293b;--bd:#e8e4dc;}";
   var date=new Date().toLocaleDateString("fr-FR",{year:"numeric",month:"long",day:"numeric"});
-  var isLandscape=curView==="grilles"||(curView==="wizard");
+  isLandscape=curView==="grilles"||curView==="wizard"||curView==="grille";
   var css=rv+"*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:9.5pt;padding:.8cm;background:#fff;color:#111}"
     +".gs-controls,.no-print,.trash-btn,.btn,.kw-area,.wiz-steps,.wiz-desc,.crit-tabs,.conv-table button{display:none!important}"
     +".grille-section,.final-grid-wrap{break-inside:avoid;border:1pt solid #ccc;border-radius:3pt;margin-bottom:.4cm;overflow:hidden}"
@@ -2252,7 +2491,7 @@ function printPage(){
     +".pa-b{background:var(--PA);color:#fff}.a1-b{background:var(--A1);color:#fff}.a2-b{background:var(--A2);color:#fff}"
     +".b1-b{background:var(--B1);color:#fff}.b2-b{background:var(--B2);color:#fff}.c1-b{background:var(--C1);color:#fff}.c2-b{background:var(--C2);color:#fff}"
     +".final-grid .target-row td,.final-grid .target-row th{background:#fef9c3!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}"
-    +".td-pts input,.score-cell input{border:none;background:transparent;font-weight:600;font-size:7.5pt}"
+    +".td-pts input,.score-cell input,input[data-gp-lv],input[data-gp-score]{border:none;background:transparent;font-weight:600;font-size:7.5pt;width:auto}"
     +".conv-table{border-collapse:collapse;font-size:7pt;margin-top:.3cm}"
     +".conv-table th,.conv-table td{border:1pt solid #ccc;padding:.15rem .3rem;text-align:center}"
     +".conv-table th{background:#f0ede8!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}"
@@ -2322,6 +2561,14 @@ document.addEventListener("click",function(e){
   // grille libre pivot
   var gpill=e.target.closest(".gp-pill[data-lv]");
   if(gpill){gpSetPivot(gpill.dataset.lv);return;}
+  // grille libre : barème suggéré
+  if(e.target.closest("[data-action='gp-suggest-scores']")){gpSuggestScores();return;}
+  // wizard : barème suggéré
+  if(e.target.closest("[data-action='wiz-suggest-scores']")){
+    WIZ.scores=suggestScores(WIZ.levels,WIZ.pivot,20);
+    renderWizScores("w-scores");renderWizScores("w-scores-final");
+    renderFinalGrid();ntf("Barème CECRL appliqué ✓");return;
+  }
   // wizard pivot
   var pill=e.target.closest(".lv-pill[data-lv]");
   if(pill&&pill.closest("#w-pivot-sel")){updateWizPivot(pill.dataset.lv);return;}
