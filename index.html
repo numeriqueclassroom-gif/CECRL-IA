@@ -254,7 +254,6 @@ textarea.inp{resize:vertical;min-height:72px}
 <div class="app-hd" style="padding:.7rem 1.5rem;gap:.6rem">
   <!-- LEFT: logo + title -->
   <div style="display:flex;align-items:center;gap:.9rem;flex-shrink:0">
-    <!-- SVG badge Académie de Nice -->
     <div style="width:46px;height:46px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 0 2px rgba(255,255,255,.25)">
       <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
         <circle cx="17" cy="17" r="17" fill="#003189"/>
@@ -600,7 +599,7 @@ textarea.inp{resize:vertical;min-height:72px}
     <!-- STEP 2 : descripteurs CECRL -->
     <div class="wiz-panel" id="wp-2">
       <div class="wiz-title">Sélectionner les descripteurs CECRL</div>
-      <div class="wiz-desc">Pour chaque critère, choisissez 3 à 5 descripteurs CECRL pertinents. Filtrez par domaine ou recherchez un mot-clé. <strong>Complétez les descripteurs de chaque critère avant de cliquer sur Continuer.</strong></div>
+      <div class="wiz-desc">Pour chaque critère, choisissez 1 à 5 descripteurs CECRL pertinents. Filtrez par domaine ou recherchez un mot-clé. <strong>Complétez les descripteurs de chaque critère avant de cliquer sur Continuer.</strong></div>
       <div class="crit-tabs" id="w-crit-tabs"></div>
       <div id="w-cpicker-search" style="margin-bottom:.6rem">
         <div class="srch" style="max-width:100%">
@@ -2131,7 +2130,8 @@ function renderCPicker(){
 
       var badgeSub=subSelCount>0?'<span class="cp-badge">'+subSelCount+"</span>":"";
       subBlocks+='<div class="cp-ssect">';
-      subBlocks+='<div class="cp-sub-head'+(subCollapsed?" collapsed":"")+'" data-cp-sub="'+subKey+'">';
+      var safeSubKey=subKey.replace(/'/g,"\u2019");
+      subBlocks+='<div class="cp-sub-head'+(subCollapsed?" collapsed":"")+'" data-cp-sub="'+safeSubKey+'">';
       subBlocks+='<span>'+sub+badgeSub+"</span>";
       subBlocks+='<span class="cp-sub-chevron">▾</span>';
       subBlocks+="</div>";
@@ -2143,7 +2143,8 @@ function renderCPicker(){
 
     var badgeCat=catSelCount>0?'<span class="cp-badge" style="background:rgba(255,255,255,.28);color:#fff">'+catSelCount+"</span>":"";
     var h2='<div style="margin-bottom:.7rem;border-radius:8px;overflow:hidden;border:1px solid var(--bd)">';
-    h2+='<div class="cp-cat-head'+(catCollapsed?" collapsed":"")+'" data-cp-cat="'+cat+'" style="background:'+d.col+';color:#fff;font-size:.75rem;font-weight:700;font-family:\'Syne\',\'Helvetica Neue\',Arial,sans-serif;gap:.4rem">';
+    var safeCat=cat.replace(/'/g,"\u2019");
+    h2+='<div class="cp-cat-head'+(catCollapsed?" collapsed":"")+'" data-cp-cat="'+safeCat+'" style="background:'+d.col+';color:#fff;font-size:.75rem;font-weight:700;font-family:\'Syne\',\'Helvetica Neue\',Arial,sans-serif;gap:.4rem">';
     h2+=d.ic+" "+cat+badgeCat;
     h2+='<span class="cp-chevron" style="color:rgba(255,255,255,.8)">▾</span>';
     h2+="</div>";
@@ -2527,23 +2528,23 @@ document.addEventListener("click",function(e){
     else if(a==="addcustom")addCustom();
     else if(a==="generate")generate();
     else if(a==="export-to-grille")exportToGrille();
+    else if(a==="toggle-cp-levels"){WIZ.cpAllLevels=!WIZ.cpAllLevels;renderCPicker();}
+    else if(a==="wiz-suggest-scores"){WIZ.scores=suggestScores(WIZ.levels,WIZ.pivot,20);renderWizScores("w-scores");renderWizScores("w-scores-final");renderFinalGrid();ntf("Barème CECRL appliqué ✓");}
+    else if(a==="gp-suggest-scores")gpSuggestScores();
     return;
   }
   // grilles types tabs
   var gtb=e.target.closest("[data-gtid]");if(gtb){activeGT=gtb.dataset.gtid;renderGT();return;}
-  // toggle cpicker level filter
-  var tcpl=e.target.closest("[data-action='toggle-cp-levels']");
-  if(tcpl){WIZ.cpAllLevels=!WIZ.cpAllLevels;renderCPicker();return;}
   // collapsible category tiles in cpicker
   var cpCat=e.target.closest("[data-cp-cat]");
   if(cpCat&&!e.target.closest("[data-cpick]")){
-    var cat=cpCat.dataset.cpCat;
+    var cat=cpCat.dataset.cpCat.replace(/’/g,"'");
     CP_COLLAPSED_CATS[cat]=!CP_COLLAPSED_CATS[cat];
     renderCPicker();return;
   }
   var cpSub=e.target.closest("[data-cp-sub]");
   if(cpSub&&!e.target.closest("[data-cpick]")){
-    var subKey=cpSub.dataset.cpSub;
+    var subKey=cpSub.dataset.cpSub.replace(/’/g,"'");
     CP_COLLAPSED_SUBS[subKey]=!CP_COLLAPSED_SUBS[subKey];
     renderCPicker();return;
   }
