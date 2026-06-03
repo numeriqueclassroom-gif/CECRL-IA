@@ -1744,6 +1744,7 @@ function rg(){
     // Niveau
     h+='<td class="td-lv" style="text-align:center;vertical-align:middle;white-space:nowrap;'+(bgRow?bgRow:'')+'">';
     h+='<span class="dlv '+clsLv+'-b">'+lv+(isPivot?" ★":"")+'</span>';
+    h+='<button class="trash-btn no-print" data-rmlv="'+lv+'" title="Supprimer ce niveau" style="display:block;margin:.25rem auto 0;opacity:.4"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg></button>';
     h+='</td>';
     // Descripteur par critère
     for(var ci2=0;ci2<order.length;ci2++){
@@ -2720,6 +2721,20 @@ document.addEventListener("click",function(e){
   }
   // grille remove
   var rmg=e.target.closest("[data-rmgroup]");if(rmg){rmGroup(rmg);return;}
+  // Supprimer un niveau de la grille libre
+  var rmlv=e.target.closest("[data-rmlv]");
+  if(rmlv){
+    var lvToRemove=rmlv.dataset.rmlv;
+    // Retirer du sel tous les descripteurs de ce niveau
+    var toDelete=[];
+    sel.forEach(function(id){if(IDX[id]&&IDX[id].lv===lvToRemove)toDelete.push(id);});
+    toDelete.forEach(function(id){sel.delete(id);});
+    // Nettoyer le barème et les scores pour ce niveau
+    delete GP_SCORES[lvToRemove];
+    uc();rg();
+    ntf("Niveau "+lvToRemove+" retiré");
+    return;
+  }
   // final grid add/remove extra row
   var aer=e.target.closest("[data-action='add-extra-row']");
   if(aer){if(!WIZ.extraRows)WIZ.extraRows=[];WIZ.extraRows.push({text:""});renderFinalGrid();return;}
