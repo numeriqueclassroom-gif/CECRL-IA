@@ -2411,24 +2411,44 @@ async function generate(){
       }
       var kwStr=crit.keywords&&crit.keywords.length>0?crit.keywords.join(", "):"(aucun)";
       var levelsStr=WIZ.levels.join(", ");
-      var prompt="Tu es un expert en didactique des langues et en évaluation. "
-        +"Voici une tâche finale : "+WIZ.task+"\n\n"
-        +"Le critère à évaluer est : "+crit.label+"\n\n"
-        +"Le niveau attendu (pivot) est : "+WIZ.pivot+"\n"
-        +"Tu dois rédiger des descripteurs pour ces 5 niveaux : "+levelsStr+"\n\n"
-        +"Descripteurs CECRL de référence sélectionnés :\n"+cecrlContext+"\n"
-        +"Mots-clés fournis par l'enseignant : "+kwStr+"\n\n"
-        +"CONSIGNES STRICTES :\n"
-        +"1. Rédige UN descripteur par niveau ("+levelsStr+").\n"
-        +"2. Chaque descripteur commence par \"Je \" (point de vue élève, 1ère personne).\n"
-        +"3. Adapte le descripteur à la tâche finale spécifique, en intégrant les mots-clés.\n"
-        +"4. Combine les descripteurs CECRL sélectionnés (ne les copie pas, synthétise-les).\n"
-        +"5. Le descripteur du niveau "+WIZ.pivot+" (attendu) est le pivot : au-dessus = maîtrise, en-dessous = insuffisance.\n"
-        +"6. Réponds UNIQUEMENT en JSON valide, format : {\""+WIZ.levels.join("\":\"...\",\"")+"\": \"...\"}\n"
-        +"   (chaque valeur est le descripteur complet pour ce niveau)\n"
-        +"7. Langue du descripteur : français, style direct et concis.\n";
+      var hasKeywords=crit.keywords&&crit.keywords.length>0;
 
-      var resp=await fetch(N8N_WEBHOOK,{
+      // Construire un exemple few-shot dynamique avec les vraies données
+      var examplePivotDesc=cecrlContext.match(new RegExp("\\["+WIZ.pivot+"\\][^\\n]+"," "));
+      var examplePivot=examplePivotDesc?examplePivotDesc[0].replace(/^-\s*/,""):"["+WIZ.pivot+"] "+crit.label+" : peut réaliser la tâche avec une maîtrise satisfaisante";
+      var exampleKw=hasKeywords?"en mobilisant le vocabulaire lié à "+crit.keywords[0]+" ":"";
+      var fewShotEx="EXEMPLE de ce qui est attendu pour le niveau pivot "+WIZ.pivot+" :\n"
+        +"CECRL brut : "+examplePivot+"\n"
+        +"→ Descripteur attendu : \"Je peux "+exampleKw+"réaliser la tâche '''"+WIZ.task+"'\'' de façon satisfaisante en ce qui concerne "+crit.label.toLowerCase()+".\"\n\n";
+
+      var prompt="Tu es un expert en didactique des langues vivantes au lycée français, spécialisé dans l'évaluation par compétences selon le CECRL.\n\n"
+        +"=== CONTEXTE ===\n"
+        +"Tâche finale à évaluer : "+WIZ.task+"\n"
+        +"Critère : "+crit.label+"\n"
+        +"Niveau visé (pivot) : "+WIZ.pivot+"\n"
+        +"Niveaux à rédiger : "+levelsStr+"\n\n"
+        +"=== DESCRIPTEURS CECRL DE RÉFÉRENCE ===\n"
+        +"(Ces descripteurs officiels CECRL 2021 servent de base — synthétise-les, ne les copie pas) :\n"
+        +cecrlContext+"\n"
+        +(hasKeywords
+          ? "=== VOCABULAIRE ET NOTIONS DE LA SÉQUENCE ===\n"
+            +"(Ces mots-clés DOIVENT apparaître dans les descripteurs, car ils ancrent la compétence dans la séquence) :\n"
+            +kwStr+"\n\n"
+          : "")
+        +fewShotEx
+        +"=== CONSIGNES DE RÉDACTION ===\n"
+        +"1. Rédige UN descripteur par niveau ("+levelsStr+") — ni plus, ni moins.\n"
+        +"2. Chaque descripteur commence OBLIGATOIREMENT par \"Je peux\" ou \"Je suis capable de\".\n"
+        +"3. Chaque descripteur DOIT mentionner la tâche (\""+WIZ.task+"\") ou un aspect direct de cette tâche.\n"
+        +(hasKeywords
+          ? "4. Intègre naturellement les mots-clés ("+kwStr+") dans chaque descripteur — ne les liste pas, fais-les vivre dans la phrase.\n"
+          : "4. Adapte le descripteur à la tâche finale spécifique.\n")
+        +"5. La progression doit être explicite : "+WIZ.pivot+" = maîtrise attendue ; niveaux inférieurs = insuffisances graduées ; niveau supérieur = dépassement.\n"
+        +"6. Style : phrase unique, concise (20-40 mots), niveau de langue B2 minimum, pas de jargon pédagogique.\n"
+        +"7. Réponds UNIQUEMENT en JSON valide, sans markdown, sans explication.\n"
+        +"   Format exact : {"+WIZ.levels.map(function(l){return JSON.stringify(l)+": \"...\"";}).join(", ")+"}\n";
+
+var resp=await fetch(N8N_WEBHOOK,{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
