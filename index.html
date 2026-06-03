@@ -156,19 +156,14 @@ textarea.inp{resize:vertical;min-height:72px}
 .cpicker{border:1px solid var(--bd);border-radius:8px;overflow:hidden;margin-bottom:1rem}
 .cpicker-head{background:var(--bg);padding:.45rem .75rem;font-size:.76rem;font-weight:600;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}
 .cpicker-body{max-height:320px;overflow-y:auto;padding:.5rem .75rem}
-.cp-ssect{margin-bottom:.4rem}
-.cp-sub{font-size:.72rem;font-weight:600;color:var(--mt);margin-bottom:.3rem;padding:.18rem .4rem;background:var(--bg);border-left:2px solid var(--bd);border-radius:0 3px 3px 0}
-.cp-cat-head{display:flex;align-items:center;justify-content:space-between;padding:.38rem .7rem;cursor:pointer;user-select:none;transition:opacity .15s}
-.cp-cat-head:hover{opacity:.88}
-.cp-cat-head .cp-chevron{font-size:.8rem;transition:transform .2s;flex-shrink:0}
-.cp-cat-head.collapsed .cp-chevron{transform:rotate(-90deg)}
-.cp-cat-body{padding:.5rem .65rem}
-.cp-cat-body.hidden{display:none}
-.cp-sub-head{display:flex;align-items:center;justify-content:space-between;font-size:.72rem;font-weight:600;color:var(--ac);background:#f4f2ee;padding:.22rem .5rem;border-radius:4px;margin-bottom:.3rem;cursor:pointer;user-select:none;transition:background .12s}
-.cp-sub-head:hover{background:#e9e6e0}
-.cp-sub-head .cp-sub-chevron{font-size:.7rem;transition:transform .2s;flex-shrink:0;color:var(--mt)}
-.cp-sub-head.collapsed .cp-sub-chevron{transform:rotate(-90deg)}
-.cp-sub-body.hidden{display:none}
+.cp-layout{display:flex;gap:0;border:1px solid var(--bd);border-radius:10px;overflow:hidden;height:380px}
+.cp-sidebar{width:220px;flex-shrink:0;overflow-y:auto;border-right:1px solid var(--bd);background:var(--sf)}
+.cp-sidebar-cat{padding:.45rem .7rem;font-size:.72rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.4rem;cursor:default;user-select:none;letter-spacing:.01em}
+.cp-sidebar-sub{padding:.32rem .7rem .32rem 1.1rem;font-size:.72rem;color:var(--mt);cursor:pointer;border-left:2px solid transparent;transition:all .12s;display:flex;align-items:center;justify-content:space-between;gap:.3rem}
+.cp-sidebar-sub:hover{background:var(--bg);color:var(--tx)}
+.cp-sidebar-sub.active{background:var(--bg);color:var(--ac);border-left-color:var(--ac);font-weight:600}
+.cp-panel{flex:1;overflow-y:auto;padding:.6rem .8rem}
+.cp-panel-title{font-size:.72rem;font-weight:700;color:var(--mt);margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}
 .cp-badge{font-size:.62rem;font-weight:700;background:var(--ac);color:#fff;border-radius:10px;padding:.06rem .38rem;margin-left:.35rem;opacity:.85}
 .cp-desc{display:flex;gap:.5rem;align-items:flex-start;padding:.28rem .35rem;border-radius:5px;cursor:pointer;transition:all .1s;margin-bottom:.2rem}
 .cp-desc:hover{background:var(--bg)}
@@ -298,10 +293,10 @@ textarea.inp{resize:vertical;min-height:72px}
             <div style="font-size:.7rem;color:var(--A2);font-weight:600;margin-top:.1rem">Volume complémentaire 2021</div>
           </div>
         </div>
-        <div style="font-size:.79rem;color:var(--mt);line-height:1.6;margin-bottom:1rem">Explorez et filtrez les 471 descripteurs par niveau et domaine. Cochez-en pour les importer directement dans votre grille personnalisée.</div>
+        <div style="font-size:.79rem;color:var(--mt);line-height:1.6;margin-bottom:1rem">Explorez et filtrez les 449 descripteurs par niveau et domaine. Cochez-en pour les importer directement dans votre grille personnalisée.</div>
         <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem">
           <span style="font-size:.68rem;background:var(--A1l);color:var(--A1t);border-radius:20px;padding:.15rem .5rem;font-weight:500">PréA1 → C2</span>
-          <span style="font-size:.68rem;background:var(--B1l);color:var(--B1t);border-radius:20px;padding:.15rem .5rem;font-weight:500">471 descripteurs</span>
+          <span style="font-size:.68rem;background:var(--B1l);color:var(--B1t);border-radius:20px;padding:.15rem .5rem;font-weight:500">449 descripteurs</span>
           <span style="font-size:.68rem;background:#f0fdf4;color:#1e3a8a;border-radius:20px;padding:.15rem .5rem;font-weight:500">Recherche plein texte</span>
         </div>
         <div style="display:flex;align-items:center;gap:.3rem;font-size:.76rem;font-weight:700;color:var(--A2)">Explorer le référentiel →</div>
@@ -383,20 +378,19 @@ textarea.inp{resize:vertical;min-height:72px}
     </div>
   </div>
   <div class="lgd" style="flex-wrap:wrap;gap:.6rem;padding:.6rem 1.5rem;align-items:center">
-    <div style="font-size:.78rem;color:var(--tx);font-weight:500;flex-basis:100%;padding-bottom:.3rem;border-bottom:1px solid var(--bd)">
-      Créer une grille en quelques minutes
+    <div style="flex-basis:100%;padding-bottom:.4rem;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+      <span style="font-size:.78rem;color:var(--tx);font-weight:600">📖 CECRL interactif — 449 descripteurs, accès rapide :</span>
+      <div style="display:flex;gap:.3rem;flex-wrap:wrap">
+        <button class="btn" style="font-size:.68rem;padding:.2rem .55rem;background:var(--bg);border:1px solid var(--bd)" data-quickcat="Réception">👁 Réception</button>
+        <button class="btn" style="font-size:.68rem;padding:.2rem .55rem;background:var(--bg);border:1px solid var(--bd)" data-quickcat="Production">🗣 Production</button>
+        <button class="btn" style="font-size:.68rem;padding:.2rem .55rem;background:var(--bg);border:1px solid var(--bd)" data-quickcat="Interaction">💬 Interaction</button>
+        <button class="btn" style="font-size:.68rem;padding:.2rem .55rem;background:var(--bg);border:1px solid var(--bd)" data-quickcat="Médiation">🔄 Médiation</button>
+        <button class="btn" style="font-size:.68rem;padding:.2rem .55rem;background:var(--bg);border:1px solid var(--bd)" data-quickcat="Compétences linguistiques">🔤 Linguistique</button>
+        <button class="btn" style="font-size:.68rem;padding:.2rem .55rem;background:var(--bg);border:1px solid var(--bd)" data-quickcat="Niveaux communs">📊 Niveaux communs</button>
+      </div>
     </div>
-    <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;flex:1">
-      <div class="li"><div class="ld" style="background:var(--PA)"></div>Pré-A1</div>
-      <div class="li"><div class="ld" style="background:var(--A1)"></div>A1</div>
-      <div class="li"><div class="ld" style="background:var(--A2)"></div>A2</div>
-      <div class="li"><div class="ld" style="background:var(--B1)"></div>B1</div>
-      <div class="li"><div class="ld" style="background:var(--B2)"></div>B2</div>
-      <div class="li"><div class="ld" style="background:var(--C1)"></div>C1</div>
-      <div class="li"><div class="ld" style="background:var(--C2)"></div>C2</div>
-    </div>
-    <div style="font-size:.74rem;color:var(--mt);text-align:right;max-width:340px">
-      Cochez &#9745; pour ajouter à <strong>Ma grille personnalisée</strong> · ou <strong>✨ Créer une grille guidée</strong> avec l'IA
+    <div style="font-size:.72rem;color:var(--mt)">
+      Cochez ☑ pour ajouter à <strong>Ma grille personnalisée</strong> · ou <strong>✨ Créer une grille guidée</strong> avec l'IA
     </div>
   </div>
   <div class="cb">
@@ -472,7 +466,7 @@ textarea.inp{resize:vertical;min-height:72px}
       <button class="gp-pill c2-c" data-lv="C2">C2</button>
     </div>
     <button class="btn" data-action="gp-suggest-scores" style="font-size:.74rem;padding:.28rem .7rem;background:var(--bg);border:1px solid var(--bd);flex-shrink:0">✨ Barème suggéré</button>
-    <span style="font-size:.72rem;color:var(--mt)">— pivot = 5 pts · N-1 = 3 · N-2 = 1 · N+1 = 10 → total pivot × 4 critères = 20/20</span>
+    <span style="font-size:.72rem;color:var(--mt)">— pivot = 5 pts · N-1 = 3 · N-2 = 1 · N+1 = 10 · la table de conversion s'adapte au nombre de critères</span>
   </div>
   <div class="total-bar no-print">
     <span>Total des points attribués</span>
@@ -559,7 +553,7 @@ textarea.inp{resize:vertical;min-height:72px}
     <!-- STEP 0 : cadrage -->
     <div class="wiz-panel active" id="wp-0">
       <div class="wiz-title">Cadrage de la séquence</div>
-      <div class="wiz-desc">Décrivez votre tâche finale et choisissez les cinq niveaux de compétence de votre grille.</div>
+      <div class="wiz-desc">Décrivez votre tâche finale et choisissez le <strong>niveau cible</strong> — la grille génère automatiquement les 2 niveaux inférieurs et le niveau supérieur.</div>
       <div class="field-row">
         <label class="field-label">Tâche finale <span style="color:#dc2626">*</span></label>
         <textarea class="inp" id="w-task" placeholder="Ex. : Créer une vidéo conspirationniste avec voix off et images détournées..."></textarea>
@@ -571,17 +565,17 @@ textarea.inp{resize:vertical;min-height:72px}
           <button class="lv-pill a1-c" data-lv="A1">A1</button>
           <button class="lv-pill a2-c" data-lv="A2">A2</button>
           <button class="lv-pill b1-c" data-lv="B1">B1</button>
-          <button class="lv-pill b2-c active" data-lv="B2">B2</button>
+          <button class="lv-pill b2-c active" data-lv="B2">B2 ★</button>
           <button class="lv-pill c1-c" data-lv="C1">C1</button>
           <button class="lv-pill c2-c" data-lv="C2">C2</button>
         </div>
-        <div class="field-hint" id="w-range-hint">Grille : <strong id="w-range-display">A2 · B1 · <u>B2</u> · C1 · C2</strong> — le niveau souligné est l'attendu.</div>
+        <div class="field-hint" id="w-range-hint">Grille générée : <strong id="w-range-display">A2 · B1 · <u>B2</u> · C1 · C2</strong></div>
       </div>
       <div class="field-row" style="margin-top:1rem">
         <label class="field-label">Points-score par défaut <span style="font-weight:400;color:var(--mt)">(modifiables à l'étape 5)</span></label>
         <div class="score-grid" id="w-scores"></div>
         <button class="btn" data-action="wiz-suggest-scores" style="margin-top:.4rem;font-size:.74rem;padding:.28rem .7rem;background:var(--bg);border:1px solid var(--bd)">✨ Barème suggéré (CECRL)</button>
-        <div class="field-hint" style="margin-top:.3rem">Pivot = 5 pts · N-1 = 3 pts · N-2 = 1 pt · N+1 = 10 pts → total pivot × 4 critères = 20/20. Ajustez librement.</div>
+        <div class="field-hint" style="margin-top:.3rem">Pivot = 5 pts · N-1 = 3 pts · N-2 = 1 pt · N+1 = 10 pts. La table de conversion s'adapte automatiquement au nombre de critères. Ajustez librement.</div>
       </div>
       <button class="btn btn-ac" data-wiz-next="0" style="margin-top:.5rem">Continuer →</button>
     </div>
@@ -940,7 +934,7 @@ const D={
 {l:"A1",t:"Peut rédiger des messages personnels en ligne comprenant de courtes phrases décrivant des passe-temps."},
 {l:"PréA1",t:"Peut écrire des phrases courtes pour donner des renseignements personnels simples."}
 ],
-"Interaction en ligne":[
+"Conversation et discussion en ligne":[
 {l:"C2",t:"Peut s'exprimer avec précision et clarté dans une discussion en ligne en direct. Peut anticiper et gérer efficacement les malentendus culturels."},
 {l:"C1",t:"Peut engager des échanges en ligne en direct avec plusieurs participants, comprendre les intentions de communication et les implications culturelles."},
 {l:"B2",t:"Peut engager des échanges en ligne, relier ses contributions à d'autres déjà publiées, saisir les implications culturelles."},
@@ -948,6 +942,14 @@ const D={
 {l:"A2",t:"Peut se présenter et gérer des échanges simples en ligne. Peut publier de courtes descriptions sur des questions quotidiennes."},
 {l:"A1",t:"Peut écrire des messages personnels en ligne très simples, sur ses loisirs, à l'aide d'un outil de traduction."},
 {l:"PréA1",t:"Peut publier des messages simples de salutation en ligne."}
+],
+"Coopération en ligne par objectifs":[
+{l:"C1",t:"Peut coordonner à distance l\'écriture collaborative d\'un projet complexe en ligne, synthétiser des fils de discussion asynchrones denses pour acter des décisions de groupe."},
+{l:"B2",t:"Peut faire avancer une tâche collaborative en ligne en reliant explicitement ses propres commentaires textuels ou modifications à ceux déposés par ses collaborateurs."},
+{l:"B1",t:"Peut collaborer en ligne pour résoudre des problèmes pratiques ou planifier un projet, à condition que les échanges soient clairs et formulés dans une langue standard."},
+{l:"A2",t:"Peut poster des contributions courtes et simples sur un espace de travail en ligne partagé pour donner son avis ou soumettre son travail."},
+{l:"A1",t:"Peut répondre à une demande d\'information très basique sur un forum en ligne en transmettant un lien ou un mot isolé."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
 ],
 "Comprendre un interlocuteur":[{l:"C2",t:"Peut comprendre tout interlocuteur même sur des sujets spécialisés abstraits ou complexes et hors de son domaine, si on lui donne l\'occasion de s\'habituer à une variété d\'accent moins familière."},
 {l:"C1",t:"Peut comprendre en détail un interlocuteur s\'exprimant sur des sujets spécialisés abstraits ou complexes même hors de son domaine, mais peut avoir besoin de faire confirmer quelques détails si la variété de langue n\'est pas familière."},
@@ -1038,6 +1040,24 @@ const D={
 {l:"A1",t:"Peut demander aux participants de contribuer à des tâches très simples. Peut exprimer une idée et demander aux autres ce qu'ils en pensent."},
 {l:"PréA1",t:"Pas de descripteur disponible."}
 ],
+"Gérer des interactions":[
+{l:"C2",t:"Peut gérer des dynamiques de groupe complexes avec finesse, rediriger les échanges et maintenir la cohésion même dans des situations de tension ou de désaccord."},
+{l:"C1",t:"Peut guider efficacement un groupe dans une discussion en reformulant, en sollicitant des contributions équilibrées et en synthétisant les positions exprimées."},
+{l:"B2",t:"Peut faciliter une discussion de groupe en s\'assurant que chacun peut s\'exprimer, en résumant les points de convergence et en maintenant le fil de la discussion."},
+{l:"B1",t:"Peut inviter les participants à s\'exprimer, vérifier la compréhension mutuelle et relancer une conversation qui s\'essouffle par des questions simples."},
+{l:"A2",t:"Peut demander simplement l\'avis des autres et montrer qu\'il/elle écoute par des signaux verbaux élémentaires."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Susciter un discours conceptuel":[
+{l:"C2",t:"Peut inviter un groupe à réfléchir collectivement à des questions abstraites ou philosophiques et guider l\'élaboration d\'une pensée conceptuelle partagée."},
+{l:"C1",t:"Peut stimuler et orienter un débat conceptuel en proposant des hypothèses provocatrices, en mettant en question des prémisses et en invitant à la nuance."},
+{l:"B2",t:"Peut introduire une problématique et inciter les autres à l\'explorer en posant des questions ouvertes et en reformulant leurs réponses pour approfondir la réflexion."},
+{l:"B1",t:"Peut poser des questions simples sur les raisons et les conséquences d\'une situation pour inviter les autres à réfléchir ensemble."},
+{l:"A2",t:"Pas de descripteur disponible."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
 "Établir un espace pluriculturel":[
 {l:"C2",t:"Peut agir comme médiateur de façon efficace et naturelle entre des locuteurs de sa communauté ou d'une autre, tenant compte des différences socioculturelles."},
 {l:"C1",t:"Peut agir comme médiateur dans des rencontres interculturelles, contribuer à une culture de communication partagée en gérant les ambiguïtés."},
@@ -1047,6 +1067,24 @@ const D={
 {l:"A1",t:"Peut faciliter un échange interculturel par sa façon d'accueillir les gens et en manifestant son intérêt."},
 {l:"PréA1",t:"Pas de descripteur disponible."}
 ],
+"Gérer une interaction pluriculturelle":[
+{l:"C2",t:"Peut arbitrer et décoder avec une sensibilité absolue les nuances culturelles fines dans des négociations complexes à fort enjeu plurilingue."},
+{l:"C1",t:"Peut anticiper, identifier et expliquer les différences liées aux conventions sociolinguistiques, et adapter sa stratégie de communication pour éviter tout malentendu interculturel."},
+{l:"B2",t:"Peut clarifier les sources d\'un malentendu interculturel lors d\'un échange, expliciter les implicites culturels sous-jacents aux propos des participants."},
+{l:"B1",t:"Peut servir de pont interculturel en montrant de l\'empathie, en posant des questions bienveillantes et en expliquant simplement des éléments de sa propre culture."},
+{l:"A2",t:"Peut appliquer les normes de politesse courantes liées aux échanges sociaux du quotidien d\'une autre culture et réagir de manière adéquate."},
+{l:"A1",t:"Peut reconnaître et réagir face à des expressions de base d\'accueil et d\'hospitalité issues de milieux culturels différents."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Faciliter un espace collaboratif":[
+{l:"C2",t:"Peut interagir avec une aisance absolue pour désamorcer les conflits au sein d\'un groupe, recentrer les tâches collectives et synthétiser des consensus complexes de manière fluide."},
+{l:"C1",t:"Peut guider efficacement une séance de travail collaboratif, reformuler les contributions pour valoriser la diversité des opinions et stimuler la participation active de chacun."},
+{l:"B2",t:"Peut organiser la répartition des rôles et des tâches dans un projet collaboratif, encourager les membres plus discrets du groupe à exprimer leur avis."},
+{l:"B1",t:"Peut inviter les autres participants d\'un groupe à exprimer leur point de vue, manifester de l\'intérêt et valider la compréhension des idées partagées en les répétant."},
+{l:"A2",t:"Peut proposer simplement des idées lors d\'un travail collectif d\'une manière respectueuse et montrer qu\'il/elle suit les instructions."},
+{l:"A1",t:"Peut exprimer un accord ou un désaccord simple par rapport à une proposition d\'un camarade à l\'aide de mots isolés et de gestes."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
 "Prendre des notes":[{l:"C2",t:"A conscience de l\'implicite et des sous-entendus dans ce qui est dit et peut les prendre en notes. Peut prendre des notes fiables lors de réunions ou séminaires, même si le sujet est complexe."},
 {l:"C1",t:"Peut prendre des notes de manière sélective, en paraphrasant ou en abrégeant efficacement afin de saisir les concepts abstraits et les relations entre des idées, dans le cadre de sujets non familiers."},
 {l:"B2",t:"Peut prendre des notes fidèles dans des réunions et des conférences, à condition que le sujet soit familier et le discours clair et bien structuré."},
@@ -1054,6 +1092,24 @@ const D={
 {l:"A2",t:"Peut prendre de brèves notes avec des informations simples, à condition que le présentateur fasse des mises au point et donne le temps de prendre les notes."},
 {l:"A1",t:"Pas de descripteur disponible."},
 {l:"PréA1",t:"Pas de descripteur disponible."}],
+"Exprimer une réaction personnelle":[
+{l:"C2",t:"Peut donner une description minutieuse de ses réactions personnelles à l'égard d'une œuvre, en explorant des aspects profonds de son message, du style et des choix de l'auteur."},
+{l:"C1",t:"Peut décrire en détail ses réactions personnelles à l'égard d'une œuvre en argumentant et en faisant des liens avec ses propres connaissances et expériences."},
+{l:"B2",t:"Peut expliquer pourquoi une œuvre donnée lui a fait une impression particulière et donner des arguments pour soutenir cette interprétation."},
+{l:"B1",t:"Peut décrire ses émotions et réactions ressenties à certains passages d'un récit, expliquer pourquoi il/elle a craint pour un personnage et relier cela à des expériences vécues."},
+{l:"A2",t:"Peut exprimer d'une manière simple ce qu'il/elle a ressenti en lisant une histoire ou en regardant un film et dire quel personnage il/elle a préféré."},
+{l:"A1",t:"Peut exprimer sa réaction par rapport à une œuvre à l'aide de mots simples et de formules apprises."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Analyser et critiquer des textes créatifs":[
+{l:"C2",t:"Peut fournir une analyse critique subtile et approfondie d'œuvres de fiction ou de textes créatifs, en évaluant l'utilisation de la langue, les thèmes implicites et les courants artistiques."},
+{l:"C1",t:"Peut analyser et formuler des critiques sur la structure, le développement thématique et le style d'un texte littéraire ou créatif de façon claire et bien structurée."},
+{l:"B2",t:"Peut analyser de manière fiable des œuvres créatives en identifiant les motivations des personnages, les métaphores clés et l'impact du contexte historique sur l'œuvre."},
+{l:"B1",t:"Peut résumer les grandes lignes d'un texte narratif simple ou d'une critique de film, donner son opinion sur les forces et faiblesses des personnages majeurs."},
+{l:"A2",t:"Peut identifier et décrire simplement les personnages principaux, le lieu et les événements clés d'une histoire simple à l'aide de connecteurs élémentaires."},
+{l:"A1",t:"Pas de descripteur disponible."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
 "Agir en tant qu'intermédiaire informel":[{l:"C2",t:"Peut communiquer couramment, de façon claire et bien structurée en langue B, le sens de ce qui est dit en langue A sur une grande variété de sujets généraux et spécialisés, en conservant le style et le registre appropriés."},
 {l:"C1",t:"Peut communiquer couramment en langue B le sens de ce qui est dit en langue A sur une grande variété de sujets d\'intérêt personnel, académique et professionnel."},
 {l:"B2",t:"Peut relater une anecdote ou un exposé dans son domaine, interpréter correctement les indices culturels et reformuler dans un autre registre."},
@@ -1168,13 +1224,31 @@ const D={
 {l:"A1",t:"Peut établir un contact social de base en utilisant les formes de politesse les plus élémentaires."},
 {l:"PréA1",t:"Pas de descripteur disponible."}
 ],
-"Compétence plurilingue et pluriculturelle":[
+"Exploiter un répertoire pluriculturel":[
 {l:"C2",t:"Peut initier et maîtriser ses interventions, montrer qu'il/elle a conscience des différences culturelles et faire de subtils ajustements pour éviter des malentendus culturels."},
 {l:"C1",t:"Peut identifier des différences dans les conventions sociolinguistiques ou sociopragmatiques et adapter en conséquence sa façon de communiquer."},
 {l:"B2",t:"Peut décrire et juger des points de vue et des pratiques de son groupe social ou d'autres groupes. Peut interpréter et expliquer un document provenant d'une autre culture."},
 {l:"B1",t:"Peut, en général, tenir compte des conventions concernant la posture, le contact visuel, la distance entre les personnes. Peut expliquer des éléments de sa propre culture."},
 {l:"A2",t:"Peut reconnaître et appliquer les normes culturelles courantes liées aux échanges sociaux quotidiens."},
 {l:"A1",t:"Peut reconnaître différentes façons de numéroter, mesurer la distance, dire l'heure."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Compréhension plurilingue":[
+{l:"C2",t:"Peut comprendre sans difficulté des locuteurs d\'autres langues de la même famille et exploiter les similitudes entre les langues pour accéder à des textes complexes."},
+{l:"C1",t:"Peut utiliser sa connaissance approfondie de plusieurs langues pour saisir le sens de discours ou textes dans des langues apparentées qu\'il/elle n\'a pas formellement étudiées."},
+{l:"B2",t:"Peut généralement déduire le sens de textes ou d\'énoncés dans des langues apparentées en s\'appuyant sur ses connaissances linguistiques et le contexte."},
+{l:"B1",t:"Peut parfois identifier le sens de mots inconnus dans des langues apparentées grâce au contexte et à ses connaissances lexicales dans d\'autres langues."},
+{l:"A2",t:"Peut reconnaître des mots cognats entre sa langue maternelle et d\'autres langues pour accéder à la signification d\'un message simple."},
+{l:"A1",t:"Peut reconnaître des termes internationaux dans d\'autres langues et les relier à des concepts connus."},
+{l:"PréA1",t:"Pas de descripteur disponible."}
+],
+"Exploiter un répertoire plurilingue":[
+{l:"C2",t:"Peut exploiter avec une grande sophistication son répertoire plurilingue complet pour adapter sa communication à tout contexte, en alternant les langues de façon stratégique et nuancée."},
+{l:"C1",t:"Peut utiliser de manière souple et créative son répertoire plurilingue, y compris en recourant à l\'alternance codique ou à la traduction spontanée pour faciliter la compréhension mutuelle."},
+{l:"B2",t:"Peut recourir à plusieurs langues de son répertoire pour combler des lacunes communicatives, expliquer un concept ou reformuler un message de façon plus accessible."},
+{l:"B1",t:"Peut utiliser des ressources d\'autres langues de son répertoire (mots, formules) pour se faire comprendre lorsque la langue cible lui fait défaut."},
+{l:"A2",t:"Peut faire appel à sa langue maternelle ou à d\'autres langues connues pour pallier un manque de vocabulaire dans la langue cible."},
+{l:"A1",t:"Peut utiliser des mots de sa langue maternelle avec une prononciation adaptée quand il/elle ne connaît pas le terme dans la langue cible."},
 {l:"PréA1",t:"Pas de descripteur disponible."}
 ],
 "Souplesse":[{l:"C2",t:"Montre une grande souplesse dans la reformulation d\'idées en les présentant sous des formes linguistiques variées pour en souligner l\'importance, marquer une différence selon la situation ou l\'interlocuteur, et lever une ambiguïté."},
@@ -1466,10 +1540,28 @@ function flt(){
   });
   document.getElementById("vc").textContent=v;
 }
+var aLvSolo=null; // niveau sélectionné en solo (null = tous)
 function tl(btn){
   var lv=btn.dataset.lv;
-  if(aLv.has(lv)){aLv.delete(lv);btn.classList.remove("active");}
-  else{aLv.add(lv);btn.classList.add("active");}
+  var ALL_LVS=["PréA1","A1","A2","B1","B2","C1","C2"];
+  if(aLvSolo===lv){
+    // Recliqué : retour à tous les niveaux
+    aLvSolo=null;
+    aLv=new Set(ALL_LVS);
+    document.querySelectorAll(".fb").forEach(function(b){
+      b.classList.add("active");
+      b.textContent=b.dataset.lv;
+    });
+  } else {
+    // Nouveau niveau sélectionné : filtre exclusif
+    aLvSolo=lv;
+    aLv=new Set([lv]);
+    document.querySelectorAll(".fb").forEach(function(b){
+      var isActive=b.dataset.lv===lv;
+      b.classList.toggle("active",isActive);
+      b.textContent=b.dataset.lv+(isActive?" ★":"");
+    });
+  }
   flt();
 }
 function uc(){
@@ -2002,7 +2094,9 @@ function updateWizPivot(lv){
   WIZ.scores=defaultScores(WIZ.levels.length);
   // update pill UI
   document.querySelectorAll("#w-pivot-sel .lv-pill").forEach(function(b){
-    b.classList.toggle("active",b.dataset.lv===lv);
+    var isActive=b.dataset.lv===lv;
+    b.classList.toggle("active",isActive);
+    b.textContent=b.dataset.lv+(isActive?" ★":"");
   });
   // update range hint
   var hint=WIZ.levels.map(function(l){return l===WIZ.pivot?"<u>"+l+"</u>":l;}).join(" · ");
@@ -2069,8 +2163,8 @@ function renderCritTabs(containerId,step){
 }
 
 // Collapse state for cpicker
-var CP_COLLAPSED_CATS={};
-var CP_COLLAPSED_SUBS={};
+var CP_ACTIVE_SUB=null;
+var CP_OPEN_CAT=null; // catégorie ouverte dans la sidebar
 
 function renderCPicker(){
   var c=document.getElementById("w-cpicker");if(!c)return;
@@ -2079,82 +2173,133 @@ function renderCPicker(){
   var filterLv=WIZ.cpAllLevels?null:WIZ.pivot;
   var isSearching=srchVal.length>0;
 
-  var h='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;flex-wrap:wrap;gap:.4rem">';
+  // Barre de statut
+  var h='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;flex-wrap:wrap;gap:.4rem">';
   h+='<span style="font-size:.74rem;color:var(--mt)">'+critIds.length+' descripteur(s) sélectionné(s)</span>';
   h+='<div style="display:flex;align-items:center;gap:.4rem">';
   if(!WIZ.cpAllLevels){
     var cls=lc(WIZ.pivot);
-    h+='<span style="font-size:.73rem;color:var(--mt)">Affichage : niveau </span>';
-    h+='<span class="dlv '+cls+'-b" style="font-size:.68rem;min-width:30px;text-align:center;border-radius:4px;padding:.15rem .3rem">'+WIZ.pivot+"</span>";
-  } else {
-    h+='<span style="font-size:.73rem;color:var(--mt)">Affichage : tous les niveaux</span>';
+    h+='<span class="dlv '+cls+'-b" style="font-size:.66rem;border-radius:4px;padding:.12rem .3rem">'+WIZ.pivot+"</span>";
   }
   h+='<button class="btn" style="padding:.22rem .6rem;font-size:.72rem;background:var(--bg);border:1px solid var(--bd);color:var(--mt)" data-action="toggle-cp-levels">'+(WIZ.cpAllLevels?"Niveau "+WIZ.pivot+" uniquement":"Tous les niveaux")+"</button>";
   h+="</div></div>";
 
+  // Collecter toutes les sous-catégories
+  var allSubs=[];
+  var catList=[];
   for(var cat in D){
     if(cat==="Réception"||cat==="Niveaux communs"||cat==="Grilles d'évaluation") continue;
     var d=D[cat];
-    var catHasMatch=false;
-    var catSelCount=0;
-    var catCollapsed=!isSearching&&CP_COLLAPSED_CATS[cat];
-    var subBlocks="";
-
+    var catHasAny=false;
     for(var sub in d.s){
       var ds=d.s[sub];
-      var subKey=cat+"|||"+sub;
-      var subCollapsed=!isSearching&&CP_COLLAPSED_SUBS[subKey];
-      var subHasMatch=false;
-      var subSelCount=0;
-      var descH="";
-
+      var descs=[];
       for(var i=0;i<ds.length;i++){
         var desc=ds[i];
         if(desc.t==="Pas de descripteur disponible.")continue;
         if(filterLv&&desc.l!==filterLv)continue;
-        if(srchVal&&!desc.t.toLowerCase().includes(srchVal)&&!sub.toLowerCase().includes(srchVal)&&!desc.l.toLowerCase().includes(srchVal))continue;
-        var cid=gid(cat,sub,desc.l);
-        var isSel=critIds.indexOf(cid)>=0;
-        if(isSel)subSelCount++;
-        var c2=lc(desc.l);
-        descH+='<div class="cp-desc'+(isSel?" sel":"")+'" data-cpick="'+cid+'">';
-        descH+='<span class="cp-lv '+c2+'-b">'+desc.l+"</span>";
-        descH+='<span class="cp-tx">'+desc.t+"</span>";
-        descH+='<span class="cp-ck'+(isSel?" chk":"")+'"><svg width="10" height="10" viewBox="0 0 11 11" fill="none"><polyline points="1.5,5.5 4.5,8.5 9.5,2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
-        descH+="</div>";
-        subHasMatch=true;
+        if(isSearching&&!desc.t.toLowerCase().includes(srchVal)&&!sub.toLowerCase().includes(srchVal)&&!cat.toLowerCase().includes(srchVal))continue;
+        descs.push({id:gid(cat,sub,desc.l),lv:desc.l,tx:desc.t});
       }
-      if(!subHasMatch)continue;
-      catSelCount+=subSelCount;
-      catHasMatch=true;
-
-      var badgeSub=subSelCount>0?'<span class="cp-badge">'+subSelCount+"</span>":"";
-      subBlocks+='<div class="cp-ssect">';
-      var safeSubKey=subKey.replace(/'/g,"\u2019");
-      subBlocks+='<div class="cp-sub-head'+(subCollapsed?" collapsed":"")+'" data-cp-sub="'+safeSubKey+'">';
-      subBlocks+='<span>'+sub+badgeSub+"</span>";
-      subBlocks+='<span class="cp-sub-chevron">▾</span>';
-      subBlocks+="</div>";
-      subBlocks+='<div class="cp-sub-body'+(subCollapsed?" hidden":"")+'">';
-      subBlocks+=descH;
-      subBlocks+="</div></div>";
+      if(descs.length>0){allSubs.push({cat:cat,sub:sub,col:d.col,ic:d.ic,descs:descs});catHasAny=true;}
     }
-    if(!catHasMatch)continue;
-
-    var badgeCat=catSelCount>0?'<span class="cp-badge" style="background:rgba(255,255,255,.28);color:#fff">'+catSelCount+"</span>":"";
-    var h2='<div style="margin-bottom:.7rem;border-radius:8px;overflow:hidden;border:1px solid var(--bd)">';
-    var safeCat=cat.replace(/'/g,"\u2019");
-    h2+='<div class="cp-cat-head'+(catCollapsed?" collapsed":"")+'" data-cp-cat="'+safeCat+'" style="background:'+d.col+';color:#fff;font-size:.75rem;font-weight:700;font-family:\'Syne\',\'Helvetica Neue\',Arial,sans-serif;gap:.4rem">';
-    h2+=d.ic+" "+cat+badgeCat;
-    h2+='<span class="cp-chevron" style="color:rgba(255,255,255,.8)">▾</span>';
-    h2+="</div>";
-    h2+='<div class="cp-cat-body'+(catCollapsed?" hidden":"")+'">';
-    h2+=subBlocks;
-    h2+="</div></div>";
-    h+=h2;
+    if(catHasAny) catList.push({cat:cat,col:d.col,ic:d.ic});
   }
+
+  if(allSubs.length===0){
+    h+='<div class="ge" style="margin:0"><p>Aucun descripteur trouvé.</p></div>';
+    c.innerHTML=h;return;
+  }
+
+  // En mode recherche : tout ouvrir
+  if(isSearching) CP_OPEN_CAT=null;
+
+  // Ouvrir la première catégorie par défaut
+  if(!isSearching&&!CP_OPEN_CAT) CP_OPEN_CAT=catList[0].cat;
+
+  // Sélection active : vérifier qu'elle est dans la catégorie ouverte ou en recherche
+  if(!isSearching){
+    if(!CP_ACTIVE_SUB||CP_ACTIVE_SUB.cat!==CP_OPEN_CAT){
+      var firstOfOpen=allSubs.find(function(s){return s.cat===CP_OPEN_CAT;});
+      if(firstOfOpen) CP_ACTIVE_SUB={cat:firstOfOpen.cat,sub:firstOfOpen.sub};
+    }
+  } else {
+    if(!CP_ACTIVE_SUB||!allSubs.some(function(s){return s.cat===CP_ACTIVE_SUB.cat&&s.sub===CP_ACTIVE_SUB.sub;})){
+      CP_ACTIVE_SUB={cat:allSubs[0].cat,sub:allSubs[0].sub};
+    }
+  }
+
+  // Sidebar
+  var sideH="";
+  var lastCat=null;
+  var subsToShow=isSearching?allSubs:allSubs.filter(function(s){return s.cat===CP_OPEN_CAT;});
+
+  // En mode recherche : afficher tout à plat
+  if(isSearching){
+    allSubs.forEach(function(s){
+      if(s.cat!==lastCat){
+        lastCat=s.cat;
+        sideH+='<div class="cp-sidebar-cat" style="background:'+s.col+';font-family:\'Syne\',sans-serif;cursor:default">'+s.ic+" "+s.cat+"</div>";
+      }
+      var isActive=CP_ACTIVE_SUB&&CP_ACTIVE_SUB.cat===s.cat&&CP_ACTIVE_SUB.sub===s.sub;
+      var selCount=s.descs.filter(function(d){return critIds.indexOf(d.id)>=0;}).length;
+      var badge=selCount>0?'<span class="cp-badge">'+selCount+"</span>":"";
+      var safeKey=(s.cat+"|"+s.sub).replace(/'/g,"’");
+      sideH+='<div class="cp-sidebar-sub'+(isActive?" active":"")+'" data-cp-nav="'+safeKey+'">'+s.sub+badge+"</div>";
+    });
+  } else {
+    // Accordéon : catégories cliquables, une seule ouverte
+    catList.forEach(function(cl){
+      var isOpen=CP_OPEN_CAT===cl.cat;
+      var catSelCount=allSubs.filter(function(s){return s.cat===cl.cat;})
+        .reduce(function(acc,s){return acc+s.descs.filter(function(d){return critIds.indexOf(d.id)>=0;}).length;},0);
+      var catBadge=catSelCount>0?'<span class="cp-badge" style="background:rgba(255,255,255,.35)">'+catSelCount+"</span>":"";
+      var safeCat=cl.cat.replace(/'/g,"’");
+      sideH+='<div class="cp-sidebar-cat" style="background:'+cl.col+';font-family:\'Syne\',sans-serif;cursor:pointer;justify-content:space-between;display:flex;align-items:center" data-cp-opencat="'+safeCat+'">';
+      sideH+=cl.ic+" "+cl.cat+catBadge;
+      sideH+='<span style="font-size:.65rem;opacity:.7;margin-left:.3rem">'+(isOpen?"▾":"▸")+"</span>";
+      sideH+="</div>";
+      if(isOpen){
+        allSubs.filter(function(s){return s.cat===cl.cat;}).forEach(function(s){
+          var isActive=CP_ACTIVE_SUB&&CP_ACTIVE_SUB.cat===s.cat&&CP_ACTIVE_SUB.sub===s.sub;
+          var selCount=s.descs.filter(function(d){return critIds.indexOf(d.id)>=0;}).length;
+          var badge=selCount>0?'<span class="cp-badge">'+selCount+"</span>":"";
+          var safeKey=(s.cat+"|"+s.sub).replace(/'/g,"’");
+          sideH+='<div class="cp-sidebar-sub'+(isActive?" active":"")+'" data-cp-nav="'+safeKey+'">'+s.sub+badge+"</div>";
+        });
+      }
+    });
+  }
+
+  // Panneau droit
+  var panelH="";
+  var activeSub=allSubs.find(function(s){return CP_ACTIVE_SUB&&s.cat===CP_ACTIVE_SUB.cat&&s.sub===CP_ACTIVE_SUB.sub;});
+  if(activeSub){
+    var selTotal=activeSub.descs.filter(function(d){return critIds.indexOf(d.id)>=0;}).length;
+    panelH+='<div class="cp-panel-title">';
+    panelH+='<span style="color:'+activeSub.col+';font-size:.65rem;text-transform:uppercase;letter-spacing:.04em;font-weight:700">'+activeSub.cat+'</span>';
+    panelH+='<span style="color:var(--tx);font-size:.75rem;font-weight:600;margin-left:.5rem">'+activeSub.sub+'</span>';
+    if(selTotal>0) panelH+='<span class="cp-badge" style="margin-left:auto">'+selTotal+"</span>";
+    panelH+="</div>";
+    activeSub.descs.forEach(function(desc){
+      var isSel=critIds.indexOf(desc.id)>=0;
+      var c2=lc(desc.lv);
+      panelH+='<div class="cp-desc'+(isSel?" sel":"")+'" data-cpick="'+desc.id+'">';
+      panelH+='<span class="cp-lv '+c2+'-b">'+desc.lv+"</span>";
+      panelH+='<span class="cp-tx">'+desc.tx+"</span>";
+      panelH+='<span class="cp-ck'+(isSel?" chk":"")+'"><svg width="10" height="10" viewBox="0 0 11 11" fill="none"><polyline points="1.5,5.5 4.5,8.5 9.5,2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+      panelH+="</div>";
+    });
+  }
+
+  h+='<div class="cp-layout"><div class="cp-sidebar">'+sideH+"</div>";
+  h+='<div class="cp-panel">'+panelH+"</div></div>";
   c.innerHTML=h;
+
+  var activeEl=c.querySelector(".cp-sidebar-sub.active");
+  if(activeEl) activeEl.scrollIntoView({block:"nearest"});
 }
+
 function initWizStep3(){
   WIZ.activeCrit=0;
   renderCritTabs("w-kw-tabs",3);
@@ -2514,6 +2659,17 @@ document.addEventListener("click",function(e){
   // explorer
   var dck=e.target.closest(".dck");if(dck){tog(dck);return;}
   var sbi=e.target.closest(".sbi");if(sbi){var id=sbi.getAttribute("data-secid");if(id)scr(id);return;}
+  // quick-cat buttons in browse toolbar
+  var qc=e.target.closest("[data-quickcat]");
+  if(qc){
+    sv("browse");
+    setTimeout(function(){
+      var cat=qc.dataset.quickcat;
+      var el=document.getElementById("S-"+encodeURIComponent(cat));
+      if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+    },80);
+    return;
+  }
   var fb=e.target.closest(".fb");if(fb){tl(fb);return;}
   // navigation
   var vsw=e.target.closest("[data-view]");if(vsw){sv(vsw.dataset.view);return;}
@@ -2535,17 +2691,18 @@ document.addEventListener("click",function(e){
   }
   // grilles types tabs
   var gtb=e.target.closest("[data-gtid]");if(gtb){activeGT=gtb.dataset.gtid;renderGT();return;}
-  // collapsible category tiles in cpicker
-  var cpCat=e.target.closest("[data-cp-cat]");
-  if(cpCat&&!e.target.closest("[data-cpick]")){
-    var cat=cpCat.dataset.cpCat.replace(/’/g,"'");
-    CP_COLLAPSED_CATS[cat]=!CP_COLLAPSED_CATS[cat];
+  // sidebar navigation in two-panel cpicker
+  var cpOpenCat=e.target.closest("[data-cp-opencat]");
+  if(cpOpenCat){
+    var oc=cpOpenCat.dataset.cpOpencat.replace(/’/g,"'");
+    CP_OPEN_CAT=CP_OPEN_CAT===oc?null:oc;
     renderCPicker();return;
   }
-  var cpSub=e.target.closest("[data-cp-sub]");
-  if(cpSub&&!e.target.closest("[data-cpick]")){
-    var subKey=cpSub.dataset.cpSub.replace(/’/g,"'");
-    CP_COLLAPSED_SUBS[subKey]=!CP_COLLAPSED_SUBS[subKey];
+  var cpNav=e.target.closest("[data-cp-nav]");
+  if(cpNav){
+    var key=cpNav.dataset.cpNav.replace(/’/g,"'");
+    var sep=key.indexOf("|");
+    CP_ACTIVE_SUB={cat:key.slice(0,sep),sub:key.slice(sep+1)};
     renderCPicker();return;
   }
   // grille remove
