@@ -3507,7 +3507,7 @@ var resp=await fetch(N8N_WEBHOOK,{
       // 3. Si pas de JSON trouvé, construire manuellement depuis le texte
       if(!parsed){
         parsed={};
-        for(var li=0;li<WIZ.levels.length;li++){
+        for(var li=WIZ.levels.length-1;li>=0;li--){
           var lv2=WIZ.levels[li];
           // chercher le niveau dans le texte : "B2" : "texte..." ou B2 - texte
           var rx=new RegExp(lv2.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"[^a-zA-Z][\s\S]{0,20}?[:\-]\s*([^\n]{20,300})","i");
